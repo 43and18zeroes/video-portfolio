@@ -4,4 +4,16 @@ app-header.scss
 
 :host {
     display: flex;
+
+    /* Sticky */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+
+    /* Transparent & blurred background */
+    background: rgba(13, 17, 26, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
