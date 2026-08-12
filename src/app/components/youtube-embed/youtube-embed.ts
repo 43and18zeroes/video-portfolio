@@ -10,7 +10,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class YoutubeEmbed {
   private sanitizer = inject(DomSanitizer);
 
-  // Verpflichtendes Signal-Input für die jeweilige YouTube Video ID
   videoId = input.required<string>();
 
   isConsentGiven = signal(false);
