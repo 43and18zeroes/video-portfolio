@@ -1,0 +1,174 @@
+<div class="contact-wrapper">
+
+  <div class="contact-card">
+
+    <div class="form-header">
+      <span class="eyebrow">Kontakt</span>
+
+      <h2>Wie können wir helfen?</h2>
+
+      <p>
+        Füllen Sie einfach das Formular aus und senden Sie Ihre Anfrage ab.
+      </p>
+    </div>
+
+
+    @if (submittedSuccessfully) {
+
+      <div
+        class="success-message"
+        role="status"
+        aria-live="polite"
+      >
+        <div class="success-icon">
+          ✓
+        </div>
+
+        <div>
+          <strong>Vielen Dank!</strong>
+          <p>Ihre Anfrage wurde erfolgreich übermittelt.</p>
+        </div>
+      </div>
+
+    }
+
+
+    <form
+      [formGroup]="contactForm"
+      (ngSubmit)="onSubmit()"
+      (input)="hideSuccess()"
+      (change)="hideSuccess()"
+      novalidate
+    >
+
+      <!-- NAME -->
+
+      <div class="form-group">
+
+        <label for="name">
+          Name
+        </label>
+
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Ihr Name"
+          autocomplete="name"
+          [class.invalid]="
+            contactForm.controls.name.invalid &&
+            contactForm.controls.name.touched
+          "
+        >
+
+        @if (
+          contactForm.controls.name.invalid &&
+          contactForm.controls.name.touched
+        ) {
+
+          <div class="error-message">
+
+            @if (contactForm.controls.name.hasError('required')) {
+              Bitte geben Sie Ihren Namen ein.
+            }
+
+            @if (contactForm.controls.name.hasError('minlength')) {
+              Der Name muss mindestens 2 Zeichen lang sein.
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- EMAIL -->
+
+      <div class="form-group">
+
+        <label for="email">
+          E-Mail
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="name@unternehmen.de"
+          autocomplete="email"
+          [class.invalid]="
+            contactForm.controls.email.invalid &&
+            contactForm.controls.email.touched
+          "
+        >
+
+        @if (
+          contactForm.controls.email.invalid &&
+          contactForm.controls.email.touched
+        ) {
+
+          <div class="error-message">
+
+            @if (contactForm.controls.email.hasError('required')) {
+              Bitte geben Sie Ihre E-Mail-Adresse ein.
+            }
+
+            @if (contactForm.controls.email.hasError('pattern')) {
+              Bitte geben Sie eine gültige E-Mail-Adresse ein.
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- DROPDOWN -->
+
+      <div class="form-group">
+
+        <label for="topic">
+          Thema
+        </label>
+
+        <div class="select-wrapper">
+
+          <select
+            id="topic"
+            formControlName="topic"
+          >
+            <option value="general">
+              Allgemeine Anfrage
+            </option>
+
+            <option value="consulting">
+              Beratung
+            </option>
+
+            <option value="support">
+              Support
+            </option>
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- SUBMIT -->
+
+      <button
+        type="submit"
+        class="submit-button"
+      >
+        <span>Absenden</span>
+        <span class="button-arrow">→</span>
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
