@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: 'Sora';
-    src: url('fonts/Sora-VariableFont_wght.ttf') format('truetype');
+    src: url('/fonts/Sora-VariableFont_wght.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
@@ -33,4 +33,10 @@ h3,
 h4 {
     font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 700;
+}
+
+.text-link {
+    color: oklch(72% .02 264);
+    text-decoration: none;
+    font-size: 14px;
 }

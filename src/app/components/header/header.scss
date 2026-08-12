@@ -17,3 +17,8 @@ app-header.scss
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
+
+.mid-section {
+    display: flex;
+    gap: 16px;
+}
