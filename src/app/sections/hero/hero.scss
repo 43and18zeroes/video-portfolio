@@ -7,3 +7,75 @@ app-hero.scss
     background-color: #0d111a;
     padding-top: 100px;
 }
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #182030;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+
+    .placeholder-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        max-width: 450px;
+
+        .youtube-icon {
+            color: #ff0000;
+        }
+
+        p {
+            margin: 0;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+
+            small {
+                color: #94a3b8;
+                font-size: 0.8rem;
+            }
+        }
+
+        .consent-btn {
+            background-color: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+
+            &:hover {
+                background-color: #2563eb;
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+}
