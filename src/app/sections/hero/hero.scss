@@ -7,3 +7,21 @@ app-hero.scss
     background-color: #0d111a;
     padding-top: 100px;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(12, 1fr);
+
+    .col-main {
+      grid-column: span 7;
+    }
+
+    .col-side {
+      grid-column: span 5;
+    }
+  }
+}
