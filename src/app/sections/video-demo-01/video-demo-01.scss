@@ -1,0 +1,26 @@
+/* =========================
+video-demo-01.scss
+========================= */
+
+:host {
+    display: block;
+    background-color: #0d111a;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(12, 1fr);
+
+    .col-1 {
+      grid-column: span 6;
+    }
+
+    .col-2 {
+      grid-column: span 6;
+    }
+  }
+}
