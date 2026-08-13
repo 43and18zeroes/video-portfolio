@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VideoDemo00 } from './video-demo-00';
+import { VideoDemo } from './video-demo';
 
-describe('VideoDemo00', () => {
-  let component: VideoDemo00;
-  let fixture: ComponentFixture<VideoDemo00>;
+describe('VideoDemo', () => {
+  let component: VideoDemo;
+  let fixture: ComponentFixture<VideoDemo>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VideoDemo00],
+      imports: [VideoDemo],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VideoDemo00);
+    fixture = TestBed.createComponent(VideoDemo);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
