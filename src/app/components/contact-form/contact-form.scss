@@ -12,6 +12,19 @@ contact-form.scss
   box-sizing: border-box;
 }
 
+/* Accessibility Utility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .contact-wrapper {
   width: 100%;
   padding: 30px 16px;
@@ -22,11 +35,11 @@ contact-form.scss
 .contact-card {
   width: 100%;
   max-width: 768px;
-  background-color: #151b25;
-  border: 1px solid #e8e8e8;
-  border-radius: 16px;
-  padding: 28px 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  background-color: #0f141d;
+  border: 1px solid #1a2230;
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Header */
@@ -35,21 +48,27 @@ contact-form.scss
   margin-bottom: 24px;
 
   h2 {
-    font-size: 18px;
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
   }
 
-  p {
+  p.grey-text {
     margin: 0;
+    color: #8a94a6;
     font-size: 14px;
+    line-height: 1.5;
   }
 }
 
-/* Form */
+/* Form Layout */
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .form-group {
@@ -58,75 +77,83 @@ form {
   gap: 6px;
 }
 
-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #292929;
-}
-
-/* Inputs & Selects */
+/* Inputs & Selects (Pill-Design) */
 
 input,
 select {
   width: 100%;
-  height: 52px;
-  padding: 0 16px;
+  height: 50px;
+  padding: 0 22px;
 
-  border: 1px solid #d8d8d8;
-  border-radius: 10px;
+  border: 1px solid #242d3d;
+  border-radius: 9999px;
+  /* Pill-Form */
 
-  background-color: #1d242f;
-  // color: #171717;
+  background-color: #161c28;
+  color: #ffffff;
 
   font-family: inherit;
-  font-size: 16px;
+  font-size: 15px;
 
   outline: none;
   appearance: none;
 
   transition:
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 input::placeholder {
-  color: #999999;
+  color: #8a94a6;
 }
 
 input:hover,
 select:hover {
-  border-color: #b5b5b5;
+  border-color: #354257;
 }
 
 input:focus,
 select:focus {
-  border-color: #555555;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+  border-color: #2563eb;
+  /* Blaues Highlight wie auf dem Screenshot */
+  box-shadow: 0 0 0 1px #2563eb;
 }
 
-/* Invalid State */
+/* Custom Dropdown Arrow */
 
-input.invalid {
-  border-color: #d43838;
+.select-wrapper {
+  position: relative;
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+  }
+
+  option {
+    background-color: #161c28;
+    color: #ffffff;
+  }
 }
 
-input.invalid:focus {
-  box-shadow: 0 0 0 3px rgba(212, 56, 56, 0.1);
+/* Validation Styles */
+
+input.invalid,
+select.invalid {
+  border-color: #ef4444;
+}
+
+input.invalid:focus,
+select.invalid:focus {
+  box-shadow: 0 0 0 1px #ef4444;
 }
 
 .error-message {
   font-size: 13px;
-  color: #c72d2d;
-}
-
-/* Select Wrapper */
-
-.select-wrapper {
-  position: relative;
-}
-
-select {
-  cursor: pointer;
+  color: #f87171;
+  padding-left: 16px;
 }
 
 /* Submit Button */
@@ -134,11 +161,11 @@ select {
 .submit-button {
   width: 100%;
   height: 54px;
-  margin-top: 4px;
+  margin-top: 8px;
 
   border: 0;
-  border-radius: 10px;
-  background: #171717;
+  border-radius: 9999px;
+  background-color: #4f80ff;
   color: #ffffff;
 
   font-family: inherit;
@@ -149,42 +176,42 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 
   transition:
-    transform 0.15s ease,
-    background 0.2s ease;
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .submit-button:hover {
-  background: #303030;
+  background-color: #5d8bff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(79, 128, 255, 0.35);
 }
 
 .submit-button:active {
-  transform: scale(0.99);
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
 }
 
-.button-arrow {
-  font-size: 20px;
-  transition: transform 0.2s ease;
+.button-icon {
+  font-size: 18px;
+  line-height: 1;
 }
 
-.submit-button:hover .button-arrow {
-  transform: translateX(4px);
-}
-
-/* Success State */
+/* Success Message */
 
 .success-message {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   padding: 16px;
 
-  background: #edf9f1;
-  border: 1px solid #b9e5c7;
-  border-radius: 12px;
+  background: rgba(22, 138, 69, 0.15);
+  border: 1px solid #168a45;
+  border-radius: 14px;
 
   animation: successIn 0.35s ease;
 }
@@ -205,13 +232,13 @@ select {
 
 .success-message strong {
   display: block;
-  color: #126b39;
+  color: #4ade80;
   margin-bottom: 2px;
 }
 
 .success-message p {
   margin: 0;
-  color: #34734e;
+  color: #bbf7d0;
   font-size: 14px;
 }
 
@@ -227,45 +254,31 @@ select {
   }
 }
 
+/* Responsive Scaling */
+
 @include md {
   .contact-wrapper {
     padding: 60px 24px;
   }
 
   .contact-card {
-    padding: 42px;
-    border-radius: 20px;
+    padding: 40px;
+    border-radius: 24px;
   }
 
   .form-header {
-    margin-bottom: 32px;
-  }
+    margin-bottom: 28px;
 
-  .eyebrow {
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
+    h2 {
+      font-size: 26px;
+    }
 
-  .form-header p {
-    font-size: 16px;
+    p.grey-text {
+      font-size: 15px;
+    }
   }
 
   form {
-    gap: 24px;
-  }
-
-  .form-group {
-    gap: 8px;
-  }
-
-  .success-message {
-    padding: 18px 20px;
-    margin-bottom: 28px;
-  }
-
-  .success-icon {
-    width: 38px;
-    height: 38px;
-    font-size: 20px;
+    gap: 20px;
   }
 }
