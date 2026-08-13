@@ -2,6 +2,8 @@
 video-sample.scss
 ========================= */
 
+@use 'breakpoints' as *;
+
 :host {
   display: block;
   background-color: #0d111a;
@@ -14,7 +16,7 @@ video-sample.scss
   gap: 2rem;
   align-items: center;
 
-  @media (min-width: 768px) {
+  @include md {
     grid-template-columns: repeat(12, 1fr);
 
     .col-1,

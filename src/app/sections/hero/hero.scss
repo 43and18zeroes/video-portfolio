@@ -2,6 +2,8 @@
 hero.scss
 ========================= */
 
+@use 'breakpoints' as *;
+
 :host {
     display: block;
     background-color: #0d111a;
@@ -13,7 +15,7 @@ hero.scss
   grid-template-columns: 1fr;
   align-items: center;
 
-  @media (min-width: 768px) {
+  @include md {
     grid-template-columns: repeat(12, 1fr);
 
     .col-main {

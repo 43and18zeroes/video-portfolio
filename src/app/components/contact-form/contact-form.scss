@@ -2,6 +2,8 @@
 contact-form.scss
 ========================= */
 
+@use 'breakpoints' as *;
+
 :host {
   display: block;
 }
@@ -239,7 +241,7 @@ select {
   }
 }
 
-@media (min-width: 768px) {
+@include md {
   .contact-wrapper {
     padding: 60px 24px;
   }

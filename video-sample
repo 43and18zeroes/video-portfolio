@@ -1,0 +1,17 @@
+
+D:\dev\apps\video-portfolio>REM ng build --configuration production --base-href / --deploy-url / 
+
+D:\dev\apps\video-portfolio>REM "./scripts/up.bat" comment 
+
+D:\dev\apps\video-portfolio>git add . 
+
+D:\dev\apps\video-portfolio>git commit -m "video-demo -" 
+[main aab0b6c] video-demo -
+ 7 files changed, 16 insertions(+), 16 deletions(-)
+ rename src/app/components/{video-demo/video-demo.html => video-sample/video-sample.html} (94%)
+ rename src/app/components/{video-demo/video-demo.scss => video-sample/video-sample.scss} (96%)
+ rename src/app/components/{video-demo/video-demo.spec.ts => video-sample/video-sample.spec.ts} (58%)
+ rename src/app/components/{video-demo/video-demo.ts => video-sample/video-sample.ts} (77%)
+ create mode 100644 video-sample
+
+D:\dev\apps\video-portfolio>git push 
