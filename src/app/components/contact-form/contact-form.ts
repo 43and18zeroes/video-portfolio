@@ -38,7 +38,7 @@ export class ContactForm {
     ],
 
     topic: [
-      'general',
+      '',
       Validators.required
     ]
   });

@@ -18,6 +18,15 @@ header.scss
     -webkit-backdrop-filter: blur(12px);
 }
 
+.logo {
+    color: #fff;
+    text-decoration: none;
+
+    span {
+        color: #457cfd;
+    }
+}
+
 .mid-section {
     display: flex;
     gap: 16px;

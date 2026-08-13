@@ -7,80 +7,71 @@ contact-form.html
   <div class="contact-card">
 
     <div class="form-header">
-      <span class="eyebrow">Kontakt</span>
 
-      <h2>Wie können wir helfen?</h2>
+      <h2>Schnellanfrage</h2>
 
       <p>
-        Füllen Sie einfach das Formular aus und senden Sie Ihre Anfrage ab.
+        In 30 Sekunden ausgefüllt – Antwort innerhalb 24
+        Stunden.
       </p>
     </div>
 
 
     @if (submittedSuccessfully) {
 
-      <div
-        class="success-message"
-        role="status"
-        aria-live="polite"
-      >
-        <div class="success-icon">
-          ✓
-        </div>
-
-        <div>
-          <strong>Vielen Dank!</strong>
-          <p>Ihre Anfrage wurde erfolgreich übermittelt.</p>
-        </div>
+    <div class="success-message" role="status"
+      aria-live="polite">
+      <div class="success-icon">
+        ✓
       </div>
+
+      <div>
+        <strong>Vielen Dank!</strong>
+        <p>Ihre Anfrage wurde erfolgreich übermittelt.</p>
+      </div>
+    </div>
 
     }
 
 
-    <form
-      [formGroup]="contactForm"
-      (ngSubmit)="onSubmit()"
-      (input)="hideSuccess()"
-      (change)="hideSuccess()"
-      novalidate
-    >
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()"
+      (input)="hideSuccess()" (change)="hideSuccess()"
+      novalidate>
 
       <!-- NAME -->
 
       <div class="form-group">
 
         <label for="name">
-          Name
+          Ihr Name
         </label>
 
-        <input
-          id="name"
-          type="text"
-          formControlName="name"
-          placeholder="Ihr Name"
-          autocomplete="name"
+        <input id="name" type="text" formControlName="name"
+          placeholder="Ihr Name" autocomplete="name"
           [class.invalid]="
             contactForm.controls.name.invalid &&
             contactForm.controls.name.touched
-          "
-        >
+          ">
 
         @if (
-          contactForm.controls.name.invalid &&
-          contactForm.controls.name.touched
+        contactForm.controls.name.invalid &&
+        contactForm.controls.name.touched
         ) {
 
-          <div class="error-message">
+        <div class="error-message">
 
-            @if (contactForm.controls.name.hasError('required')) {
-              Bitte geben Sie Ihren Namen ein.
-            }
+          @if
+          (contactForm.controls.name.hasError('required')) {
+          Bitte geben Sie Ihren Namen ein.
+          }
 
-            @if (contactForm.controls.name.hasError('minlength')) {
-              Der Name muss mindestens 2 Zeichen lang sein.
-            }
+          @if
+          (contactForm.controls.name.hasError('minlength'))
+          {
+          Der Name muss mindestens 2 Zeichen lang sein.
+          }
 
-          </div>
+        </div>
 
         }
 
@@ -92,37 +83,36 @@ contact-form.html
       <div class="form-group">
 
         <label for="email">
-          E-Mail
+          Ihre E-Mail-Adresse
         </label>
 
-        <input
-          id="email"
-          type="email"
+        <input id="email" type="email"
           formControlName="email"
-          placeholder="name@unternehmen.de"
-          autocomplete="email"
-          [class.invalid]="
+          placeholder="Ihre E-Mail-Adresse"
+          autocomplete="email" [class.invalid]="
             contactForm.controls.email.invalid &&
             contactForm.controls.email.touched
-          "
-        >
+          ">
 
         @if (
-          contactForm.controls.email.invalid &&
-          contactForm.controls.email.touched
+        contactForm.controls.email.invalid &&
+        contactForm.controls.email.touched
         ) {
 
-          <div class="error-message">
+        <div class="error-message">
 
-            @if (contactForm.controls.email.hasError('required')) {
-              Bitte geben Sie Ihre E-Mail-Adresse ein.
-            }
+          @if
+          (contactForm.controls.email.hasError('required'))
+          {
+          Bitte geben Sie Ihre E-Mail-Adresse ein.
+          }
 
-            @if (contactForm.controls.email.hasError('pattern')) {
-              Bitte geben Sie eine gültige E-Mail-Adresse ein.
-            }
+          @if
+          (contactForm.controls.email.hasError('pattern')) {
+          Bitte geben Sie eine gültige E-Mail-Adresse ein.
+          }
 
-          </div>
+        </div>
 
         }
 
@@ -132,41 +122,45 @@ contact-form.html
       <!-- DROPDOWN -->
 
       <div class="form-group">
-
         <label for="topic">
-          Thema
+          Art des Projekts
         </label>
 
         <div class="select-wrapper">
-
-          <select
-            id="topic"
-            formControlName="topic"
-          >
-            <option value="general">
-              Allgemeine Anfrage
+          <select id="topic" formControlName="topic"
+            [class.invalid]="
+        contactForm.controls.topic.invalid &&
+        contactForm.controls.topic.touched
+      ">
+            <option value="" disabled hidden>
+              Art des Projekts
             </option>
-
-            <option value="consulting">
-              Beratung
+            <option value="youtube">
+              YouTube
             </option>
-
-            <option value="support">
-              Support
+            <option value="corporate">
+              Corporate
+            </option>
+            <option value="shortform">
+              Shortform
             </option>
           </select>
-
         </div>
 
+        @if (
+        contactForm.controls.topic.invalid &&
+        contactForm.controls.topic.touched
+        ) {
+        <div class="error-message">
+          Bitte wählen Sie eine Projektart aus.
+        </div>
+        }
       </div>
-
+      
 
       <!-- SUBMIT -->
 
-      <button
-        type="submit"
-        class="submit-button"
-      >
+      <button type="submit" class="submit-button">
         <span>Absenden</span>
         <span class="button-arrow">→</span>
       </button>
