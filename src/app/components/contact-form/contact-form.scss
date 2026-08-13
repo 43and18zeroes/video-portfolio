@@ -33,20 +33,15 @@ contact-form.scss
 
 .form-header {
   margin-bottom: 24px;
-}
 
-h2 {
-  margin: 0 0 10px;
-  font-size: 26px;
-  line-height: 1.2;
-  color: #171717;
-}
+  h2 {
+    font-size: 18px;
+  }
 
-.form-header p {
-  margin: 0;
-  color: #6b6b6b;
-  font-size: 15px;
-  line-height: 1.5;
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
 }
 
 /* Form */
@@ -225,6 +220,7 @@ select {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -248,10 +244,6 @@ select {
   .eyebrow {
     font-size: 13px;
     margin-bottom: 10px;
-  }
-
-  h2 {
-    font-size: 32px;
   }
 
   .form-header p {
