@@ -3,12 +3,12 @@ import { YoutubeEmbed } from "../youtube-embed/youtube-embed";
 import { Testimonial } from "../testimonial/testimonial";
 
 @Component({
-  selector: 'app-video-demo',
+  selector: 'app-video-sample',
   imports: [YoutubeEmbed, Testimonial],
-  templateUrl: './video-demo.html',
-  styleUrl: './video-demo.scss',
+  templateUrl: './video-sample.html',
+  styleUrl: './video-sample.scss',
 })
-export class VideoDemo {
+export class VideoSample {
   title = input<string>('Mehr als nur aneinandergereihte Clips');
   videoId = input.required<string>();
   text = input.required<string>();
