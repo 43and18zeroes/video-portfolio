@@ -12,65 +12,63 @@ contact-form.scss
 
 .contact-wrapper {
   width: 100%;
-  padding: 60px 24px;
+  padding: 30px 16px;
   display: flex;
   justify-content: center;
 }
 
 .contact-card {
   width: 100%;
-  max-width: 640px;
+  max-width: 768px;
+  background-color: #151b25;
   border: 1px solid #e8e8e8;
-  border-radius: 20px;
-  padding: 42px;
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  padding: 28px 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
 }
-
 
 /* Header */
 
 .form-header {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .eyebrow {
   display: inline-block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 10px;
-  color: #666;
+  margin-bottom: 8px;
+  color: #666666;
 }
 
 h2 {
   margin: 0 0 10px;
-  font-size: 32px;
-  line-height: 1.15;
+  font-size: 26px;
+  line-height: 1.2;
   color: #171717;
 }
 
 .form-header p {
   margin: 0;
   color: #6b6b6b;
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.5;
 }
-
 
 /* Form */
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 label {
@@ -79,8 +77,7 @@ label {
   color: #292929;
 }
 
-
-/* Inputs */
+/* Inputs & Selects */
 
 input,
 select {
@@ -92,12 +89,13 @@ select {
   border-radius: 10px;
 
   background-color: #1d242f;
-  color: #222;
+  color: #171717;
 
   font-family: inherit;
   font-size: 16px;
 
   outline: none;
+  appearance: none;
 
   transition:
     border-color 0.2s ease,
@@ -105,7 +103,7 @@ select {
 }
 
 input::placeholder {
-  color: #aaa;
+  color: #999999;
 }
 
 input:hover,
@@ -115,12 +113,11 @@ select:hover {
 
 input:focus,
 select:focus {
-  border-color: #555;
+  border-color: #555555;
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
 }
 
-
-/* Invalid */
+/* Invalid State */
 
 input.invalid {
   border-color: #d43838;
@@ -135,8 +132,7 @@ input.invalid:focus {
   color: #c72d2d;
 }
 
-
-/* Select */
+/* Select Wrapper */
 
 .select-wrapper {
   position: relative;
@@ -146,26 +142,23 @@ select {
   cursor: pointer;
 }
 
-
-/* Button */
+/* Submit Button */
 
 .submit-button {
   width: 100%;
   height: 54px;
-
   margin-top: 4px;
 
   border: 0;
   border-radius: 10px;
-
   background: #171717;
+  color: #ffffff;
 
   font-family: inherit;
   font-size: 16px;
   font-weight: 600;
 
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,16 +186,14 @@ select {
   transform: translateX(4px);
 }
 
-
-/* Success */
+/* Success State */
 
 .success-message {
   display: flex;
   align-items: center;
   gap: 14px;
-
-  margin-bottom: 28px;
-  padding: 18px 20px;
+  margin-bottom: 24px;
+  padding: 16px;
 
   background: #edf9f1;
   border: 1px solid #b9e5c7;
@@ -213,20 +204,15 @@ select {
 
 .success-icon {
   flex: 0 0 auto;
-
-  width: 38px;
-  height: 38px;
-
+  width: 36px;
+  height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 50%;
-
   background: #168a45;
-  color: white;
-
-  font-size: 20px;
+  color: #ffffff;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -247,29 +233,55 @@ select {
     opacity: 0;
     transform: translateY(-8px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
+@media (min-width: 768px) {
   .contact-wrapper {
-    padding: 30px 16px;
+    padding: 60px 24px;
   }
 
   .contact-card {
-    padding: 28px 20px;
-    border-radius: 16px;
+    padding: 42px;
+    border-radius: 20px;
+  }
+
+  .form-header {
+    margin-bottom: 32px;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+    margin-bottom: 10px;
   }
 
   h2 {
-    font-size: 27px;
+    font-size: 32px;
   }
 
+  .form-header p {
+    font-size: 16px;
+  }
+
+  form {
+    gap: 24px;
+  }
+
+  .form-group {
+    gap: 8px;
+  }
+
+  .success-message {
+    padding: 18px 20px;
+    margin-bottom: 28px;
+  }
+
+  .success-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
 }
