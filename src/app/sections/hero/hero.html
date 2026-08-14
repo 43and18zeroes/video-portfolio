@@ -2,17 +2,21 @@
 hero.html
 ========================= -->
 
-<div class="grid-container">
+<section class="hero-section">
+    <div class="container">
+        <div class="grid-container">
 
-    <div class="col-main">
-        <app-youtube-embed videoId="WYKIPCdAI1U" />
+            <div class="col-main">
+                <app-youtube-embed videoId="WYKIPCdAI1U" />
+            </div>
+
+            <div class="col-side">
+                <app-testimonial
+                    text="Absoluter Experte. Der Schnitt war on-point und die Kommunikation lief reibungslos."
+                    author="Kunde / Creator" />
+                <app-contact-form />
+            </div>
+
+        </div>
     </div>
-
-    <div class="col-side">
-        <app-testimonial
-            text="Absoluter Experte. Der Schnitt war on-point und die Kommunikation lief reibungslos."
-            author="Kunde / Creator" />
-        <app-contact-form />
-    </div>
-
-</div>
+</section>

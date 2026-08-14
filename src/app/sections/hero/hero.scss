@@ -5,18 +5,25 @@ hero.scss
 @use 'breakpoints' as *;
 
 :host {
-    display: block;
-    background-color: #0d111a;
-    padding-top: 100px;
+  display: block;
+  width: 100%;
+}
+
+.hero-section {
+  width: 100%;
+  background-color: #0d111a;
+  padding: 104px 0 60px;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
+  gap: 32px;
 
   @include md {
     grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
 
     .col-main {
       grid-column: span 7;
@@ -26,4 +33,10 @@ hero.scss
       grid-column: span 5;
     }
   }
+}
+
+.col-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }

@@ -5,22 +5,36 @@ header.scss
 @use 'breakpoints' as *;
 
 :host {
-    height: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: block;
+    width: 100%;
 
-    /* Sticky */
+    /* Fixed Positionierung über volle Breite */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
+}
 
-    /* Transparent & blurred background */
+.site-header {
+    width: 100%;
+    height: 64px;
+
     background: rgba(13, 17, 26, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    display: flex;
+    align-items: center;
+}
+
+/* Der Container richtet Inhalt auf max. 1280px aus & verteilt die Elemente */
+.header-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {

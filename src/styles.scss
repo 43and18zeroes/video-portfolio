@@ -1,6 +1,8 @@
 /* =========================
-   index.scss
-   ========================= */
+   styles.scss
+========================= */
+
+@use 'breakpoints' as *;
 
 @font-face {
     font-family: 'Inter';
@@ -27,6 +29,19 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+}
+
+.container {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    @include md {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 }
 
 h1,
