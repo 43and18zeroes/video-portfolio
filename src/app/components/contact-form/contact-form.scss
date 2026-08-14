@@ -2,7 +2,7 @@
 contact-form.scss
 ========================= */
 
-@use 'breakpoints' as *;
+@use 'abstracts' as *;
 
 :host {
   display: block;
@@ -97,10 +97,9 @@ select {
   outline: none;
   appearance: none;
 
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  transition-property: border-color, box-shadow, background-color;
+  transition-duration: 150ms;
+  transition-timing-function: $md-easing-standard;
 }
 
 input::placeholder {

@@ -1,0 +1,27 @@
+/* =========================
+_abstracts.scss
+========================= */
+
+$md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+
+$bp-sd: 600px;
+$bp-md: 768px;
+$bp-ld: 1024px;
+
+@mixin sd {
+  @media (min-width: $bp-sd) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $bp-md) {
+    @content;
+  }
+}
+
+@mixin ld {
+  @media (min-width: $bp-ld) {
+    @content;
+  }
+}

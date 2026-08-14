@@ -1,8 +1,8 @@
 /* =========================
-   styles.scss
+styles.scss
 ========================= */
 
-@use 'breakpoints' as *;
+@use 'abstracts' as *;
 
 @font-face {
     font-family: 'Inter';
@@ -20,7 +20,16 @@
     font-display: swap;
 }
 
-$md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 
 body {
     margin: 0;
@@ -38,7 +47,7 @@ body {
     padding-left: 20px;
     padding-right: 20px;
 
-    @include md {
+    @include ld {
         padding-left: 40px;
         padding-right: 40px;
     }
@@ -55,7 +64,6 @@ h4 {
 .grey-text {
     color: oklch(72% .02 264);
     text-decoration: none;
-    font-size: 14px;
 }
 
 .visually-hidden {

@@ -2,7 +2,7 @@
 video-sample.scss
 ========================= */
 
-@use 'breakpoints' as *;
+@use 'abstracts' as *;
 
 :host {
   display: block;

@@ -9,6 +9,7 @@ import { Testimonial } from "../testimonial/testimonial";
   styleUrl: './video-sample.scss',
 })
 export class VideoSample {
+  sectionId = input<string>();
   title = input<string>('Mehr als nur aneinandergereihte Clips');
   videoId = input.required<string>();
   text = input.required<string>();

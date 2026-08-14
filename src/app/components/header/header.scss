@@ -2,13 +2,11 @@
 header.scss
 ========================= */
 
-@use 'breakpoints' as *;
+@use 'abstracts' as *;
 
 :host {
     display: block;
     width: 100%;
-
-    /* Fixed Positionierung über volle Breite */
     position: fixed;
     top: 0;
     left: 0;
@@ -29,19 +27,21 @@ header.scss
     align-items: center;
 }
 
-/* Der Container richtet Inhalt auf max. 1280px aus & verteilt die Elemente */
 .header-content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 15px;
 }
 
 .logo {
+    padding: 22px 12px;
+    margin-left: -12px;
     color: #fff;
     text-decoration: none;
-    font-size: 15px;
     font-weight: 600;
+    letter-spacing: 0.1rem;
 
     span {
         color: #457cfd;
@@ -51,14 +51,22 @@ header.scss
 .mid-section {
     display: none;
 
-    @include md {
+    a {
+        padding: 22px 12px;
+        transition: color 150ms ease-in-out;
+
+        &:hover {
+            color: #ffffff;
+        }
+    }
+
+    @include sd {
         display: flex;
-        gap: 16px;
     }
 }
 
 .primary-btn {
-    font-size: 14px;
     padding: 8px 20px;
     border-radius: 100px;
+    font-size: inherit;
 }
