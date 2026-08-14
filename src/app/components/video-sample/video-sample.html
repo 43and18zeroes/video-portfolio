@@ -4,7 +4,9 @@ video-sample.html
 
 <section class="video-section">
   <div class="container">
-    <h2>{{ title() }}</h2>
+    @if (title()) {
+    <h2 class="section-title">{{ title() }}</h2>
+    }
 
     <div class="grid-container"
       [class.is-reversed]="reverseDesktop()">
