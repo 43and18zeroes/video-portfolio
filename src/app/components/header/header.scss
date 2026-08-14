@@ -2,8 +2,13 @@
 header.scss
 ========================= */
 
+@use 'breakpoints' as *;
+
 :host {
+    height: 64px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     /* Sticky */
     position: fixed;
@@ -28,6 +33,16 @@ header.scss
 }
 
 .mid-section {
-    display: flex;
-    gap: 16px;
+    display: none;
+
+    @include md {
+        display: flex;
+        gap: 16px;
+    }
+}
+
+.primary-btn {
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 100px;
 }

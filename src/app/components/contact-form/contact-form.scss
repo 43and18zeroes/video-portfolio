@@ -27,7 +27,6 @@ contact-form.scss
 
 .contact-wrapper {
   width: 100%;
-  padding: 30px 16px;
   display: flex;
   justify-content: center;
 }
@@ -213,9 +212,6 @@ select.invalid:focus {
 /* Responsive Scaling */
 
 @include md {
-  .contact-wrapper {
-    padding: 60px 24px;
-  }
 
   .contact-card {
     padding: 40px;
