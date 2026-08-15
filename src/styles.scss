@@ -31,6 +31,37 @@ html {
     }
 }
 
+@media (pointer: fine) {
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: oklch(0.15 0.018 264);
+        border-radius: 9999px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: color-mix(in oklab, #4f80ff, oklch(0.28 0.026 264));
+        border-radius: 9999px;
+        border: 2px solid oklch(0.15 0.018 264);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in oklab, #4f80ff, oklch(0.28 0.026 264));
+    }
+
+    ::-webkit-scrollbar-corner {
+        background: oklch(0.15 0.018 264);
+    }
+
+    html, .drawer-content {
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklab, #4f80ff, oklch(0.28 0.026 264)) oklch(0.15 0.018 264);
+    }
+}
+
 body {
     margin: 0;
     color: #f3f5f9;
