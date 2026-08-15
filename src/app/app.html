@@ -30,9 +30,9 @@ app.html
     <div class="drawer-content">
         @defer (on immediate) {
         @if (type === 'impressum') {
-        <app-impressum />
+        <app-imprint />
         } @else {
-        <app-datenschutz />
+        <app-privacy-policy />
         }
         } @placeholder {
         <div class="drawer-loading">Lade Inhalt...</div>
