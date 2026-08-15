@@ -8,4 +8,5 @@ import { Component, output } from '@angular/core';
 })
 export class Footer {
   readonly openLegal = output<'impressum' | 'datenschutz'>();
+  protected readonly currentYear = new Date().getFullYear();
 }

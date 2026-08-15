@@ -21,14 +21,14 @@ styles.scss
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 body {
@@ -66,6 +66,29 @@ h4 {
     text-decoration: none;
 }
 
+/* Reine Utility-Klasse (überall im Projekt nutzbar) */
+.grey-text {
+    color: oklch(72% 0.02 264);
+}
+
+.header-footer-link {
+    background: transparent;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    transition: color 150ms ease-in-out;
+
+    &:hover {
+        color: #ffffff;
+    }
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -85,6 +108,7 @@ h4 {
 
     font-family: inherit;
     font-weight: 600;
+    font-size: 15px;
 
     cursor: pointer;
     display: flex;
