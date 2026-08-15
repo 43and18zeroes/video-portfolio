@@ -2,8 +2,8 @@ import { Component, HostListener, signal } from '@angular/core';
 import { Header } from "./components/header/header";
 import { Hero } from './sections/hero/hero';
 import { VideoSample } from "./components/video-sample/video-sample";
-import { Impressum } from './components/impressum/impressum';
-import { Datenschutz } from './components/datenschutz/datenschutz';
+import { Impressum } from './components/legal/impressum/impressum';
+import { Datenschutz } from './components/legal/datenschutz/datenschutz';
 import { Footer } from "./components/footer/footer";
 
 @Component({
