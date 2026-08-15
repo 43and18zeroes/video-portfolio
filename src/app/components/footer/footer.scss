@@ -1,0 +1,48 @@
+/* =========================
+footer.scss
+========================= */
+
+// @use 'abstracts' as *;
+
+// :host {
+//   display: block;
+//   width: 100%;
+// }
+
+// .site-footer {
+//   width: 100%;
+//   background-color: #090c13;
+//   border-top: 1px solid rgba(255, 255, 255, 0.05);
+//   padding: 32px 0;
+// }
+
+// .footer-content {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 16px;
+
+//   @include sd {
+//     flex-direction: row;
+//     justify-content: space-between;
+//   }
+// }
+
+// .legal-links {
+//   display: flex;
+//   gap: 24px;
+// }
+
+// .legal-btn {
+//   background: none;
+//   border: none;
+//   color: #8a94a6;
+//   font-size: 14px;
+//   cursor: pointer;
+//   padding: 0;
+//   transition: color 150ms ease;
+
+//   &:hover {
+//     color: #ffffff;
+//   }
+// }

@@ -1,0 +1,19 @@
+<!-- ========================
+footer.html
+========================= -->
+
+<footer class="site-footer">
+    <div class="container footer-content">
+        <span class="grey-text">© CMW Media</span>
+        <div class="legal-links">
+            <button type="button" class="legal-btn"
+                (click)="openLegal.emit('impressum')">
+                Impressum
+            </button>
+            <button type="button" class="legal-btn"
+                (click)="openLegal.emit('datenschutz')">
+                Datenschutz
+            </button>
+        </div>
+    </div>
+</footer>

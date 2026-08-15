@@ -7,7 +7,8 @@ app.html
 <main>
     <app-hero />
 
-    <app-video-sample sectionId="videos" videoId="WYKIPCdAI1U"
+    <app-video-sample sectionId="videos"
+        videoId="WYKIPCdAI1U"
         text="Absoluter Experte. Der Schnitt war on-point..."
         author="Kunde / Creator" />
 
@@ -15,3 +16,27 @@ app.html
         text="Absoluter Experte. Der Schnitt war on-point..."
         author="Kunde / Creator" [reverseDesktop]="true" />
 </main>
+
+<app-footer (openLegal)="openLegal($event)" />
+
+@if (activeLegalView(); as type) {
+<div class="drawer-backdrop" (click)="closeLegal()"></div>
+
+<aside class="drawer-panel" role="dialog" aria-modal="true">
+    <button type="button" class="close-btn"
+        (click)="closeLegal()"
+        aria-label="Schließen">✕</button>
+
+    <div class="drawer-content">
+        @defer (on immediate) {
+        @if (type === 'impressum') {
+        <app-impressum />
+        } @else {
+        <app-datenschutz />
+        }
+        } @placeholder {
+        <div class="drawer-loading">Lade Inhalt...</div>
+        }
+    </div>
+</aside>
+}
