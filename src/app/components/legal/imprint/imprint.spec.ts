@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Imprint } from '../impressum/impressum';
+import { Imprint } from '../imprint/imprint';
 
 describe('Imprint', () => {
   let component: Imprint;

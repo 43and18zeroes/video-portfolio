@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 
-export type LegalViewType = 'impressum' | 'datenschutz';
+export type LegalViewType = 'imprint' | 'privacy-policy';
 
 @Injectable({ providedIn: 'root' })
 export class LegalDrawerService {

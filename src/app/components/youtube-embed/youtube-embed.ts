@@ -26,6 +26,6 @@ export class YoutubeEmbed {
 
   openPrivacyPolicy(event: Event): void {
     event.preventDefault();
-    this.legalDrawer.open('datenschutz', 'section-youtube');
+    this.legalDrawer.open('privacy-policy', 'section-youtube');
   }
 }

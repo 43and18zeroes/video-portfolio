@@ -36,7 +36,7 @@ export class App {
     });
   }
 
-  protected openLegal(type: 'impressum' | 'datenschutz'): void {
+  protected openLegal(type: 'imprint' | 'privacy-policy'): void {
     this.legalDrawer.open(type);
   }
 

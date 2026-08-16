@@ -7,6 +7,6 @@ import { Component, output } from '@angular/core';
   styleUrl: './footer.scss',
 })
 export class Footer {
-  readonly openLegal = output<'impressum' | 'datenschutz'>();
+  readonly openLegal = output<'imprint' | 'privacy-policy'>();
   protected readonly currentYear = new Date().getFullYear();
 }
