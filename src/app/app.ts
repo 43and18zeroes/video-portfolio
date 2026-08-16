@@ -1,10 +1,11 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, effect, HostListener, inject, signal } from '@angular/core';
 import { Header } from "./components/layout/header/header";
 import { Hero } from './sections/hero/hero';
 import { VideoSample } from "./components/video-sample/video-sample";
 import { Imprint } from './components/legal/imprint/imprint';
 import { PrivacyPolicy } from './components/legal/privacy-policy/privacy-policy';
 import { Footer } from "./components/layout/footer/footer";
+import { LegalDrawerService } from './legal-drawer';
 
 @Component({
   selector: 'app-root',
@@ -14,16 +15,33 @@ import { Footer } from "./components/layout/footer/footer";
 })
 export class App {
   protected readonly title = signal('CMW Media');
-  protected readonly activeLegalView = signal<'impressum' | 'datenschutz' | null>(null);
+  private legalDrawer = inject(LegalDrawerService);
+
+  protected readonly activeLegalView = this.legalDrawer.activeView;
+
+  constructor() {
+    effect(() => {
+      document.body.style.overflow = this.activeLegalView() ? 'hidden' : '';
+    });
+
+    effect(() => {
+      const view = this.activeLegalView();
+      const target = this.legalDrawer.scrollTarget();
+      if (view && target) {
+        setTimeout(() => {
+          document.getElementById(target)
+            ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 60);
+      }
+    });
+  }
 
   protected openLegal(type: 'impressum' | 'datenschutz'): void {
-    this.activeLegalView.set(type);
-    document.body.style.overflow = 'hidden';
+    this.legalDrawer.open(type);
   }
 
   protected closeLegal(): void {
-    this.activeLegalView.set(null);
-    document.body.style.overflow = '';
+    this.legalDrawer.close();
   }
 
   @HostListener('window:keydown.escape')

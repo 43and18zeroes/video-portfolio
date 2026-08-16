@@ -1,5 +1,6 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { LegalDrawerService } from '../../legal-drawer';
 
 @Component({
   selector: 'app-youtube-embed',
@@ -9,9 +10,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class YoutubeEmbed {
   private sanitizer = inject(DomSanitizer);
+  private legalDrawer = inject(LegalDrawerService);
 
   videoId = input.required<string>();
-
   isConsentGiven = signal(false);
 
   embedUrl = computed<SafeResourceUrl>(() => {
@@ -21,5 +22,10 @@ export class YoutubeEmbed {
 
   grantConsent(): void {
     this.isConsentGiven.set(true);
+  }
+
+  openPrivacyPolicy(event: Event): void {
+    event.preventDefault();
+    this.legalDrawer.open('datenschutz', 'section-youtube');
   }
 }

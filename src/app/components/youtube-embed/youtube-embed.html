@@ -24,7 +24,8 @@ youtube-embed.html
                 IP-Adresse und Geräteinformationen, an
                 Google/YouTube übertragen. Weitere
                 Informationen finden Sie in der
-                Datenschutzerklärung.
+                <a href="#" class="privacy-link"
+                    (click)="openPrivacyPolicy($event)">Datenschutzerklärung</a>.
             </p>
             <button type="button" (click)="grantConsent()"
                 class="consent-btn">
