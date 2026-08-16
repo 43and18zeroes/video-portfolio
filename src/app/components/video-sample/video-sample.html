@@ -11,12 +11,13 @@ video-sample.html
     <div class="grid-container"
       [class.is-reversed]="reverseDesktop()">
       <div class="col-1">
-        <app-youtube-embed [videoId]="videoId()" />
+
+        <app-testimonial [text]="text()"
+          [author]="author()" />
       </div>
 
       <div class="col-2">
-        <app-testimonial [text]="text()"
-          [author]="author()" />
+        <app-youtube-embed [videoId]="videoId()" />
       </div>
     </div>
   </div>

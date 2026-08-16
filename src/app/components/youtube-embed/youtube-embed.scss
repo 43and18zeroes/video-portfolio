@@ -56,25 +56,5 @@ youtube-embed.scss
                 font-size: 0.8rem;
             }
         }
-
-        .consent-btn {
-            background-color: #3b82f6;
-            color: #ffffff;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-
-            &:hover {
-                background-color: #2563eb;
-                transform: translateY(-1px);
-            }
-
-            &:active {
-                transform: translateY(0);
-            }
-        }
     }
 }
