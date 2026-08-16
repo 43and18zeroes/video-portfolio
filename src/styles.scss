@@ -70,6 +70,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
 }
 
 .container {
@@ -93,12 +94,31 @@ h4 {
     font-weight: 700;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+.primary-btn,
+.header-footer-link {
+    hyphens: manual;
+    -webkit-hyphens: manual;
+}
+
+p,
+li,
+.legal-content {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
 .grey-text {
     color: oklch(72% .02 264);
     text-decoration: none;
 }
 
-/* Reine Utility-Klasse (überall im Projekt nutzbar) */
 .grey-text {
     color: oklch(72% 0.02 264);
 }

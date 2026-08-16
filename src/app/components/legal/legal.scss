@@ -1,0 +1,9 @@
+/* =========================
+legal.scss
+========================= */
+
+.legal-content, h1, h2, h3 {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
