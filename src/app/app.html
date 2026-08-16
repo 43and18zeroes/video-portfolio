@@ -22,7 +22,7 @@ app.html
 @if (activeLegalView(); as type) {
 <div class="drawer-backdrop" (click)="closeLegal()"></div>
 
-<aside class="drawer-panel" role="dialog" aria-modal="true">
+<aside class="drawer-panel" role="dialog" data-nosnippet aria-modal="true">
     <button type="button" class="close-btn"
         (click)="closeLegal()"
         aria-label="Schließen">✕</button>

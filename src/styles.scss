@@ -56,7 +56,8 @@ html {
         background: oklch(0.15 0.018 264);
     }
 
-    html, .drawer-content {
+    html,
+    .drawer-content {
         scrollbar-width: thin;
         scrollbar-color: color-mix(in oklab, #4f80ff, oklch(0.28 0.026 264)) oklch(0.15 0.018 264);
     }
@@ -166,5 +167,24 @@ h4 {
     .btn-icon {
         font-size: 18px;
         line-height: 1;
+    }
+}
+
+.drawer-content {
+    a {
+        color: #4f80ff;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 150ms ease-in-out;
+
+        &:hover {
+            color: #7099ff;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #4f80ff;
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
     }
 }
