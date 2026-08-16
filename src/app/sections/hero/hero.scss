@@ -18,7 +18,7 @@ hero.scss
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  align-items: center;
+  align-items: stretch;
   gap: 32px;
 
   @include md {
@@ -39,4 +39,9 @@ hero.scss
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  app-contact-form {
+    flex-grow: 1;
+    display: flex;
+  }
 }
