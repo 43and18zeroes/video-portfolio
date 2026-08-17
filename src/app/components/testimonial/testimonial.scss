@@ -5,6 +5,7 @@ testimonial.scss
 @use 'abstracts' as *;
 
 .testimonial {
+    @include card-shadow;
     @include card-surface;
     display: flex;
     flex-direction: column;

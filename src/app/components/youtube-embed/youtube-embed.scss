@@ -10,13 +10,13 @@ youtube-embed.scss
 }
 
 .video-container {
+    @include card-shadow;
     position: relative;
     width: 100%;
     max-width: 800px;
     aspect-ratio: 16 / 9;
     border-radius: $radius-card;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 
     iframe {
         width: 100%;

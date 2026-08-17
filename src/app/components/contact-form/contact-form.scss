@@ -32,6 +32,7 @@ contact-form.scss
 }
 
 .contact-card {
+  @include card-shadow;
   @include card-surface;
   width: 100%;
   max-width: 768px;
