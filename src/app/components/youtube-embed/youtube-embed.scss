@@ -49,16 +49,13 @@ youtube-embed.scss
         gap: 1px;
         max-width: 440px;
 
-        .youtube-icon {
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
-        }
-
         .consent-card {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            padding: 1.25rem 1.5rem;
+            // padding: 1.25rem 1.5rem;
+            padding: 0.6rem;
             border-radius: $radius-card;
 
             background: linear-gradient(135deg,
@@ -71,7 +68,8 @@ youtube-embed.scss
             .privacy-note {
                 margin: 0;
                 color: #e2e8f0;
-                font-size: 0.9rem;
+                // font-size: 0.9rem;
+                font-size: 0.75rem;
                 line-height: 1.45;
 
                 .blue-text-link {
@@ -86,6 +84,30 @@ youtube-embed.scss
 
             .primary-btn {
                 width: 100%;
+            }
+
+            @include sd {
+                padding: 1.25rem 1.5rem;
+
+                .privacy-note {
+                    font-size: 0.9rem;
+                }
+            }
+
+            @include md {
+                padding: 0.6rem;
+
+                .privacy-note {
+                    font-size: 0.75rem;
+                }
+            }
+
+            @include ld {
+                padding: 1.25rem 1.5rem;
+
+                .privacy-note {
+                    font-size: 0.9rem;
+                }
             }
         }
     }
