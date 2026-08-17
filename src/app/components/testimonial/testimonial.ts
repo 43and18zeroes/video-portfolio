@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './testimonial.scss',
 })
 export class Testimonial {
+  @Input() imageName = '';
   @Input() text = '';
   @Input() author = '';
   @Input() stars = 5;

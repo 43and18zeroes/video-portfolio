@@ -1,0 +1,31 @@
+/* =========================
+testimonial.scss
+========================= */
+
+.testimonial {
+    display: flex;
+    flex-direction: column;
+}
+
+.stars-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.star-icon {
+    width: 18px;
+    height: 18px;
+    fill: #fbbf24;
+    stroke: #fbbf24;
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.25));
+}
+
+.testimonial-img {
+    width: 64px;
+    border-radius: 999px;
+    align-self: center;
+}
