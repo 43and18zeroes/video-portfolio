@@ -38,7 +38,7 @@ contact-form.scss
   border: 1px solid #1a2230;
   padding: 32px 24px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  border-radius: 12px;
+  border-radius: $radius-card;
 }
 
 /* Header */
@@ -85,7 +85,7 @@ select {
   padding: 0 22px;
 
   border: 1px solid #242d3d;
-  border-radius: 12px;
+  border-radius: $radius-elem;
 
   background-color: #161c28;
   color: #ffffff;
@@ -164,7 +164,7 @@ select.invalid:focus {
 
   background: rgba(22, 138, 69, 0.15);
   border: 1px solid #168a45;
-  border-radius: 12px;
+  border-radius: $radius-elem;
 
   animation: successIn 0.35s ease;
 }

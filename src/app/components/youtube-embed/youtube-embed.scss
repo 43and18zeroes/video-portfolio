@@ -2,6 +2,8 @@
 youtube-embed.scss
 ========================= */
 
+@use 'abstracts' as *;
+
 :host {
     display: block;
     width: 100%;
@@ -12,7 +14,7 @@ youtube-embed.scss
     width: 100%;
     max-width: 800px;
     aspect-ratio: 16 / 9;
-    border-radius: 12px;
+    border-radius: $radius-card;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 
