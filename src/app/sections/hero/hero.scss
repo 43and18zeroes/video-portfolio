@@ -11,7 +11,11 @@ hero.scss
 
 .hero-section {
   width: 100%;
-  background-color: #0d111a;
+  background:
+    radial-gradient(800px circle at 50% 0%,
+      rgba(79, 128, 255, 0.15) 0%,
+      transparent 70%),
+    #0d111a;
   padding-top: calc(65px + $general-spacing);
   padding-bottom: $general-spacing;
 }
