@@ -12,14 +12,15 @@ hero.scss
 .hero-section {
   width: 100%;
   background-color: #0d111a;
-  padding: 104px 0 60px;
+  padding-top: calc(65px + $general-spacing);
+  padding-bottom: $general-spacing;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
   align-items: stretch;
-  gap: 24px;
+  gap: $general-spacing;
 
   @include md {
     grid-template-columns: repeat(12, 1fr);
@@ -37,7 +38,7 @@ hero.scss
 .col-main {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: $general-spacing;
 }
 
 .col-side {
