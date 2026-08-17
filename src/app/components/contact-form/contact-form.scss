@@ -32,13 +32,9 @@ contact-form.scss
 }
 
 .contact-card {
+  @include card-surface;
   width: 100%;
   max-width: 768px;
-  background-color: #0f141d;
-  border: 1px solid #1a2230;
-  padding: 32px 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  border-radius: $radius-card;
 }
 
 /* Header */
@@ -113,7 +109,7 @@ select:hover {
 input:focus,
 select:focus {
   border-color: #2563eb;
-  /* Blaues Highlight wie auf dem Screenshot */
+  /* Blaues Highlight */
   box-shadow: 0 0 0 1px #2563eb;
 }
 
@@ -210,10 +206,6 @@ select.invalid:focus {
 /* Responsive Scaling */
 
 @include md {
-
-  .contact-card {
-    padding: 40px;
-  }
 
   .form-header {
     margin-bottom: 28px;

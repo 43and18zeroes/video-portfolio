@@ -19,11 +19,10 @@ hero.scss
   display: grid;
   grid-template-columns: 1fr;
   align-items: stretch;
-  gap: 32px;
+  gap: 24px;
 
   @include md {
     grid-template-columns: repeat(12, 1fr);
-    gap: 40px;
 
     .col-main {
       grid-column: span 6;
@@ -35,10 +34,14 @@ hero.scss
   }
 }
 
-.col-side {
+.col-main {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.col-side {
+  display: flex;
 
   app-contact-form {
     flex-grow: 1;
