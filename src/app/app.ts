@@ -1,7 +1,7 @@
 import { Component, effect, HostListener, inject, signal } from '@angular/core';
 import { Header } from "./components/layout/header/header";
 import { Hero } from './sections/hero/hero';
-import { VideoSample } from "./components/video-sample/video-sample";
+import { VideoSample } from './sections/video-sample/video-sample';
 import { Imprint } from './components/legal/imprint/imprint';
 import { PrivacyPolicy } from './components/legal/privacy-policy/privacy-policy';
 import { Footer } from "./components/layout/footer/footer";

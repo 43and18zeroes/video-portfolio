@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
-import { YoutubeEmbed } from "../youtube-embed/youtube-embed";
-import { Testimonial } from "../testimonial/testimonial";
+import { YoutubeEmbed } from '../../components/youtube-embed/youtube-embed';
+import { Testimonial } from '../../components/testimonial/testimonial';
+
 
 @Component({
   selector: 'app-video-sample',
