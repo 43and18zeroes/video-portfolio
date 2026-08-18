@@ -8,6 +8,9 @@ import { Testimonial } from '../../components/testimonial/testimonial';
   imports: [YoutubeEmbed, Testimonial],
   templateUrl: './video-sample.html',
   styleUrl: './video-sample.scss',
+  host: {
+    '[class.is-reversed]': 'reverseDesktop()',
+  },
 })
 export class VideoSample {
   sectionId = input<string>();

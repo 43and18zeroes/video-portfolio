@@ -52,3 +52,19 @@ $border-style: 1px solid oklch(100% 0 0 / .12);
     padding: 40px;
   }
 }
+
+@mixin section-glow($position: 50% 0%, $size-mobile: 1000px, $size-desktop: 1600px, $opacity: 0.12) {
+  background:
+    radial-gradient($size-mobile circle at $position,
+      rgba(79, 128, 255, $opacity) 0%,
+      transparent 70%),
+    #0d111a;
+
+  @include md {
+    background:
+      radial-gradient($size-desktop circle at $position,
+        rgba(79, 128, 255, $opacity) 0%,
+        transparent 70%),
+      #0d111a;
+  }
+}

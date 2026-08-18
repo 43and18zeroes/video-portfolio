@@ -8,17 +8,13 @@ hero.scss
   display: block;
   width: 100%;
   border-bottom: $border-style;
+  padding-top: calc(65px + var(--general-vertical-padding));
+  padding-bottom: var(--general-vertical-padding);
+  @include section-glow(50% 0%, 1200px, 1800px, 0.15);
 }
 
 .hero-section {
   width: 100%;
-  background:
-    radial-gradient(1800px circle at 50% 0%,
-      rgba(79, 128, 255, 0.15) 0%,
-      transparent 70%),
-    #0d111a;
-  padding-top: calc(65px + var(--general-vertical-padding));
-  padding-bottom: var(--general-vertical-padding);
 }
 
 .grid-container {

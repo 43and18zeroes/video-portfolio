@@ -9,11 +9,15 @@ video-sample.scss
   width: 100%;
   padding: var(--general-vertical-padding) 0;
   border-bottom: $border-style;
+  @include section-glow(100% 50%, 900px, 1400px, 0.12);
+
+  &.is-reversed {
+    @include section-glow(0% 50%, 900px, 1400px, 0.12);
+  }
 }
 
 .video-section {
   width: 100%;
-  background-color: #0d111a;
 }
 
 .section-title {
