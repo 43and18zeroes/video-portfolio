@@ -2,17 +2,9 @@
 _abstracts.scss
 ========================= */
 
-$md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-
-$radius-card: 12px;
-$radius-elem: 8px;
-$general-spacing: 24px;
-
 $bp-sd: 600px;
 $bp-md: 768px;
 $bp-ld: 1024px;
-
-$border-style: 1px solid oklch(100% 0 0 / .12);
 
 @mixin sd {
   @media (min-width: $bp-sd) {
@@ -30,6 +22,18 @@ $border-style: 1px solid oklch(100% 0 0 / .12);
   @media (min-width: $bp-ld) {
     @content;
   }
+}
+
+$md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+$radius-card: 12px;
+$radius-elem: 8px;
+$general-spacing: 24px;
+$border-style: 1px solid oklch(100% 0 0 / .12);
+
+$general-vertical-padding: 40px;
+
+@include md {
+  $general-vertical-padding: 60px;
 }
 
 @mixin card-shadow {
