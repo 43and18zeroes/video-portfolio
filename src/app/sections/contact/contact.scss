@@ -1,0 +1,14 @@
+/* =========================
+contact.scss
+========================= */
+
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.contact-section {
+  width: 100%;
+}

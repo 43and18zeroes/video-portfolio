@@ -1,0 +1,15 @@
+/* =========================
+about-me.scss
+========================= */
+
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+  width: 100%;
+  border-bottom: $border-style;
+}
+
+.about-me-section {
+  width: 100%;
+}

@@ -6,10 +6,12 @@ import { Imprint } from './components/legal/imprint/imprint';
 import { PrivacyPolicy } from './components/legal/privacy-policy/privacy-policy';
 import { Footer } from "./components/layout/footer/footer";
 import { LegalDrawerService } from './legal-drawer';
+import { AboutMe } from "./sections/about-me/about-me";
+import { Contact } from "./sections/contact/contact";
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Hero, VideoSample, Imprint, PrivacyPolicy, Footer],
+  imports: [Header, Hero, VideoSample, Imprint, PrivacyPolicy, Footer, AboutMe, Contact],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
