@@ -6,98 +6,59 @@ about-me.scss
 
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-
-    @include sd {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    @include md {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-    }
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    gap: 32px;
+    align-items: start;
 }
 
-.tech-card {
-    @include card-surface;
+.tech-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 20px 12px;
+    justify-content: flex-start;
     gap: 12px;
+
+    color: #fff;
     text-align: center;
-    transition: transform 0.2s $md-easing-standard,
-        border-color 0.2s $md-easing-standard,
-        box-shadow 0.2s $md-easing-standard;
-    cursor: default;
-
-    &:hover {
-        transform: translateY(-3px);
-        border-color: rgba(79, 128, 255, 0.4);
-        box-shadow: 0 8px 24px rgba(79, 128, 255, 0.12);
-
-        .icon-bg {
-            stroke: rgba(79, 128, 255, 0.5);
-        }
-
-        .icon-path,
-        .icon-path-fill,
-        .icon-path-stroke {
-            fill: #ffffff;
-            stroke: #ffffff;
-        }
-
-        .icon-path-accent {
-            fill: #4f80ff;
-        }
-    }
 }
 
-.tech-icon {
-    width: 48px;
-    height: 48px;
+.tech-item svg {
+    width: 56px;
+    height: 56px;
     display: block;
+    flex-shrink: 0;
+}
 
-    .icon-bg {
-        fill: #141a26;
-        stroke: #222d40;
-        stroke-width: 1.5;
-        transition: stroke 0.2s $md-easing-standard;
-    }
+.tech-item span {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.25;
+}
 
-    .icon-path {
-        fill: #8a94a6;
-        transition: fill 0.2s $md-easing-standard;
-    }
 
-    .icon-path-fill {
-        fill: #8a94a6;
-        transition: fill 0.2s $md-easing-standard;
-    }
-
-    .icon-path-stroke {
-        fill: none;
-        stroke: #8a94a6;
-        stroke-width: 2;
-        transition: stroke 0.2s $md-easing-standard;
-    }
-
-    .icon-path-accent {
-        fill: #8a94a6;
-        transition: fill 0.2s $md-easing-standard;
+/* Tablet */
+@media (max-width: 900px) {
+    .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-.tech-name {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #8a94a6;
-    letter-spacing: 0.01em;
-    transition: color 0.2s $md-easing-standard;
 
-    .tech-card:hover & {
-        color: #ffffff;
+/* Mobile */
+@media (max-width: 520px) {
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+    }
+
+    .tech-item svg {
+        width: 48px;
+        height: 48px;
+    }
+
+    .tech-item span {
+        font-size: 13px;
     }
 }
