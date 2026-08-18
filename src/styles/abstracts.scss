@@ -30,10 +30,12 @@ $radius-elem: 8px;
 $general-spacing: 24px;
 $border-style: 1px solid oklch(100% 0 0 / .12);
 
-$general-vertical-padding: 40px;
+:root {
+  --general-vertical-padding: 40px;
 
-@include md {
-  $general-vertical-padding: 60px;
+  @media (min-width: #{$bp-md}) {
+    --general-vertical-padding: 60px;
+  }
 }
 
 @mixin card-shadow {

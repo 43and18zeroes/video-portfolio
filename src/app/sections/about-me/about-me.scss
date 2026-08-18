@@ -7,10 +7,10 @@ about-me.scss
 :host {
   display: block;
   width: 100%;
+  padding: var(--general-vertical-padding) 0;
   border-bottom: $border-style;
 }
 
 .about-me-section {
   width: 100%;
-  padding: $general-vertical-padding 0;
 }

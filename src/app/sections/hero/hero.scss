@@ -17,8 +17,8 @@ hero.scss
       rgba(79, 128, 255, 0.15) 0%,
       transparent 70%),
     #0d111a;
-  padding-top: calc(65px + $general-vertical-padding);
-  padding-bottom: $general-vertical-padding;
+  padding-top: calc(65px + var(--general-vertical-padding));
+  padding-bottom: var(--general-vertical-padding);
 }
 
 .grid-container {

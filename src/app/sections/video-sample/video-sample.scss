@@ -7,18 +7,13 @@ video-sample.scss
 :host {
   display: block;
   width: 100%;
+  padding: var(--general-vertical-padding) 0;
   border-bottom: $border-style;
 }
 
 .video-section {
   width: 100%;
   background-color: #0d111a;
-
-  padding: $general-vertical-padding 0;
-
-  @include md {
-    padding: $general-vertical-padding 0;
-  }
 }
 
 .section-title {

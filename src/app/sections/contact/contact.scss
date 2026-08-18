@@ -7,9 +7,9 @@ contact.scss
 :host {
   display: block;
   width: 100%;
+  padding: var(--general-vertical-padding) 0;
 }
 
 .contact-section {
   width: 100%;
-  padding: $general-vertical-padding 0;
 }
