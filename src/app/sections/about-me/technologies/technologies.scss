@@ -2,45 +2,34 @@
 technologies.scss
 ========================= */
 
-:root {
-    --bg: #0b0c0f;
-    --card-bg: #16181d;
-    --card-border: #262930;
-    --white: #ffffff;
-    --text-muted: #9a9ea6;
-    --gap: 28px;
-}
+:host {
+    --logo-bg: #0b0c0f;
+    --logo-card-bg: #16181d;
+    --logo-card-border: #262930;
+    --logo-card-border-hover: #3a3e47;
+    --logo-white: #ffffff;
+    --logo-text-muted: #9a9ea6;
+    --logo-gap: 28px;
+    --logo-box-size: 84px;
+    --logo-icon-size: 38px;
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    background: var(--logo-bg);
     padding: 60px 24px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: var(--gap);
+    gap: var(--logo-gap);
     max-width: 900px;
-}
+    margin: 0 auto;
 
-@media (max-width: 720px) {
-    .grid {
+    @media (max-width: 720px) {
         grid-template-columns: repeat(3, 1fr);
     }
-}
 
-@media (max-width: 480px) {
-    .grid {
+    @media (max-width: 480px) {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -50,42 +39,43 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 12px;
+
+    &:hover .logo-box {
+        border-color: var(--logo-card-border-hover);
+        transform: translateY(-2px);
+    }
+
+    span {
+        font-size: 13px;
+        color: var(--logo-text-muted);
+        text-align: center;
+        letter-spacing: 0.01em;
+    }
 }
 
 .logo-box {
-    width: 84px;
-    height: 84px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    width: var(--logo-box-size);
+    height: var(--logo-box-size);
+    background: var(--logo-card-bg);
+    border: 1px solid var(--logo-card-border);
     border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
     transition: border-color 0.2s ease, transform 0.2s ease;
-}
 
-.logo-item:hover .logo-box {
-    border-color: #3a3e47;
-    transform: translateY(-2px);
-}
+    svg {
+        width: var(--logo-icon-size);
+        height: var(--logo-icon-size);
+        fill: var(--logo-white);
+    }
 
-.logo-box svg {
-    width: 38px;
-    height: 38px;
-    fill: var(--white);
-}
-
-.logo-box .monogram {
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    line-height: 1;
-}
-
-.logo-item span {
-    font-size: 13px;
-    color: var(--text-muted);
-    text-align: center;
-    letter-spacing: 0.01em;
+    .monogram {
+        font-weight: 700;
+        font-size: 28px;
+        letter-spacing: 0.01em;
+        color: var(--logo-white);
+        line-height: 1;
+    }
 }
