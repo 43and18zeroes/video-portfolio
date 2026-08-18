@@ -7,12 +7,13 @@ hero.scss
 :host {
   display: block;
   width: 100%;
+  border-bottom: $border-style;
 }
 
 .hero-section {
   width: 100%;
   background:
-    radial-gradient(800px circle at 50% 0%,
+    radial-gradient(1800px circle at 50% 0%,
       rgba(79, 128, 255, 0.15) 0%,
       transparent 70%),
     #0d111a;

@@ -21,8 +21,7 @@ header.scss
     background: rgba(13, 17, 26, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid oklch(100% 0 0 / .12);
-
+    border-bottom: $border-style;
     display: flex;
     align-items: center;
 }

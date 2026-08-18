@@ -12,6 +12,8 @@ $bp-sd: 600px;
 $bp-md: 768px;
 $bp-ld: 1024px;
 
+$border-style: 1px solid oklch(100% 0 0 / .12);
+
 @mixin sd {
   @media (min-width: $bp-sd) {
     @content;
