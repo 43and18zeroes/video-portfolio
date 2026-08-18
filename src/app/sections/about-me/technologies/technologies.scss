@@ -1,0 +1,103 @@
+/* =========================
+about-me.scss
+========================= */
+
+@use 'abstracts' as *;
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    @include sd {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include md {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+    }
+}
+
+.tech-card {
+    @include card-surface;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+    gap: 12px;
+    text-align: center;
+    transition: transform 0.2s $md-easing-standard,
+        border-color 0.2s $md-easing-standard,
+        box-shadow 0.2s $md-easing-standard;
+    cursor: default;
+
+    &:hover {
+        transform: translateY(-3px);
+        border-color: rgba(79, 128, 255, 0.4);
+        box-shadow: 0 8px 24px rgba(79, 128, 255, 0.12);
+
+        .icon-bg {
+            stroke: rgba(79, 128, 255, 0.5);
+        }
+
+        .icon-path,
+        .icon-path-fill,
+        .icon-path-stroke {
+            fill: #ffffff;
+            stroke: #ffffff;
+        }
+
+        .icon-path-accent {
+            fill: #4f80ff;
+        }
+    }
+}
+
+.tech-icon {
+    width: 48px;
+    height: 48px;
+    display: block;
+
+    .icon-bg {
+        fill: #141a26;
+        stroke: #222d40;
+        stroke-width: 1.5;
+        transition: stroke 0.2s $md-easing-standard;
+    }
+
+    .icon-path {
+        fill: #8a94a6;
+        transition: fill 0.2s $md-easing-standard;
+    }
+
+    .icon-path-fill {
+        fill: #8a94a6;
+        transition: fill 0.2s $md-easing-standard;
+    }
+
+    .icon-path-stroke {
+        fill: none;
+        stroke: #8a94a6;
+        stroke-width: 2;
+        transition: stroke 0.2s $md-easing-standard;
+    }
+
+    .icon-path-accent {
+        fill: #8a94a6;
+        transition: fill 0.2s $md-easing-standard;
+    }
+}
+
+.tech-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #8a94a6;
+    letter-spacing: 0.01em;
+    transition: color 0.2s $md-easing-standard;
+
+    .tech-card:hover & {
+        color: #ffffff;
+    }
+}
