@@ -1,64 +1,91 @@
 /* =========================
-about-me.scss
+technologies.scss
 ========================= */
 
-@use 'abstracts' as *;
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
-    gap: 32px;
-    align-items: start;
+:root {
+    --bg: #0b0c0f;
+    --card-bg: #16181d;
+    --card-border: #262930;
+    --white: #ffffff;
+    --text-muted: #9a9ea6;
+    --gap: 28px;
 }
 
-.tech-item {
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-
-    color: #fff;
-    text-align: center;
+    justify-content: center;
+    padding: 60px 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.tech-item svg {
-    width: 56px;
-    height: 56px;
-    display: block;
-    flex-shrink: 0;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap);
+    max-width: 900px;
 }
 
-.tech-item span {
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.25;
-}
-
-
-/* Tablet */
-@media (max-width: 900px) {
-    .tech-grid {
+@media (max-width: 720px) {
+    .grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-
-/* Mobile */
-@media (max-width: 520px) {
-    .tech-grid {
+@media (max-width: 480px) {
+    .grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px 16px;
     }
+}
 
-    .tech-item svg {
-        width: 48px;
-        height: 48px;
-    }
+.logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
 
-    .tech-item span {
-        font-size: 13px;
-    }
+.logo-box {
+    width: 84px;
+    height: 84px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.logo-item:hover .logo-box {
+    border-color: #3a3e47;
+    transform: translateY(-2px);
+}
+
+.logo-box svg {
+    width: 38px;
+    height: 38px;
+    fill: var(--white);
+}
+
+.logo-box .monogram {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    line-height: 1;
+}
+
+.logo-item span {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    letter-spacing: 0.01em;
 }
