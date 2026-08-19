@@ -3,8 +3,6 @@ technologies.scss
 ========================= */
 
 :host {
-    --logo-bg: #0b0c0f;
-    --logo-card-bg: #16181d;
     --logo-card-border: #262930;
     --logo-card-border-hover: #3a3e47;
     --logo-white: #ffffff;
@@ -14,7 +12,6 @@ technologies.scss
     --logo-icon-size: 38px;
 
     display: block;
-    background: var(--logo-bg);
     padding: 60px 24px;
 }
 
@@ -56,7 +53,6 @@ technologies.scss
 .logo-box {
     width: var(--logo-box-size);
     height: var(--logo-box-size);
-    background: var(--logo-card-bg);
     border: 1px solid var(--logo-card-border);
     border-radius: 18px;
     display: flex;

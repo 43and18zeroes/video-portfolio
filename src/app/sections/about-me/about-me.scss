@@ -19,12 +19,12 @@ about-me.scss
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: calc($general-spacing / 2);
   align-items: center;
 
   @include md {
     grid-template-columns: repeat(12, 1fr);
-    gap: 2.5rem;
+    gap: $general-spacing;
 
     .col-image,
     .col-text {
@@ -39,32 +39,10 @@ about-me.scss
 
   img {
     width: 100%;
-    max-width: 540px;
     height: auto;
     object-fit: cover;
     border-radius: $radius-card;
     display: block;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-}
-
-.col-text {
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #ffffff;
-
-    @include md {
-      font-size: 2.25rem;
-    }
-  }
-
-  p {
-    margin: 0;
-    color: #8a94a6;
-    line-height: 1.6;
-    font-size: 1rem;
   }
 }
