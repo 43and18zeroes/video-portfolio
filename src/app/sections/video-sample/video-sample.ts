@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { YoutubeEmbed } from '../../components/youtube-embed/youtube-embed';
-import { Testimonial } from '../../components/testimonial-comps/testimonial/testimonial';
+import { Testimonial } from '../../components/testimonial/testimonial';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class VideoSample {
   videoId = input.required<string>();
   text = input.required<string>();
   author = input.required<string>();
+  imageName = input<string>('');
 
   reverseDesktop = input<boolean>(false);
 }

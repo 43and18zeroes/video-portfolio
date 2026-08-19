@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-testimonial',
-  imports: [],
+  standalone: true,
+  imports: [NgTemplateOutlet],
   templateUrl: './testimonial.html',
   styleUrl: './testimonial.scss',
 })
@@ -11,6 +13,7 @@ export class Testimonial {
   @Input() text = '';
   @Input() author = '';
   @Input() stars = 5;
+  @Input() variant: 'default' | 'compact' = 'default';
 
   get starArray(): number[] {
     return Array.from({ length: this.stars });

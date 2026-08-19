@@ -8,15 +8,16 @@ app.html
     <app-hero />
 
     <app-video-sample sectionId="videos"
-        videoId="WYKIPCdAI1U"
+        imageName="jane-doe.jpg" videoId="WYKIPCdAI1U"
         text="Absoluter Experte. Der Schnitt war on-point..."
         author="Kunde / Creator" />
 
     <app-video-sample videoId="WYKIPCdAI1U"
+        imageName="jane-doe.jpg"
         text="Absoluter Experte. Der Schnitt war on-point..."
         author="Kunde / Creator" [reverseDesktop]="true" />
-        <app-about-me />
-        <app-contact />
+    <app-about-me />
+    <app-contact />
 </main>
 
 <app-footer (openLegal)="openLegal($event)" />
@@ -24,7 +25,8 @@ app.html
 @if (activeLegalView(); as type) {
 <div class="drawer-backdrop" (click)="closeLegal()"></div>
 
-<aside class="drawer-panel" role="dialog" data-nosnippet aria-modal="true">
+<aside class="drawer-panel" role="dialog" data-nosnippet
+    aria-modal="true">
     <button type="button" class="close-btn"
         (click)="closeLegal()"
         aria-label="Schließen">✕</button>
