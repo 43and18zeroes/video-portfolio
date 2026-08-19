@@ -26,23 +26,23 @@ hero.scss
   @include md {
     grid-template-columns: repeat(12, 1fr);
 
-    .col-main {
+    .col-video {
       grid-column: span 6;
     }
 
-    .col-side {
+    .col-contact {
       grid-column: span 6;
     }
   }
 }
 
-.col-main {
+.col-video {
   display: flex;
   flex-direction: column;
   gap: $general-spacing;
 }
 
-.col-side {
+.col-contact {
   display: flex;
 
   app-contact-form {
