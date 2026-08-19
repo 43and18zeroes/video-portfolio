@@ -108,6 +108,22 @@ button,
     -webkit-hyphens: manual;
 }
 
+h1 {
+    font-size: 36px;
+
+    @include md {
+        margin-bottom: 48px;
+    }
+}
+
+h2 {
+    font-size: 30px;
+
+    @include md {
+        font-size: 36px;
+    }
+}
+
 p,
 li,
 .legal-content {
