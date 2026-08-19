@@ -42,21 +42,6 @@ contact-form.scss
 
 .form-header {
   margin-bottom: 24px;
-
-  h2 {
-    margin: 0 0 8px 0;
-    font-size: 22px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: -0.02em;
-  }
-
-  p.grey-text {
-    margin: 0;
-    color: #8a94a6;
-    font-size: 14px;
-    line-height: 1.5;
-  }
 }
 
 /* Form Layout */
@@ -88,7 +73,7 @@ select {
   color: #ffffff;
 
   font-family: inherit;
-  font-size: 15px;
+  font-size: 16px;
 
   outline: none;
   appearance: none;
@@ -145,7 +130,6 @@ select.invalid:focus {
 }
 
 .error-message {
-  font-size: 13px;
   color: #f87171;
   padding-left: 16px;
 }
@@ -176,7 +160,6 @@ select.invalid:focus {
   border-radius: 50%;
   background: #168a45;
   color: #ffffff;
-  font-size: 18px;
   font-weight: 700;
 }
 
@@ -189,7 +172,6 @@ select.invalid:focus {
 .success-message p {
   margin: 0;
   color: #bbf7d0;
-  font-size: 14px;
 }
 
 @keyframes successIn {
@@ -210,14 +192,6 @@ select.invalid:focus {
 
   .form-header {
     margin-bottom: 28px;
-
-    h2 {
-      font-size: 26px;
-    }
-
-    p.grey-text {
-      font-size: 15px;
-    }
   }
 
   form {

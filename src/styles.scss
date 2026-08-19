@@ -71,6 +71,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-wrap: break-word;
+    font-size: 16px;
 }
 
 .container {
@@ -133,7 +134,6 @@ li,
     font: inherit;
     cursor: pointer;
 
-    font-size: 16px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
