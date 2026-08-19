@@ -3,24 +3,16 @@ technologies.scss
 ========================= */
 
 :host {
-    --logo-card-border: #262930;
-    --logo-card-border-hover: #3a3e47;
     --logo-white: #ffffff;
-    --logo-text-muted: #9a9ea6;
-    --logo-gap: 28px;
     --logo-box-size: 84px;
     --logo-icon-size: 38px;
-
     display: block;
-    padding: 60px 24px;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: var(--logo-gap);
     max-width: 900px;
-    margin: 0 auto;
 
     @media (max-width: 720px) {
         grid-template-columns: repeat(3, 1fr);
@@ -37,14 +29,9 @@ technologies.scss
     align-items: center;
     gap: 12px;
 
-    &:hover .logo-box {
-        border-color: var(--logo-card-border-hover);
-        transform: translateY(-2px);
-    }
 
     span {
         font-size: 13px;
-        color: var(--logo-text-muted);
         text-align: center;
         letter-spacing: 0.01em;
     }
@@ -53,7 +40,6 @@ technologies.scss
 .logo-box {
     width: var(--logo-box-size);
     height: var(--logo-box-size);
-    border: 1px solid var(--logo-card-border);
     border-radius: 18px;
     display: flex;
     align-items: center;
@@ -69,7 +55,7 @@ technologies.scss
 
     .monogram {
         font-weight: 700;
-        font-size: 28px;
+        font-size: 32px;
         letter-spacing: 0.01em;
         color: var(--logo-white);
         line-height: 1;

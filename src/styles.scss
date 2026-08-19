@@ -115,12 +115,15 @@ li,
 }
 
 .grey-text {
-    color: oklch(72% .02 264);
-    text-decoration: none;
+    color: #b3b8bb;
 }
 
-.grey-text {
-    color: oklch(72% 0.02 264);
+.light-grey-text {
+    color: #d9dcdd;
+}
+
+.grey-text, .light-grey-text {
+    text-decoration: none;
 }
 
 .header-footer-link {
