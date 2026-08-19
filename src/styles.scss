@@ -38,28 +38,28 @@ html {
     }
 
     ::-webkit-scrollbar-track {
-        background: oklch(0.15 0.018 264);
+        background: #191b25;
         border-radius: 9999px;
     }
 
     ::-webkit-scrollbar-thumb {
-        background: color-mix(in oklab, #4f80ff, oklch(0.28 0.026 264));
+        background: color-mix(in oklab, #4f80ff, #404a60);
         border-radius: 9999px;
-        border: 2px solid oklch(0.15 0.018 264);
+        border: 2px solid #191b25;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: color-mix(in oklab, #4f80ff, oklch(0.28 0.026 264));
+        background: color-mix(in oklab, #4f80ff, #404a60);
     }
 
     ::-webkit-scrollbar-corner {
-        background: oklch(0.15 0.018 264);
+        background: #191b25;
     }
 
     html,
     .drawer-content {
         scrollbar-width: thin;
-        scrollbar-color: color-mix(in oklab, #4f80ff, oklch(0.28 0.026 264)) oklch(0.15 0.018 264);
+        scrollbar-color: color-mix(in oklab, #4f80ff, #404a60) #191b25;
     }
 }
 
@@ -122,7 +122,8 @@ li,
     color: #d9dcdd;
 }
 
-.grey-text, .light-grey-text {
+.grey-text,
+.light-grey-text {
     text-decoration: none;
 }
 
