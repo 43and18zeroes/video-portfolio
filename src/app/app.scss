@@ -47,28 +47,57 @@ main {
 }
 
 /* Close Button */
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #191d26;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #8a94a6;
-    font-size: 26px;
+// .close-btn {
+//     position: absolute;
+//     top: 20px;
+//     right: 20px;
+//     width: 48px;
+//     height: 48px;
+//     border-radius: 50%;
+//     background: #191d26;
+//     border: 1px solid rgba(255, 255, 255, 0.1);
+//     color: #8a94a6;
+//     font-size: 26px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     cursor: pointer;
+//     transition: color 150ms ease, background-color 150ms ease;
+//     z-index: 2;
+
+//     &:hover {
+//         color: #ffffff;
+//         background: rgba(255, 255, 255, 0.12);
+//     }
+// }
+
+.close-button {
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+    border: 0;
+    background: transparent;
+
+    color: #717985;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: color 150ms ease, background-color 150ms ease;
-    z-index: 2;
 
-    &:hover {
-        color: #ffffff;
-        background: rgba(255, 255, 255, 0.12);
-    }
+    cursor: pointer;
+}
+
+.close-button svg {
+    display: block;
+    width: 42px;
+    height: 42px;
+
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: #ffffff;
 }
 
 /* Scrollable Container & Typography Styles */

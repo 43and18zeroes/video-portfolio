@@ -27,9 +27,22 @@ app.html
 
 <aside class="drawer-panel" role="dialog" data-nosnippet
     aria-modal="true">
-    <button type="button" class="close-btn"
+    <!-- <button type="button" class="close-btn"
         (click)="closeLegal()"
-        aria-label="Schließen">✕</button>
+        aria-label="Schließen">✕</button> -->
+    <button class="close-button" type="button"
+        aria-label="Schließen">
+        <svg viewBox="0 0 42 42"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <circle cx="21" cy="21" r="20" fill="none"
+                stroke="currentColor" stroke-width="2" />
+
+            <path d="M15 15L27 27M27 15L15 27" fill="none"
+                stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+        </svg>
+    </button>
 
     <div class="drawer-content">
         @defer (on immediate) {
