@@ -10,7 +10,6 @@ app.scss
     min-height: 100vh;
     min-height: 100dvh;
     background-color: #0b0f17;
-    color: #ffffff;
 }
 
 main {
@@ -77,7 +76,7 @@ main {
 }
 
 .close-button:hover {
-    color: #ffffff;
+    color: $white-text;
 }
 
 /* Scrollable Container & Typography Styles */

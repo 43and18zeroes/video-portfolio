@@ -2,8 +2,9 @@
 technologies.scss
 ========================= */
 
+@use 'abstracts' as *;
+
 :host {
-    --logo-white: #ffffff;
     --logo-box-size: 84px;
     --logo-icon-size: 38px;
     display: block;
@@ -50,14 +51,14 @@ technologies.scss
     svg {
         width: var(--logo-icon-size);
         height: var(--logo-icon-size);
-        fill: var(--logo-white);
+        fill: $white-text;
     }
 
     .monogram {
         font-weight: 700;
         font-size: 32px;
         letter-spacing: 0.01em;
-        color: var(--logo-white);
+        color: $white-text;
         line-height: 1;
     }
 }
