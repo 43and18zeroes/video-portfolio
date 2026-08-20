@@ -46,6 +46,7 @@ contact-form.scss
 
 h2 {
   font-size: 30px;
+  margin-top: 0;
 }
 
 /* Form Layout */
@@ -77,7 +78,7 @@ select {
   color: $white-text;
 
   font-family: inherit;
-  font-size: 18px;
+  font-size: $general-font-size;
 
   outline: none;
   appearance: none;
@@ -118,6 +119,8 @@ select:focus {
   option {
     background-color: #161c28;
     color: $white-text;
+    font-size: $general-font-size;
+    padding: 10px;
   }
 }
 

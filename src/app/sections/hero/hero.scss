@@ -5,8 +5,13 @@ hero.scss
 @use 'abstracts' as *;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
   border-bottom: $border-style;
   padding-top: calc(65px + var(--general-vertical-padding));
   padding-bottom: var(--general-vertical-padding);
@@ -15,6 +20,14 @@ hero.scss
 
 .hero-section {
   width: 100%;
+}
+
+h1 {
+  margin-bottom: 32px;
+
+  @include md {
+    margin-bottom: 64px;
+  }
 }
 
 .grid-container {
