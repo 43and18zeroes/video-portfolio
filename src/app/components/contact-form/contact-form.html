@@ -25,8 +25,7 @@ contact-form.html
     }
 
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()"
-      (input)="hideSuccess()" (change)="hideSuccess()"
-      novalidate>
+      (input)="hideSuccess()" novalidate>
 
       <!-- NAME -->
       <div class="form-group">
@@ -41,10 +40,13 @@ contact-form.html
         <div class="error-message">
           @if
           (contactForm.controls.name.hasError('required')) {
-          Bitte geben Sie Ihren Namen ein. }
+          Bitte geben Sie Ihren Namen ein.
+          }
           @if
           (contactForm.controls.name.hasError('minlength'))
-          { Der Name muss mindestens 2 Zeichen lang sein. }
+          {
+          Der Name muss mindestens 2 Zeichen lang sein.
+          }
         </div>
         }
       </div>
@@ -63,27 +65,58 @@ contact-form.html
         <div class="error-message">
           @if
           (contactForm.controls.email.hasError('required'))
-          { Bitte geben Sie Ihre E-Mail-Adresse ein. }
+          {
+          Bitte geben Sie Ihre E-Mail-Adresse ein.
+          }
           @if
           (contactForm.controls.email.hasError('pattern')) {
-          Bitte geben Sie eine gültige E-Mail-Adresse ein. }
+          Bitte geben Sie eine gültige E-Mail-Adresse ein.
+          }
         </div>
         }
       </div>
 
-      <!-- DROPDOWN -->
+      <!-- CUSTOM DROPDOWN -->
       <div class="form-group">
-        <label for="topic" class="visually-hidden">Art des
-          Projekts</label>
-        <div class="select-wrapper">
-          <select id="topic" formControlName="topic"
-            [class.invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched">
-            <option value="" disabled hidden>Art des
-              Projekts</option>
-            <option value="youtube">YouTube</option>
-            <option value="corporate">Corporate</option>
-            <option value="shortform">Shortform</option>
-          </select>
+        <label id="topic-label" class="visually-hidden">Art
+          des Projekts</label>
+
+        <div class="custom-select"
+          [class.is-open]="isDropdownOpen()"
+          [class.invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched">
+
+          <button type="button" class="select-trigger"
+            (click)="toggleDropdown()"
+            aria-haspopup="listbox"
+            [attr.aria-expanded]="isDropdownOpen()"
+            aria-labelledby="topic-label">
+            <span
+              [class.placeholder]="!selectedTopicLabel()">
+              {{ selectedTopicLabel() || 'Art des Projekts'
+              }}
+            </span>
+            <svg class="arrow-icon" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          @if (isDropdownOpen()) {
+          <ul class="select-menu" role="listbox"
+            aria-labelledby="topic-label">
+            @for (option of topicOptions; track
+            option.value) {
+            <li class="select-option" role="option"
+              [attr.aria-selected]="contactForm.controls.topic.value === option.value"
+              [class.selected]="contactForm.controls.topic.value === option.value"
+              (click)="selectTopic(option)">
+              {{ option.label }}
+            </li>
+            }
+          </ul>
+          }
         </div>
 
         @if (contactForm.controls.topic.invalid &&

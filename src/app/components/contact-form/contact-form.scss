@@ -63,10 +63,9 @@ form {
   gap: 6px;
 }
 
-/* Inputs & Selects (Pill-Design) */
+/* Inputs */
 
-input,
-select {
+input {
   width: 100%;
   height: 46px;
   padding: 0 22px;
@@ -92,47 +91,150 @@ input::placeholder {
   color: #8a94a6;
 }
 
-input:hover,
-select:hover {
+input:hover {
   border-color: #354257;
 }
 
-input:focus,
-select:focus {
+input:focus {
   border-color: #2563eb;
-  /* Blaues Highlight */
   box-shadow: 0 0 0 1px #2563eb;
 }
 
-/* Custom Dropdown Arrow */
+/* Custom Select Dropdown */
 
-.select-wrapper {
+.custom-select {
   position: relative;
+  width: 100%;
 
-  select {
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f3f5f9' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 20px center;
-  }
+  .select-trigger {
+    width: 100%;
+    height: 46px;
+    padding: 0 22px;
 
-  option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid #242d3d;
+    border-radius: $radius-elem;
     background-color: #161c28;
     color: $white-text;
+
+    font-family: inherit;
     font-size: $general-font-size;
-    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+
+    transition-property: border-color, box-shadow, background-color;
+    transition-duration: 150ms;
+    transition-timing-function: $md-easing-standard;
+
+    &:hover {
+      border-color: #354257;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+
+    .placeholder {
+      color: #8a94a6;
+    }
+
+    .arrow-icon {
+      width: 14px;
+      height: 14px;
+      color: #f3f5f9;
+      flex-shrink: 0;
+      transition: transform 200ms ease;
+    }
+  }
+
+  /* Zustand wenn das Dropdown geöffnet ist */
+  &.is-open {
+    .select-trigger {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  /* Aufgeklapptes Menü (Vollständig anpassbar) */
+  .select-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+
+    background-color: #161c28;
+    border: 1px solid #2563eb;
+    /* Rahmenfarbe im aufgeklappten Zustand */
+    border-radius: $radius-elem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+    overflow: hidden;
+    animation: dropdownIn 150ms ease;
+  }
+
+  .select-option {
+    padding: 10px 22px;
+    font-size: 18px;
+    color: $white-text;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+
+    &:hover {
+      background-color: #242d3d;
+    }
+
+    &.selected {
+      background-color: rgba(37, 99, 235, 0.15);
+      color: #60a5fa;
+      font-weight: 600;
+    }
+  }
+
+  /* Validierungsfehler */
+  &.invalid {
+    .select-trigger {
+      border-color: #ef4444;
+
+      &:focus-visible {
+        box-shadow: 0 0 0 1px #ef4444;
+      }
+    }
+  }
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 /* Validation Styles */
 
-input.invalid,
-select.invalid {
+input.invalid {
   border-color: #ef4444;
 }
 
-input.invalid:focus,
-select.invalid:focus {
+input.invalid:focus {
   box-shadow: 0 0 0 1px #ef4444;
 }
 
