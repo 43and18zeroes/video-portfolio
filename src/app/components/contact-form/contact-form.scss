@@ -123,23 +123,26 @@ input:focus {
 /* Direct Mail Note */
 
 .mail-cta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 14px;
 
   svg {
-    width: 24px;
+    display: inline-block;
+    vertical-align: -3px;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
   }
 
-  p {
-    margin: 0;
-    width: fit-content;
+  span {
+    display: inline;
+  }
 
-    a {
-      white-space: nowrap;
-      color: $white-text;
-    }
+  a {
+    color: $white-text;
+    white-space: nowrap;
+    display: inline-block;
   }
 }
 
