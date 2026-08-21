@@ -25,7 +25,7 @@ contact-form.html
     }
 
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()"
-      (input)="hideSuccess()" novalidate>
+      novalidate>
 
       <!-- NAME -->
       <div class="form-group">
@@ -81,43 +81,12 @@ contact-form.html
         <label id="topic-label" class="visually-hidden">Art
           des Projekts</label>
 
-        <div class="custom-select"
-          [class.is-open]="isDropdownOpen()"
-          [class.invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched">
-
-          <button type="button" class="select-trigger"
-            (click)="toggleDropdown()"
-            aria-haspopup="listbox"
-            [attr.aria-expanded]="isDropdownOpen()"
-            aria-labelledby="topic-label">
-            <span
-              [class.placeholder]="!selectedTopicLabel()">
-              {{ selectedTopicLabel() || 'Art des Projekts'
-              }}
-            </span>
-            <svg class="arrow-icon" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor"
-              stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </button>
-
-          @if (isDropdownOpen()) {
-          <ul class="select-menu" role="listbox"
-            aria-labelledby="topic-label">
-            @for (option of topicOptions; track
-            option.value) {
-            <li class="select-option" role="option"
-              [attr.aria-selected]="contactForm.controls.topic.value === option.value"
-              [class.selected]="contactForm.controls.topic.value === option.value"
-              (click)="selectTopic(option)">
-              {{ option.label }}
-            </li>
-            }
-          </ul>
-          }
-        </div>
+        <app-custom-select formControlName="topic"
+          [options]="topicOptions"
+          placeholder="Art des Projekts"
+          ariaLabelledBy="topic-label"
+          [invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched">
+        </app-custom-select>
 
         @if (contactForm.controls.topic.invalid &&
         contactForm.controls.topic.touched) {
