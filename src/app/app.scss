@@ -72,7 +72,7 @@ main {
     width: 50px;
     height: 50px;
 
-    transition: color 0.2s ease-in-out;
+    transition: $text-link-transition;
 }
 
 .close-button:hover {

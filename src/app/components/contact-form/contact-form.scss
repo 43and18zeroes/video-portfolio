@@ -144,7 +144,7 @@ input:focus {
     color: $white-text;
     white-space: nowrap;
     display: inline-block;
-    transition: color 150ms ease-in-out;
+    transition: $text-link-transition;
 
     &:hover {
       color: $brand-blue;

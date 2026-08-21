@@ -164,7 +164,7 @@ li,
     display: inline-flex;
     align-items: center;
     padding: 8px 12px;
-    transition: color 150ms ease-in-out;
+    transition: $text-link-transition;
 
     &:hover {
         color: #f3f5f9;
@@ -175,7 +175,7 @@ li,
     color: #4f80ff;
     text-decoration: underline;
     text-underline-offset: 3px;
-    transition: color 150ms ease-in-out;
+    transition: $text-link-transition;
 
     &:hover {
         color: #7099ff;
