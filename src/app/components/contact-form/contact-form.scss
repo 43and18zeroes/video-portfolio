@@ -125,14 +125,15 @@ input:focus {
 .mail-cta {
   text-align: center;
   line-height: 1.5;
-  font-size: 14px;
 
   svg {
+    $mail-icon-size: 21px;
     display: inline-block;
     vertical-align: -3px;
-    width: 18px;
-    height: 18px;
+    width: $mail-icon-size;
+    height: $mail-icon-size;
     margin-right: 8px;
+    margin-bottom: -1px;
   }
 
   span {
@@ -143,6 +144,11 @@ input:focus {
     color: $white-text;
     white-space: nowrap;
     display: inline-block;
+    transition: color 150ms ease-in-out;
+
+    &:hover {
+      color: $brand-blue;
+    }
   }
 }
 
