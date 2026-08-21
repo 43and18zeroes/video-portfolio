@@ -30,7 +30,8 @@ $md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
 $radius-card: 12px;
 $radius-elem: 8px;
 $general-spacing: 24px;
-$border-style: 1px solid rgba(255, 255, 255, 0.12);
+$general-border-color: rgba(255, 255, 255, 0.12);
+$border-style: 1px solid $general-border-color;
 
 :root {
   --general-vertical-padding: 40px;

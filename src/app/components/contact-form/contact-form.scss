@@ -216,6 +216,47 @@ input:focus {
   }
 }
 
+/* Divider */
+
+.direct-mail-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 16px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: $general-border-color;
+  }
+}
+
+/* Direct Mail Note */
+
+.mail-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    width: 24px;
+  }
+
+  p {
+    margin: 0;
+
+    a {
+      color: $white-text;
+    }
+  }
+}
+
 @keyframes dropdownIn {
   from {
     opacity: 0;
