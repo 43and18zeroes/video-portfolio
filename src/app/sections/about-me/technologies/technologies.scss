@@ -5,13 +5,15 @@ technologies.scss
 @use 'abstracts' as *;
 
 :host {
-    --logo-box-size: 84px;
+    --logo-box-size: 40px;
     --logo-icon-size: 38px;
     display: block;
+    padding-top: 50px;
 }
 
 .grid {
     display: grid;
+    gap: 30px;
     grid-template-columns: repeat(5, 1fr);
     max-width: 900px;
 
