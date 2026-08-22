@@ -19,7 +19,7 @@ contact-form.html
       <div class="success-icon">✓</div>
       <div>
         <strong>Vielen Dank!</strong>
-        <p>Ihre Anfrage wurde erfolgreich übermittelt.</p>
+        <p>Die Anfrage wurde erfolgreich übermittelt.</p>
       </div>
     </div>
     }
@@ -40,7 +40,7 @@ contact-form.html
         <div class="error-message">
           @if
           (contactForm.controls.name.hasError('required')) {
-          Bitte geben Sie Ihren Namen ein.
+          Bitte einen Namen eingeben.
           }
           @if
           (contactForm.controls.name.hasError('minlength'))
@@ -66,11 +66,11 @@ contact-form.html
           @if
           (contactForm.controls.email.hasError('required'))
           {
-          Bitte geben Sie Ihre E-Mail-Adresse ein.
+          Bitte eine gültige E-Mail-Adresse eingeben.
           }
           @if
           (contactForm.controls.email.hasError('pattern')) {
-          Bitte geben Sie eine gültige E-Mail-Adresse ein.
+          Bitte eine gültige E-Mail-Adresse eingeben.
           }
         </div>
         }
@@ -91,7 +91,7 @@ contact-form.html
         @if (contactForm.controls.topic.invalid &&
         contactForm.controls.topic.touched) {
         <div class="error-message">
-          Bitte wählen Sie eine Projektart aus.
+          Bitte eine Projektart auswählen.
         </div>
         }
       </div>
