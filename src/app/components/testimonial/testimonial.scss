@@ -94,11 +94,6 @@ testimonial.scss
 
         .testimonial-text {
             margin: 0;
-            line-height: 1.5;
-
-            @include md {
-                line-height: 1.6;
-            }
         }
     }
 }
