@@ -57,7 +57,6 @@ h1 {
   @include md {
     app-testimonial {
       display: flex;
-      flex-direction: column;
       flex: 1;
     }
   }
