@@ -9,6 +9,9 @@ technologies.scss
     display: flex;
     justify-content: center;
     width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
 }
 
 .grid {
@@ -58,7 +61,7 @@ technologies.scss
     }
 
     .monogram {
-        font-size: 32px;
+        font-size: 36px;
         font-weight: 700;
         line-height: 1;
         letter-spacing: 0.01em;
