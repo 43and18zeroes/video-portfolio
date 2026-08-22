@@ -227,3 +227,8 @@ button,
 .header-footer-link {
     user-select: none;
 }
+
+button:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}

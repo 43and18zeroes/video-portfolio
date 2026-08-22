@@ -63,6 +63,9 @@ export class App {
   }
 
   protected closeLegal(): void {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     this.legalDrawer.close();
   }
 
