@@ -5,25 +5,28 @@ technologies.scss
 @use 'abstracts' as *;
 
 :host {
-    --logo-icon-size: 50px;
+    --logo-size: 48px;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .grid {
-    width: 100%;
-    padding-top: 50px;
     display: grid;
-    gap: 30px 0px;
     grid-template-columns: repeat(5, 1fr);
+    gap: 32px 20px;
+    width: 100%;
     max-width: 900px;
+    padding-top: 48px;
 
     @media (max-width: 720px) {
         grid-template-columns: repeat(3, 1fr);
+        gap: 28px 16px;
     }
 
     @media (max-width: 480px) {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px 12px;
     }
 }
 
@@ -33,34 +36,32 @@ technologies.scss
     align-items: center;
     gap: 12px;
 
-
     span {
-        font-size: 15px;
+        font-size: 14px;
         text-align: center;
         letter-spacing: 0.01em;
     }
 }
 
 .logo-box {
-    width: 30px;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    transition: transform 0.2s ease;
 
     svg {
-        width: var(--logo-icon-size);
-        height: var(--logo-icon-size);
+        width: 100%;
+        height: 100%;
         fill: $white-text;
     }
 
     .monogram {
-        font-weight: 700;
         font-size: 32px;
+        font-weight: 700;
+        line-height: 1;
         letter-spacing: 0.01em;
         color: $white-text;
-        line-height: 1;
     }
 }
