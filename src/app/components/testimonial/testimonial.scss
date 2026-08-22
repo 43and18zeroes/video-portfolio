@@ -4,6 +4,11 @@ testimonial.scss
 
 @use 'abstracts' as *;
 
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
 .testimonial {
     @include card-shadow;
     @include card-surface;
@@ -39,6 +44,11 @@ testimonial.scss
     &--compact {
         padding: 20px !important;
         gap: 12px;
+
+        @include md {
+            flex: 1;
+            justify-content: center;
+        }
 
         .testimonial-header {
             display: flex;

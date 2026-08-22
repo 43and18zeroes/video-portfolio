@@ -53,6 +53,14 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: $general-spacing;
+
+  @include md {
+    app-testimonial {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+  }
 }
 
 .col-contact {
