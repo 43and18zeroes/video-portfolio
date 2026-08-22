@@ -36,6 +36,26 @@ export class App {
         }, 60);
       }
     });
+
+    effect((onCleanup) => {
+      const view = this.activeLegalView();
+      if (view) {
+        history.pushState({ drawerOpen: true }, '');
+
+        const handlePopState = () => {
+          this.legalDrawer.close();
+        };
+
+        window.addEventListener('popstate', handlePopState);
+
+        onCleanup(() => {
+          window.removeEventListener('popstate', handlePopState);
+          if (history.state?.drawerOpen) {
+            history.back();
+          }
+        });
+      }
+    });
   }
 
   protected openLegal(type: 'imprint' | 'privacy-policy'): void {
