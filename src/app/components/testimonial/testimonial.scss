@@ -16,6 +16,8 @@ testimonial.scss
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+    overflow: hidden;
 
     .stars-rating {
         display: flex;
@@ -51,10 +53,26 @@ testimonial.scss
             gap: 16px;
         }
 
+        &::before {
+            content: '"';
+            position: absolute;
+            top: -0.5em;
+            right: 12px;
+            font-size: 140px;
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1;
+            color: $white-text;
+            opacity: 0.05;
+            pointer-events: none;
+            user-select: none;
+        }
+
         .testimonial-header {
             display: flex;
             align-items: center;
             gap: 14px;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-img {
@@ -94,6 +112,10 @@ testimonial.scss
 
         .testimonial-text {
             margin: 0;
+            position: relative;
+            z-index: 1;
+            font-size: clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+            line-height: 1.6;
         }
     }
 }
