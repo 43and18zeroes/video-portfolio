@@ -30,7 +30,6 @@ testimonial.scss
         @include md {
             aspect-ratio: 16 / 9;
             height: auto;
-            /* WICHTIG: Überschreibt height: 100%, damit aspect-ratio greift */
             padding: 16px 20px;
             justify-content: space-evenly;
         }
@@ -59,16 +58,6 @@ testimonial.scss
             stroke: #fbbf24;
             stroke-width: 1px;
             filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.25));
-
-            @include md {
-                width: 13px;
-                height: 13px;
-            }
-
-            @include ld {
-                width: 16px;
-                height: 16px;
-            }
         }
 
         .testimonial-img {
@@ -79,8 +68,8 @@ testimonial.scss
             object-fit: cover;
 
             @include md {
-                width: 42px;
-                height: 42px;
+                width: 96px;
+                height: 96px;
             }
 
             @include ld {
@@ -91,36 +80,17 @@ testimonial.scss
 
         .testimonial-text {
             margin: 0;
-            font-size: 15px;
-            line-height: 1.45;
 
             @include md {
-                font-size: 13px;
-                line-height: 1.35;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
-
-            @include ld {
-                font-size: 15px;
-                line-height: 1.45;
-            }
         }
 
         .testimonial-author {
             margin: 0;
-            font-weight: 500;
-            font-size: 14px;
-
-            @include md {
-                font-size: 12px;
-            }
-
-            @include ld {
-                font-size: 14px;
-            }
         }
     }
 
@@ -134,20 +104,6 @@ testimonial.scss
             padding: 28px !important;
             justify-content: center;
             gap: 16px;
-        }
-
-        &::before {
-            content: '"';
-            position: absolute;
-            top: -0.5em;
-            right: 12px;
-            font-size: 140px;
-            font-family: Georgia, 'Times New Roman', serif;
-            line-height: 1;
-            color: $white-text;
-            opacity: 0.05;
-            pointer-events: none;
-            user-select: none;
         }
 
         .testimonial-header {
@@ -202,8 +158,6 @@ testimonial.scss
             margin: 0;
             position: relative;
             z-index: 1;
-            font-size: clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
-            line-height: 1.6;
         }
     }
 }
