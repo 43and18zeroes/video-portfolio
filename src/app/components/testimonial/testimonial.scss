@@ -7,7 +7,7 @@ testimonial.scss
 :host {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    width: 100%;
 }
 
 .testimonial {
@@ -15,35 +15,118 @@ testimonial.scss
     @include card-surface;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
     position: relative;
     overflow: hidden;
 
-    .stars-rating {
-        display: flex;
+    /* --- Standard (Default) Variant --- */
+    &:not(&--compact) {
+        padding: 24px;
+        text-align: center;
         align-items: center;
-        gap: 4px;
-        margin-bottom: 0.75rem;
+        justify-content: center;
+
+        @include md {
+            aspect-ratio: 16 / 9;
+            height: auto;
+            /* WICHTIG: Überschreibt height: 100%, damit aspect-ratio greift */
+            padding: 16px 20px;
+            justify-content: space-evenly;
+        }
+
+        @include ld {
+            padding: 24px 32px;
+        }
+
+        .stars-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 0.75rem;
+
+            @include md {
+                margin-bottom: 0;
+                gap: 3px;
+            }
+        }
+
+        .star-icon {
+            width: $general-font-size;
+            height: $general-font-size;
+            fill: #fbbf24;
+            stroke: #fbbf24;
+            stroke-width: 1px;
+            filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.25));
+
+            @include md {
+                width: 13px;
+                height: 13px;
+            }
+
+            @include ld {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        .testimonial-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 999px;
+            align-self: center;
+            object-fit: cover;
+
+            @include md {
+                width: 42px;
+                height: 42px;
+            }
+
+            @include ld {
+                width: 56px;
+                height: 56px;
+            }
+        }
+
+        .testimonial-text {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.45;
+
+            @include md {
+                font-size: 13px;
+                line-height: 1.35;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            @include ld {
+                font-size: 15px;
+                line-height: 1.45;
+            }
+        }
+
+        .testimonial-author {
+            margin: 0;
+            font-weight: 500;
+            font-size: 14px;
+
+            @include md {
+                font-size: 12px;
+            }
+
+            @include ld {
+                font-size: 14px;
+            }
+        }
     }
 
-    .star-icon {
-        width: $general-font-size;
-        height: $general-font-size;
-        fill: #fbbf24;
-        stroke: #fbbf24;
-        stroke-width: 1px;
-        filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.25));
-    }
-
-    .testimonial-img {
-        width: 64px;
-        height: 64px;
-        border-radius: 999px;
-        align-self: center;
-        object-fit: cover;
-    }
-
+    /* --- Compact Variant Modifier --- */
     &--compact {
+        height: 100%;
         padding: 20px !important;
         gap: 12px;
 
@@ -100,6 +183,8 @@ testimonial.scss
         }
 
         .stars-rating {
+            display: flex;
+            align-items: center;
             margin-bottom: 0;
             gap: 2px;
         }
@@ -107,6 +192,9 @@ testimonial.scss
         .star-icon {
             width: $general-font-size;
             height: $general-font-size;
+            fill: #fbbf24;
+            stroke: #fbbf24;
+            stroke-width: 1px;
             filter: drop-shadow(0 1px 2px rgba(251, 191, 36, 0.25));
         }
 
