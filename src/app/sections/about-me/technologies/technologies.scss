@@ -5,11 +5,9 @@ technologies.scss
 @use 'abstracts' as *;
 
 :host {
-    --logo-icon-size: 38px;
-    // display: block;
+    --logo-icon-size: 50px;
     display: flex;
     justify-content: center;
-    
 }
 
 .grid {
@@ -37,7 +35,7 @@ technologies.scss
 
 
     span {
-        font-size: 13px;
+        font-size: 15px;
         text-align: center;
         letter-spacing: 0.01em;
     }
@@ -46,7 +44,6 @@ technologies.scss
 .logo-box {
     width: 30px;
     height: 40px;
-    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
