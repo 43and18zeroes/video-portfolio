@@ -26,9 +26,12 @@ about-me.scss
     grid-template-columns: repeat(12, 1fr);
     gap: $general-spacing;
 
-    .col-image,
+    .col-image {
+      grid-column: span 5;
+    }
+
     .col-text {
-      grid-column: span 6;
+      grid-column: span 7;
     }
   }
 }
@@ -43,6 +46,6 @@ about-me.scss
     object-fit: cover;
     border-radius: $radius-card;
     display: block;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 }
