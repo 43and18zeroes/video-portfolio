@@ -3,25 +3,28 @@ imprint.html
 ========================= -->
 
 <div class="legal-content">
-    <h1>Impressum</h1>
+    <h3>Impressum</h3>
 
     <p>
         {{ imprint.name }}<br />
+        {{ imprint.street }}<br />
+        {{ imprint.zipCity }}
     </p>
 
-    <h2>Kontakt</h2>
+    <h3>Kontakt</h3>
 
-    <p>E-Mail: <a class="blue-text-link" href="mailto:{{ imprint.email }}">{{
+    <p>E-Mail: <a class="blue-text-link"
+            href="mailto:{{ imprint.email }}">{{
             imprint.email }}</a></p>
 
-    <h2>Umsatzsteuer-ID</h2>
+    <h3>Umsatzsteuer-ID</h3>
     <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig;
         &sect; 27 a Umsatzsteuergesetz:<br />
         {{ imprint.vatId }}
     </p>
 
-    <h2>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle
-    </h2>
+    <h3>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle
+    </h3>
     <p>Wir sind nicht bereit oder verpflichtet, an
         Streitbeilegungsverfahren vor einer
         Verbraucherschlichtungsstelle teilzunehmen.</p>

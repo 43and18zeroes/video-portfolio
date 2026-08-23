@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LEGAL_DATA } from '../../../private-data.config';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './privacy-policy.html',
   styleUrls: ['../legal.scss', './privacy-policy.scss'],
 })
-export class PrivacyPolicy {}
+export class PrivacyPolicy {
+  privacy = LEGAL_DATA;
+}
