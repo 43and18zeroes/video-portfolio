@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IMPRINT_DATA } from '../../../private-data.config';
+import { LEGAL_DATA } from '../../../private-data.config';
 
 @Component({
   selector: 'app-imprint',
@@ -8,5 +8,5 @@ import { IMPRINT_DATA } from '../../../private-data.config';
   styleUrls: ['../legal.scss', './imprint.scss'],
 })
 export class Imprint {
-  imprint = IMPRINT_DATA;
+  imprint = LEGAL_DATA;
 }
