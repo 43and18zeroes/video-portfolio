@@ -12,7 +12,11 @@ import { CustomSelect, SelectOption } from './custom-select/custom-select';
 export class ContactForm {
   private fb = inject(FormBuilder);
 
+  private readonly endpoint = 'https://cw-coding.de/send_mail/send_mail.php';
+
   protected submittedSuccessfully = false;
+  protected isSubmitting = false;
+  protected submitError = false;
 
   protected readonly topicOptions: SelectOption[] = [
     { value: 'youtube', label: 'YouTube' },
@@ -38,12 +42,36 @@ export class ContactForm {
     }
   }
 
-  protected onSubmit(): void {
-    if (this.contactForm.valid) {
+  protected async onSubmit(): Promise<void> {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
+    const { name, email, topic } = this.contactForm.getRawValue();
+
+    const fd = new FormData();
+    fd.append('name', name);
+    fd.append('mail', email);
+    fd.append('message', topic);
+
+    this.isSubmitting = true;
+    this.submitError = false;
+    this.contactForm.disable();
+
+    try {
+      await fetch(this.endpoint, {
+        method: 'POST',
+        body: fd
+      });
+
       this.submittedSuccessfully = true;
       this.contactForm.reset();
-    } else {
-      this.contactForm.markAllAsTouched();
+    } catch {
+      this.submitError = true;
+    } finally {
+      this.isSubmitting = false;
+      this.contactForm.enable();
     }
   }
 }
