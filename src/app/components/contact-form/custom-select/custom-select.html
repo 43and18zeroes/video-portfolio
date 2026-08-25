@@ -8,7 +8,8 @@ custom-select.html
     <button type="button" class="select-trigger"
         (click)="toggle()" aria-haspopup="listbox"
         [attr.aria-expanded]="isOpen()"
-        [attr.aria-labelledby]="ariaLabelledBy()">
+        [attr.aria-labelledby]="ariaLabelledBy()"
+        [disabled]="disabled()">
         <span [class.placeholder]="!selectedLabel()">
             {{ selectedLabel() || placeholder() }}
         </span>

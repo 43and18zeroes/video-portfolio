@@ -72,9 +72,9 @@ export class ContactForm {
       this.contactForm.reset({}, { emitEvent: false });
     } catch {
       this.submitError = true;
+      this.contactForm.enable({ emitEvent: false });
     } finally {
       this.isSubmitting = false;
-      this.contactForm.enable({ emitEvent: false });
     }
   }
 }
