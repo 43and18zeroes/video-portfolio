@@ -20,8 +20,8 @@ export class ContactForm {
 
   protected readonly topicOptions: SelectOption[] = [
     { value: 'youtube', label: 'YouTube' },
-    { value: 'corporate', label: 'Corporate' },
-    { value: 'shortform', label: 'Shortform' }
+    { value: 'shortform', label: 'Shortform' },
+    { value: 'sonstiges', label: 'Sonstiges' }
   ];
 
   protected contactForm = this.fb.nonNullable.group({
