@@ -33,17 +33,20 @@ export class ContactForm {
   constructor() {
     this.contactForm.valueChanges
       .pipe(takeUntilDestroyed())
-      .subscribe(() => this.hideSuccess());
+      .subscribe(() => this.resetStatus());
   }
 
-  protected hideSuccess(): void {
+  protected resetStatus(): void {
     if (this.submittedSuccessfully) {
       this.submittedSuccessfully = false;
+    }
+    if (this.submitError) {
+      this.submitError = false;
     }
   }
 
   protected async onSubmit(): Promise<void> {
-    if (this.contactForm.invalid) {
+    if (this.contactForm.invalid || this.submittedSuccessfully) {
       this.contactForm.markAllAsTouched();
       return;
     }
@@ -57,7 +60,7 @@ export class ContactForm {
 
     this.isSubmitting = true;
     this.submitError = false;
-    this.contactForm.disable();
+    this.contactForm.disable({ emitEvent: false });
 
     try {
       await fetch(this.endpoint, {
@@ -66,12 +69,12 @@ export class ContactForm {
       });
 
       this.submittedSuccessfully = true;
-      this.contactForm.reset();
+      this.contactForm.reset({}, { emitEvent: false });
     } catch {
       this.submitError = true;
     } finally {
       this.isSubmitting = false;
-      this.contactForm.enable();
+      this.contactForm.enable({ emitEvent: false });
     }
   }
 }

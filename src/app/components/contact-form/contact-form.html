@@ -9,7 +9,7 @@ contact-form.html
     <div class="form-header">
       <h2>Schnellanfrage</h2>
       <p class="grey-text">
-        In 30 Sekunden ausgefüllt - Antwort in 24 Stunden.
+        In 30 Sekunden ausgefüllt - Antwort innerhalb 24 Stunden.
       </p>
     </div>
 
@@ -20,6 +20,18 @@ contact-form.html
       <div>
         <strong>Vielen Dank!</strong>
         <p>Die Anfrage wurde erfolgreich übermittelt.</p>
+      </div>
+    </div>
+    }
+
+    @if (submitError) {
+    <div class="server-error-message" role="alert"
+      aria-live="assertive">
+      <div class="error-icon">✕</div>
+      <div>
+        <strong>Fehler beim Senden!</strong>
+        <p>Die Nachricht konnte nicht übermittelt werden.
+          Bitte erneut versuchen.</p>
       </div>
     </div>
     }
@@ -64,12 +76,9 @@ contact-form.html
         contactForm.controls.email.touched) {
         <div class="error-message">
           @if
-          (contactForm.controls.email.hasError('required'))
+          (contactForm.controls.email.hasError('required')
+          || contactForm.controls.email.hasError('pattern'))
           {
-          Bitte eine gültige E-Mail-Adresse eingeben.
-          }
-          @if
-          (contactForm.controls.email.hasError('pattern')) {
           Bitte eine gültige E-Mail-Adresse eingeben.
           }
         </div>
@@ -97,9 +106,11 @@ contact-form.html
       </div>
 
       <!-- SUBMIT -->
-      <button type="submit" class="primary-btn">
+      <button type="submit" class="primary-btn"
+        [disabled]="isSubmitting || submittedSuccessfully">
         <span class="btn-icon">🚀</span>
-        <span>Projektanfrage starten</span>
+        <span>{{ isSubmitting ? 'Wird gesendet...' :
+          'Projektanfrage starten' }}</span>
       </button>
 
     </form>
