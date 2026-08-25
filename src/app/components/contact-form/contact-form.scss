@@ -34,6 +34,7 @@ contact-form.scss
 .contact-card {
   @include card-shadow;
   @include card-surface;
+  position: relative;
   width: 100%;
   max-width: 768px;
 }
@@ -174,20 +175,35 @@ input.invalid:focus {
   padding-left: 0;
 }
 
-/* Success Message */
+/* Floating Status Toasts (Success / Error) */
 
-.success-message {
+.status-toast-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: calc(100% - 48px);
+  max-width: 480px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.status-toast {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 20px;
   padding: 16px;
-
-  background: rgba(22, 138, 69, 0.15);
-  border: 1px solid #168a45;
+  margin-bottom: 12px;
   border-radius: $radius-elem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  animation: toastIn 0.3s $md-easing-standard;
+  pointer-events: auto;
+}
 
-  animation: successIn 0.35s ease;
+.success-message {
+  background: rgba(22, 138, 69, 0.92);
+  border: 1px solid #168a45;
 }
 
 .success-icon {
@@ -205,19 +221,19 @@ input.invalid:focus {
 
 .success-message strong {
   display: block;
-  color: #4ade80;
+  color: $white-text;
   margin-bottom: 2px;
 }
 
 .success-message p {
   margin: 0;
-  color: #bbf7d0;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-@keyframes successIn {
+@keyframes toastIn {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(8px);
   }
 
   to {
@@ -246,21 +262,13 @@ button.primary-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   filter: grayscale(0.6);
+  pointer-events: none;
 }
 
 /* Error Banner */
 .server-error-message {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-  padding: 16px;
-
-  background: rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.92);
   border: 1px solid #ef4444;
-  border-radius: $radius-elem;
-
-  animation: successIn 0.35s ease;
 }
 
 .error-icon {
@@ -278,11 +286,11 @@ button.primary-btn:disabled {
 
 .server-error-message strong {
   display: block;
-  color: #f87171;
+  color: $white-text;
   margin-bottom: 2px;
 }
 
 .server-error-message p {
   margin: 0;
-  color: #fca5a5;
+  color: rgba(255, 255, 255, 0.85);
 }
