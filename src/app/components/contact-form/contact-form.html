@@ -9,113 +9,124 @@ contact-form.html
     <div class="form-header">
       <h2>Schnellanfrage</h2>
       <p class="grey-text">
-        In 30 Sekunden ausgefüllt - Antwort innerhalb 24 Stunden.
+        In 30 Sekunden ausgefüllt - Antwort innerhalb 24
+        Stunden.
       </p>
     </div>
 
-    <div class="status-toast-container">
-      @if (submittedSuccessfully) {
-      <div class="status-toast success-message" role="status"
-        aria-live="polite">
-        <div class="success-icon">✓</div>
-        <div>
-          <strong>Vielen Dank!</strong>
-          <p>Die Anfrage wurde erfolgreich übermittelt.</p>
-        </div>
-      </div>
-      }
+    <div class="form-wrapper">
 
-      @if (submitError) {
-      <div class="status-toast server-error-message" role="alert"
-        aria-live="assertive">
-        <div class="error-icon">✕</div>
-        <div>
-          <strong>Fehler beim Senden!</strong>
-          <p>Die Nachricht konnte nicht übermittelt werden.
-            Bitte erneut versuchen.</p>
+      <div class="status-toast-container">
+        @if (submittedSuccessfully) {
+        <div class="status-toast success-message"
+          role="status" aria-live="polite">
+          <div class="success-icon">✓</div>
+          <div>
+            <strong>Vielen Dank!</strong>
+            <p>Die Anfrage wurde erfolgreich übermittelt.
+            </p>
+          </div>
         </div>
+        }
+
+        @if (submitError) {
+        <div class="status-toast server-error-message"
+          role="alert" aria-live="assertive">
+          <div class="error-icon">✕</div>
+          <div>
+            <strong>Fehler beim Senden!</strong>
+            <p>Die Nachricht konnte nicht übermittelt
+              werden.
+              Bitte erneut versuchen.</p>
+          </div>
+        </div>
+        }
       </div>
-      }
+
+      <form [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- NAME -->
+        <div class="form-group">
+          <label for="name"
+            class="visually-hidden">Name</label>
+          <input id="name" type="text"
+            formControlName="name" placeholder="Name"
+            autocomplete="name"
+            [class.invalid]="contactForm.controls.name.invalid && contactForm.controls.name.touched">
+
+          @if (contactForm.controls.name.invalid &&
+          contactForm.controls.name.touched) {
+          <div class="error-message">
+            @if
+            (contactForm.controls.name.hasError('required'))
+            {
+            Bitte einen Namen eingeben.
+            }
+            @if
+            (contactForm.controls.name.hasError('minlength'))
+            {
+            Der Name muss mindestens 2 Zeichen lang sein.
+            }
+          </div>
+          }
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email"
+            class="visually-hidden">E-Mail</label>
+          <input id="email" type="email"
+            formControlName="email" placeholder="E-Mail"
+            autocomplete="email"
+            [class.invalid]="contactForm.controls.email.invalid && contactForm.controls.email.touched">
+
+          @if (contactForm.controls.email.invalid &&
+          contactForm.controls.email.touched) {
+          <div class="error-message">
+            @if
+            (contactForm.controls.email.hasError('required')
+            ||
+            contactForm.controls.email.hasError('pattern'))
+            {
+            Bitte eine gültige E-Mail-Adresse eingeben.
+            }
+          </div>
+          }
+        </div>
+
+        <!-- CUSTOM DROPDOWN -->
+        <div class="form-group">
+          <label id="topic-label"
+            class="visually-hidden">Art
+            des Projekts</label>
+
+          <app-custom-select formControlName="topic"
+            [options]="topicOptions"
+            placeholder="Art des Projekts"
+            ariaLabelledBy="topic-label"
+            [invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched">
+          </app-custom-select>
+
+          @if (contactForm.controls.topic.invalid &&
+          contactForm.controls.topic.touched) {
+          <div class="error-message">
+            Bitte eine Projektart auswählen.
+          </div>
+          }
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="primary-btn"
+          [disabled]="isSubmitting || submittedSuccessfully">
+          <span class="btn-icon">🚀</span>
+          <span>{{ isSubmitting ? 'Wird gesendet...' :
+            'Projektanfrage starten' }}</span>
+        </button>
+
+      </form>
+
     </div>
-
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()"
-      novalidate>
-
-      <!-- NAME -->
-      <div class="form-group">
-        <label for="name"
-          class="visually-hidden">Name</label>
-        <input id="name" type="text" formControlName="name"
-          placeholder="Name" autocomplete="name"
-          [class.invalid]="contactForm.controls.name.invalid && contactForm.controls.name.touched">
-
-        @if (contactForm.controls.name.invalid &&
-        contactForm.controls.name.touched) {
-        <div class="error-message">
-          @if
-          (contactForm.controls.name.hasError('required')) {
-          Bitte einen Namen eingeben.
-          }
-          @if
-          (contactForm.controls.name.hasError('minlength'))
-          {
-          Der Name muss mindestens 2 Zeichen lang sein.
-          }
-        </div>
-        }
-      </div>
-
-      <!-- EMAIL -->
-      <div class="form-group">
-        <label for="email"
-          class="visually-hidden">E-Mail</label>
-        <input id="email" type="email"
-          formControlName="email" placeholder="E-Mail"
-          autocomplete="email"
-          [class.invalid]="contactForm.controls.email.invalid && contactForm.controls.email.touched">
-
-        @if (contactForm.controls.email.invalid &&
-        contactForm.controls.email.touched) {
-        <div class="error-message">
-          @if
-          (contactForm.controls.email.hasError('required')
-          || contactForm.controls.email.hasError('pattern'))
-          {
-          Bitte eine gültige E-Mail-Adresse eingeben.
-          }
-        </div>
-        }
-      </div>
-
-      <!-- CUSTOM DROPDOWN -->
-      <div class="form-group">
-        <label id="topic-label" class="visually-hidden">Art
-          des Projekts</label>
-
-        <app-custom-select formControlName="topic"
-          [options]="topicOptions"
-          placeholder="Art des Projekts"
-          ariaLabelledBy="topic-label"
-          [invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched">
-        </app-custom-select>
-
-        @if (contactForm.controls.topic.invalid &&
-        contactForm.controls.topic.touched) {
-        <div class="error-message">
-          Bitte eine Projektart auswählen.
-        </div>
-        }
-      </div>
-
-      <!-- SUBMIT -->
-      <button type="submit" class="primary-btn"
-        [disabled]="isSubmitting || submittedSuccessfully">
-        <span class="btn-icon">🚀</span>
-        <span>{{ isSubmitting ? 'Wird gesendet...' :
-          'Projektanfrage starten' }}</span>
-      </button>
-
-    </form>
 
     <div class="direct-mail-divider grey-text">
       <span>oder</span>
@@ -130,8 +141,9 @@ contact-form.html
           d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
       </svg>
       <span>Lieber direkt per Mail? </span>
-      
-        <a href="mailto:info@cmw-media.de">info@cmw-media.de</a>
+
+      <a
+        href="mailto:info@cmw-media.de">info@cmw-media.de</a>
     </div>
 
   </div>

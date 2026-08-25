@@ -34,7 +34,6 @@ contact-form.scss
 .contact-card {
   @include card-shadow;
   @include card-surface;
-  position: relative;
   width: 100%;
   max-width: 768px;
 }
@@ -48,6 +47,12 @@ contact-form.scss
 h2 {
   font-size: 30px;
   margin-top: 0;
+}
+
+/* Form Wrapper (Bezugsrahmen für die schwebenden Toasts) */
+
+.form-wrapper {
+  position: relative;
 }
 
 /* Form Layout */
@@ -180,10 +185,8 @@ input.invalid:focus {
 .status-toast-container {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  width: calc(100% - 48px);
-  max-width: 480px;
+  left: 0;
+  width: 100%;
   z-index: 10;
   pointer-events: none;
 }
@@ -227,7 +230,7 @@ input.invalid:focus {
 
 .success-message p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: $white-text;
 }
 
 @keyframes toastIn {
@@ -292,5 +295,5 @@ button.primary-btn:disabled {
 
 .server-error-message p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: $white-text;
 }
