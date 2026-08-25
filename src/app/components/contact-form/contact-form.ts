@@ -12,7 +12,7 @@ import { CustomSelect, SelectOption } from './custom-select/custom-select';
 export class ContactForm {
   private fb = inject(FormBuilder);
 
-  private readonly endpoint = 'https://cw-coding.de/send_mail/send_mail.php';
+  private readonly endpoint = 'https://portfolio.cwgermany.de/send_mail/send_mail.php';
 
   protected submittedSuccessfully = false;
   protected isSubmitting = false;
