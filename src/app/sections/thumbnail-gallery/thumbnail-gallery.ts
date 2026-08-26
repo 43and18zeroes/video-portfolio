@@ -23,10 +23,11 @@ const THUMBNAILS: readonly Thumbnail[] = [
   { src: 'img/thumbnail-gallery/thumbnail-04.jpg', title: 'Vlog & Travel', ctr: '+16.0% CTR' },
 ];
 
-// Swiper's loop mode needs more slides than are visible at once
-// (slidesPerView + looped slides). Four sources are not enough on wide
-// screens, so the list is repeated. Drop this once enough thumbnails exist.
-const MIN_SLIDES_FOR_LOOP = 8;
+// Swiper's loop mode needs slidesPerView + loopedSlides slides to work, and
+// loop-additional-slides="2" raises that budget further. Four sources are not
+// enough on wide screens, so the list is repeated. Drop this once enough
+// real thumbnails exist.
+const MIN_SLIDES_FOR_LOOP = 12;
 
 function buildLoopSafeSlides(thumbnails: readonly Thumbnail[], minSlides: number): readonly ThumbnailSlide[] {
   const repetitions = Math.max(1, Math.ceil(minSlides / thumbnails.length));

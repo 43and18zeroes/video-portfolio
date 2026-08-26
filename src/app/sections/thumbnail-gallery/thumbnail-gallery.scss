@@ -6,6 +6,8 @@ thumbnail-gallery.scss
 
 /* Swiper clips its own overflow, so the pagination needs room inside the slide */
 $pagination-reserve: 44px;
+/* Transparent padding that turns the small arrow icons into 44px touch targets */
+$nav-hit-area: 14px;
 
 :host {
     display: block;
@@ -76,7 +78,9 @@ swiper-container.thumbnail-swiper {
     --swiper-theme-color: #{$brand-blue};
     --swiper-navigation-size: 16px;
     --swiper-navigation-color: #{$white-text};
-    --swiper-navigation-top-offset: calc(50% - #{$pagination-reserve} / 2);
+    --swiper-navigation-sides-offset: 0px;
+    /* Compensates the arrow's own negative margin plus the added hit area */
+    --swiper-navigation-top-offset: calc(50% - #{$pagination-reserve} / 2 - #{$nav-hit-area});
     --swiper-pagination-color: #{$brand-blue};
     --swiper-pagination-bullet-inactive-color: #{$white-text};
     --swiper-pagination-bullet-inactive-opacity: 0.25;
@@ -88,11 +92,24 @@ swiper-container.thumbnail-swiper {
         --swiper-navigation-size: 20px;
     }
 
+    &::part(button-prev),
+    &::part(button-next) {
+        box-sizing: content-box;
+        padding: $nav-hit-area;
+        border-radius: 999px;
+        background-color: transparent;
+        transition: background-color 200ms $md-easing-standard;
+    }
+
+    &::part(button-prev):hover,
+    &::part(button-next):hover {
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+
     &::part(button-prev):focus-visible,
     &::part(button-next):focus-visible {
         outline: 2px solid $brand-blue;
-        outline-offset: 6px;
-        border-radius: $radius-elem;
+        outline-offset: -2px;
     }
 }
 
@@ -117,8 +134,8 @@ swiper-slide {
     border: 1px solid $general-border-color;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
     transition:
-        border-color 500ms $md-easing-standard,
-        box-shadow 500ms $md-easing-standard;
+        border-color 400ms $md-easing-standard,
+        box-shadow 400ms $md-easing-standard;
 
     img {
         display: block;
@@ -129,8 +146,8 @@ swiper-slide {
         transform: scale(1.06);
         filter: blur(6px) saturate(70%) brightness(0.5);
         transition:
-            transform 500ms $md-easing-standard,
-            filter 500ms $md-easing-standard;
+            transform 400ms $md-easing-standard,
+            filter 400ms $md-easing-standard;
     }
 }
 
@@ -141,25 +158,14 @@ swiper-slide {
     bottom: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: flex-end;
     padding: 14px 16px;
     background: linear-gradient(to top, rgba(9, 12, 20, 0.85) 0%, transparent 100%);
     opacity: 0;
     transform: translateY(8px);
     transition:
-        opacity 400ms $md-easing-standard,
-        transform 400ms $md-easing-standard;
-}
-
-.thumb-title {
-    font-family: 'Sora', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: $white-text;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+        opacity 350ms $md-easing-standard,
+        transform 350ms $md-easing-standard;
 }
 
 .ctr-badge {

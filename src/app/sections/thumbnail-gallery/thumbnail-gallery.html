@@ -18,7 +18,10 @@ thumbnail-gallery.html
     <swiper-container #swiper class="thumbnail-swiper"
       init="false" effect="coverflow" grab-cursor="true"
       centered-slides="true" slides-per-view="auto"
-      loop="true" speed="700" coverflow-effect-rotate="16"
+      loop="true" loop-prevents-sliding="false"
+      loop-additional-slides="2" speed="450" threshold="2"
+      short-swipes="true" long-swipes-ms="600"
+      long-swipes-ratio="0.3" coverflow-effect-rotate="16"
       coverflow-effect-stretch="0"
       coverflow-effect-depth="360"
       coverflow-effect-modifier="1"
@@ -36,8 +39,6 @@ thumbnail-gallery.html
             width="960" height="540" loading="lazy"
             decoding="async">
           <div class="card-caption">
-            <span class="thumb-title">{{ slide.title
-              }}</span>
             <span class="ctr-badge">{{ slide.ctr }}</span>
           </div>
         </div>
