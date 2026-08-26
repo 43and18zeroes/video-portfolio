@@ -2,51 +2,49 @@
 thumbnail-gallery.html
 ========================= -->
 
-<section id="thumbnails" class="thumbnail-section" aria-label="Thumbnail Gallery">
+<section id="thumbnails" class="thumbnail-section"
+  aria-labelledby="thumbnails-heading">
   <div class="container">
 
     <div class="section-header">
-      <span class="badge-accent">Photoshop & Design</span>
-      <h2>Thumbnails, die Klicks bringen</h2>
-      <p>Perfektes Compositing und zielgerichtete Typografie für maximale CTR.</p>
+      <span class="badge-accent">Photoshop &amp;
+        Design</span>
+      <h2 id="thumbnails-heading">Thumbnails, die Klicks
+        bringen</h2>
+      <p>Perfektes Compositing und zielgerichtete Typografie
+        für maximale CTR.</p>
     </div>
 
-    <div class="carousel-wrapper">
-      <swiper-container
-        #swiperEl
-        class="thumbnail-swiper"
-        effect="coverflow"
-        grab-cursor="true"
-        centered-slides="true"
-        slides-per-view="auto"
-        loop="true"
-        speed="700"
-        coverflow-effect-rotate="16"
-        coverflow-effect-stretch="0"
-        coverflow-effect-depth="360"
-        coverflow-effect-modifier="1"
-        coverflow-effect-slide-shadows="false"
-        navigation="true"
-        pagination="true"
-        pagination-clickable="true"
-        keyboard-enabled="true"
-        autoplay-delay="4200"
-        autoplay-disable-on-interaction="false"
-        autoplay-pause-on-mouse-enter="true">
+    <swiper-container #swiper class="thumbnail-swiper"
+      init="false" effect="coverflow" grab-cursor="true"
+      centered-slides="true" slides-per-view="auto"
+      loop="true" speed="700" coverflow-effect-rotate="16"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="360"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="false"
+      navigation="true" pagination="true"
+      pagination-clickable="true" keyboard-enabled="true"
+      autoplay-delay="4200"
+      autoplay-disable-on-interaction="false"
+      autoplay-pause-on-mouse-enter="true">
 
-        <swiper-slide *ngFor="let thumb of thumbnails">
-          <div class="thumbnail-card">
-            <img [src]="thumb.src" [alt]="thumb.title" loading="lazy">
-            <span class="frost-veil" aria-hidden="true"></span>
-            <div class="card-caption">
-              <span class="thumb-title">{{ thumb.title }}</span>
-              <span class="ctr-badge">{{ thumb.ctr }}</span>
-            </div>
+      @for (slide of slides; track slide.id) {
+      <swiper-slide>
+        <div class="thumbnail-card">
+          <img [src]="slide.src" [alt]="slide.title"
+            width="960" height="540" loading="lazy"
+            decoding="async">
+          <div class="card-caption">
+            <span class="thumb-title">{{ slide.title
+              }}</span>
+            <span class="ctr-badge">{{ slide.ctr }}</span>
           </div>
-        </swiper-slide>
+        </div>
+      </swiper-slide>
+      }
 
-      </swiper-container>
-    </div>
+    </swiper-container>
 
   </div>
 </section>
