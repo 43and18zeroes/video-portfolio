@@ -2,34 +2,51 @@
 thumbnail-gallery.html
 ========================= -->
 
-<section id="thumbnails" class="thumbnail-section">
+<section id="thumbnails" class="thumbnail-section" aria-label="Thumbnail Gallery">
   <div class="container">
-    
+
     <div class="section-header">
       <span class="badge-accent">Photoshop & Design</span>
       <h2>Thumbnails, die Klicks bringen</h2>
       <p>Perfektes Compositing und zielgerichtete Typografie für maximale CTR.</p>
     </div>
 
-    <swiper-container 
-      effect="coverflow" 
-      grab-cursor="true" 
-      centered-slides="true" 
-      slides-per-view="auto"
-      loop="true"
-      coverflow-effect-rotate="20"
-      coverflow-effect-depth="180"
-      coverflow-effect-modifier="1"
-      coverflow-effect-slide-shadows="false">
-      
-      <swiper-slide *ngFor="let thumb of thumbnails">
-        <div class="thumbnail-card">
-          <img [src]="thumb.src" [alt]="thumb.title" loading="lazy">
-          <span class="ctr-badge">{{ thumb.ctr }}</span>
-        </div>
-      </swiper-slide>
+    <div class="carousel-wrapper">
+      <swiper-container
+        #swiperEl
+        class="thumbnail-swiper"
+        effect="coverflow"
+        grab-cursor="true"
+        centered-slides="true"
+        slides-per-view="auto"
+        loop="true"
+        speed="700"
+        coverflow-effect-rotate="16"
+        coverflow-effect-stretch="0"
+        coverflow-effect-depth="360"
+        coverflow-effect-modifier="1"
+        coverflow-effect-slide-shadows="false"
+        navigation="true"
+        pagination="true"
+        pagination-clickable="true"
+        keyboard-enabled="true"
+        autoplay-delay="4200"
+        autoplay-disable-on-interaction="false"
+        autoplay-pause-on-mouse-enter="true">
 
-    </swiper-container>
+        <swiper-slide *ngFor="let thumb of thumbnails">
+          <div class="thumbnail-card">
+            <img [src]="thumb.src" [alt]="thumb.title" loading="lazy">
+            <span class="frost-veil" aria-hidden="true"></span>
+            <div class="card-caption">
+              <span class="thumb-title">{{ thumb.title }}</span>
+              <span class="ctr-badge">{{ thumb.ctr }}</span>
+            </div>
+          </div>
+        </swiper-slide>
+
+      </swiper-container>
+    </div>
 
   </div>
 </section>

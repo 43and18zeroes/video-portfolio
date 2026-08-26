@@ -1,4 +1,4 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { register } from 'swiper/element/bundle';
 
@@ -9,7 +9,9 @@ import { register } from 'swiper/element/bundle';
   templateUrl: './thumbnail-gallery.html',
   styleUrl: './thumbnail-gallery.scss',
 })
-export class ThumbnailGallery {
+export class ThumbnailGallery implements OnInit, AfterViewInit {
+  @ViewChild('swiperEl') swiperEl?: ElementRef<HTMLElement & { swiper?: any }>;
+
   thumbnails = [
     { src: 'img/thumbnail-gallery/thumbnail-01.jpg', title: 'Challenge Content', ctr: '+14.8% CTR' },
     { src: 'img/thumbnail-gallery/thumbnail-02.jpg', title: 'Tech Review', ctr: '+18.2% CTR' },
@@ -19,5 +21,15 @@ export class ThumbnailGallery {
 
   ngOnInit(): void {
     register();
+  }
+
+  ngAfterViewInit(): void {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion && this.swiperEl?.nativeElement) {
+      this.swiperEl.nativeElement.addEventListener('swiperinit', () => {
+        const swiperInstance = (this.swiperEl!.nativeElement as any).swiper;
+        swiperInstance?.autoplay?.stop();
+      });
+    }
   }
 }
