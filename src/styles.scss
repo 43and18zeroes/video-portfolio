@@ -23,6 +23,7 @@ styles.scss
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    background-color: $general-background-color;
 }
 
 @media (prefers-reduced-motion: reduce) {

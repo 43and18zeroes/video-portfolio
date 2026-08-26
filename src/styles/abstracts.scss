@@ -33,6 +33,7 @@ $radius-card: 12px;
 $radius-elem: 8px;
 $general-spacing: 24px;
 $general-border-color: rgba(255, 255, 255, 0.12);
+$general-background-color: #0f141d;
 $border-style: 1px solid $general-border-color;
 
 :root {
@@ -48,7 +49,7 @@ $border-style: 1px solid $general-border-color;
 }
 
 @mixin card-surface {
-  background-color: #0f141d;
+  background-color: $general-background-color;
   border: 1px solid #1a2230;
   padding: 16px 12px;
   border-radius: $radius-card;
