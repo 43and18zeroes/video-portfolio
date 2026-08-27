@@ -86,10 +86,24 @@ swiper-container.thumbnail-swiper {
     width: 100%;
     padding: 24px 0 16px;
 
+    /* Swiper clips to its own box, which is the container width, so the outer
+       slides used to end on a hard vertical edge. Fading them out with a mask
+       rather than an overlay gradient keeps this independent of the section's
+       radial glow behind it. */
+    --edge-fade: 40px;
+
+    mask-image: linear-gradient(to right,
+            transparent 0,
+            #000 var(--edge-fade),
+            #000 calc(100% - var(--edge-fade)),
+            transparent 100%);
+
     --swiper-theme-color: #{$brand-blue};
     --swiper-navigation-size: 16px;
     --swiper-navigation-color: #{$white-text};
-    --swiper-navigation-sides-offset: 0px;
+    /* The mask dims everything inside the element, arrows included, so they are
+       pushed just past the fade to stay fully opaque */
+    --swiper-navigation-sides-offset: var(--edge-fade);
     /* Compensates the arrow's own negative margin plus the added hit area */
     --swiper-navigation-top-offset: calc(50% - #{$pagination-reserve} / 2 - #{$nav-hit-area});
     --swiper-pagination-color: #{$brand-blue};
@@ -100,7 +114,12 @@ swiper-container.thumbnail-swiper {
     --swiper-pagination-bottom: 12px;
 
     @include md {
+        --edge-fade: 72px;
         --swiper-navigation-size: 20px;
+    }
+
+    @include ld {
+        --edge-fade: 96px;
     }
 
     &::part(button-prev),
