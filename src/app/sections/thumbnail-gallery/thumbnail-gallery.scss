@@ -9,6 +9,17 @@ $pagination-reserve: 44px;
 /* Transparent padding that turns the small arrow icons into 44px touch targets */
 $nav-hit-area: 14px;
 
+/* A blurred image samples transparency beyond its own edges, which shows up as a
+   washed-out fringe. Scaling the image up pushes that fringe outside the card.
+   blur(N) spreads about 3N, and scale() grows both axes proportionally, so in a
+   16:9 box the short axis dictates the factor: at 220px wide the card is only
+   124px tall, and covering 18px of spread there needs 1.3, not the 1.06 that was
+   enough for the sides alone. */
+$img-blur-far: 6px;
+$img-blur-near: 3px;
+$img-scale-far: 1.3;
+$img-scale-near: 1.16;
+
 :host {
     display: block;
     width: 100%;
@@ -131,20 +142,24 @@ swiper-slide {
     border-radius: $radius-card;
     overflow: hidden;
     background: #11151f;
-    border: 1px solid $general-border-color;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
-    transition:
-        border-color 400ms $md-easing-standard,
-        box-shadow 400ms $md-easing-standard;
+    /* Inset ring rather than a border: the border box sits outside the overflow
+       clip, so on the rotated outer slides it rendered as a ragged line along the
+       top and bottom edges */
+    box-shadow:
+        inset 0 0 0 1px $general-border-color,
+        0 20px 45px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 400ms $md-easing-standard;
 
     img {
         display: block;
         width: 100%;
         height: 100%;
+        /* Rounds the image itself so the active slide gets an antialiased edge
+           instead of relying on the parent's clip alone */
+        border-radius: inherit;
         object-fit: cover;
-        /* Slight upscale hides the transparent fringe the blur would create */
-        transform: scale(1.06);
-        filter: blur(6px) saturate(70%) brightness(0.5);
+        transform: scale($img-scale-far);
+        filter: blur($img-blur-far) saturate(70%) brightness(0.5);
         transition:
             transform 400ms $md-easing-standard,
             filter 400ms $md-easing-standard;
@@ -182,16 +197,18 @@ swiper-slide {
 swiper-slide.swiper-slide-prev,
 swiper-slide.swiper-slide-next {
     .thumbnail-card img {
-        filter: blur(3px) saturate(85%) brightness(0.72);
+        /* Less blur needs less bleed, and these slides are legible enough that the
+           stronger crop of the far slides would be noticeable */
+        transform: scale($img-scale-near);
+        filter: blur($img-blur-near) saturate(85%) brightness(0.72);
     }
 }
 
 swiper-slide.swiper-slide-active {
     .thumbnail-card {
-        border-color: rgba(69, 124, 253, 0.5);
         box-shadow:
+            inset 0 0 0 1px rgba(69, 124, 253, 0.5),
             0 25px 60px rgba(0, 0, 0, 0.55),
-            0 0 0 1px rgba(69, 124, 253, 0.15),
             0 0 40px rgba(69, 124, 253, 0.25);
 
         img {
