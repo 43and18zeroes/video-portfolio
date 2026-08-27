@@ -16,7 +16,16 @@ app.html
         imageName="jane-doe.jpg"
         text="Absoluter Experte. Der Schnitt war on-point..."
         author="Kunde / Creator" [reverseDesktop]="true" />
-        <app-thumbnail-gallery />
+
+    <!-- Pulls Swiper out of the initial bundle. Rendering on idle rather than on
+         viewport keeps the swap away from the moment the section scrolls into
+         view, where a placeholder of the wrong height would be visible. -->
+    @defer (on idle) {
+    <app-thumbnail-gallery />
+    } @placeholder {
+    <div class="section-placeholder"></div>
+    }
+
     <app-about-me />
     <app-contact />
 </main>

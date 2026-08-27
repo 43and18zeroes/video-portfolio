@@ -22,6 +22,17 @@ main>*:not(app-hero) {
     padding: var(--general-vertical-padding) 0;
 }
 
+/* Holds the height of a deferred section so swapping in the real component does
+   not shift the page. Counts the heading plus the 16:9 card inside the carousel's
+   shadow padding; the section padding above already applies here too. */
+.section-placeholder {
+    min-height: 310px;
+
+    @include md {
+        min-height: 425px;
+    }
+}
+
 /* Background Overlay */
 .drawer-backdrop {
     position: fixed;
