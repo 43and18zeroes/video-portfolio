@@ -134,11 +134,14 @@ swiper-container.thumbnail-swiper {
 
     &::part(button-prev),
     &::part(button-next) {
+        /* Hidden by default, shown again only under the condition further down */
+        display: none;
         /* Swiper derives the button box from the glyph and makes it narrower than
            it is tall, which would render the hover circle as an ellipse */
         box-sizing: border-box;
         width: $nav-box-size;
         height: $nav-box-size;
+        padding: 20px;
         border-radius: 50%;
         background-color: transparent;
         /* Keeps the arrow legible over bright parts of a thumbnail without putting
@@ -159,6 +162,21 @@ swiper-container.thumbnail-swiper {
     &::part(button-next):focus-visible {
         outline: 2px solid $brand-blue;
         outline-offset: -2px;
+    }
+
+    /* The arrows are for pointer users on a wide viewport only: below ld they
+       would cover a large share of the carousel at $nav-box-size, and where the
+       primary input is a finger, swiping replaces them. Both conditions have to
+       hold, so a tablet at ld width keeps them hidden. The pagination stays as
+       the non-gesture way to navigate. */
+    @include ld {
+        @media (pointer: fine) {
+
+            &::part(button-prev),
+            &::part(button-next) {
+                display: flex;
+            }
+        }
     }
 }
 
