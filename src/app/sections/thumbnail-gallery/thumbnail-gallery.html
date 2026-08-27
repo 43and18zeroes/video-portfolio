@@ -6,14 +6,8 @@ thumbnail-gallery.html
   aria-labelledby="thumbnails-heading">
   <div class="container">
 
-    <div class="section-header">
-      <span class="badge-accent">Photoshop &amp;
-        Design</span>
-      <h2 id="thumbnails-heading">Thumbnails, die Klicks
-        bringen</h2>
-      <p>Perfektes Compositing und zielgerichtete Typografie
-        für maximale CTR.</p>
-    </div>
+    <h2 id="thumbnails-heading">Thumbnails, die Klicks
+      bringen</h2>
 
     <!-- speed is the settle animation after a swipe. A phone card travels a much
          shorter distance, so the desktop duration reads as sluggish there; the
@@ -22,8 +16,8 @@ thumbnail-gallery.html
       init="false" effect="coverflow" grab-cursor="true"
       centered-slides="true" slides-per-view="auto"
       loop="true" loop-prevents-sliding="false"
-      loop-additional-slides="2" threshold="1"
-      speed="240" breakpoints='{"768": {"speed": 320}}'
+      loop-additional-slides="2" threshold="1" speed="240"
+      breakpoints='{"768": {"speed": 320}}'
       touch-ratio="1.2" short-swipes="true"
       long-swipes-ms="600" long-swipes-ratio="0.18"
       coverflow-effect-rotate="16"
@@ -56,7 +50,8 @@ thumbnail-gallery.html
          pagination is built from the sources instead of from the slides -->
     <div class="thumbnail-pagination" role="group"
       aria-label="Thumbnail auswählen">
-      @for (thumbnail of thumbnails; track thumbnail.src; let
+      @for (thumbnail of thumbnails; track thumbnail.src;
+      let
       i = $index) {
       <button type="button" class="pagination-bullet"
         [class.is-active]="activeThumbnail() === i"
