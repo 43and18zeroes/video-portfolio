@@ -13,8 +13,9 @@ $shadow-reach-up: 40px;
 
 /* How far the bullets sit below the cards, measured into the shadow padding above */
 $pagination-gap: 32px;
-/* Transparent padding that turns the small arrow icons into 44px touch targets */
-$nav-hit-area: 14px;
+
+/* Square hit area behind an arrow, and the circle shown on hover */
+$nav-box-size: 90px;
 
 /* A blurred image samples transparency beyond its own edges, which shows up as a
    washed-out fringe. Scaling the image up pushes that fringe outside the card.
@@ -106,17 +107,19 @@ swiper-container.thumbnail-swiper {
             transparent 100%);
 
     --swiper-theme-color: #{$brand-blue};
-    --swiper-navigation-size: 16px;
     --swiper-navigation-color: #{$white-text};
+    --swiper-navigation-size: 20px;
     /* The mask dims everything inside the element, arrows included, so they are
        pushed just past the fade to stay fully opaque */
     --swiper-navigation-sides-offset: var(--edge-fade);
-    /* Compensates the hit area added to the arrow below */
-    --swiper-navigation-top-offset: calc(50% - #{$nav-hit-area});
+    /* Swiper offsets the button upwards by half the glyph, not half the box, so
+       the difference has to be added back */
+    --swiper-navigation-top-offset:
+        calc(50% + var(--swiper-navigation-size) / 2 - #{$nav-box-size} / 2);
 
     @include md {
         --edge-fade: 72px;
-        --swiper-navigation-size: 20px;
+        --swiper-navigation-size: 24px;
     }
 
     @include ld {
@@ -125,10 +128,19 @@ swiper-container.thumbnail-swiper {
 
     &::part(button-prev),
     &::part(button-next) {
-        box-sizing: content-box;
-        padding: $nav-hit-area;
-        border-radius: 999px;
+        /* Swiper derives the button box from the glyph and makes it narrower than
+           it is tall, which would render the hover circle as an ellipse */
+        box-sizing: border-box;
+        width: $nav-box-size;
+        height: $nav-box-size;
+        border-radius: 50%;
         background-color: transparent;
+        /* Keeps the arrow legible over bright parts of a thumbnail without putting
+           a permanent surface in the image. text-shadow is inherited, so it reaches
+           the pseudo-element Swiper draws the glyph with. */
+        text-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.5),
+            0 2px 8px rgba(0, 0, 0, 0.45);
         transition: background-color 200ms $md-easing-standard;
     }
 
