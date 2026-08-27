@@ -41,6 +41,10 @@ $img-blur-near-sm: 2px;
     @include section-glow(50% 0%, 1000px, 1600px, 0.12);
 }
 
+h2 {
+    margin-bottom: 0;
+}
+
 .thumbnail-section {
     width: 100%;
 }
