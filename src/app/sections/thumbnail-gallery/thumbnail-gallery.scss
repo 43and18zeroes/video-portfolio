@@ -4,8 +4,15 @@ thumbnail-gallery.scss
 
 @use 'abstracts' as *;
 
-/* Swiper clips its own overflow, so the pagination needs room inside the slide */
-$pagination-reserve: 44px;
+/* Swiper clips its own overflow, which cut off card shadows reaching past the
+   carousel box and left a hard horizontal edge below the cards. The active card's
+   shadow is the largest: it reaches 25px + 60px blur downwards, and its 40px glow
+   reaches that far up. */
+$shadow-reach-down: 85px;
+$shadow-reach-up: 40px;
+
+/* How far the bullets sit below the cards, measured into the shadow padding above */
+$pagination-gap: 32px;
 /* Transparent padding that turns the small arrow icons into 44px touch targets */
 $nav-hit-area: 14px;
 
@@ -84,7 +91,7 @@ $img-scale-near: 1.16;
 swiper-container.thumbnail-swiper {
     display: block;
     width: 100%;
-    padding: 24px 0 16px;
+    padding: $shadow-reach-up 0 $shadow-reach-down;
 
     /* Swiper clips to its own box, which is the container width, so the outer
        slides used to end on a hard vertical edge. Fading them out with a mask
@@ -104,14 +111,8 @@ swiper-container.thumbnail-swiper {
     /* The mask dims everything inside the element, arrows included, so they are
        pushed just past the fade to stay fully opaque */
     --swiper-navigation-sides-offset: var(--edge-fade);
-    /* Compensates the arrow's own negative margin plus the added hit area */
-    --swiper-navigation-top-offset: calc(50% - #{$pagination-reserve} / 2 - #{$nav-hit-area});
-    --swiper-pagination-color: #{$brand-blue};
-    --swiper-pagination-bullet-inactive-color: #{$white-text};
-    --swiper-pagination-bullet-inactive-opacity: 0.25;
-    --swiper-pagination-bullet-size: 7px;
-    --swiper-pagination-bullet-horizontal-gap: 5px;
-    --swiper-pagination-bottom: 12px;
+    /* Compensates the hit area added to the arrow below */
+    --swiper-navigation-top-offset: calc(50% - #{$nav-hit-area});
 
     @include md {
         --edge-fade: 72px;
@@ -146,10 +147,59 @@ swiper-container.thumbnail-swiper {
 swiper-slide {
     width: clamp(220px, 60vw, 400px);
     height: auto;
-    padding-bottom: $pagination-reserve;
 
     @include ld {
         width: 400px;
+    }
+}
+
+/* ---------- Pagination ---------- */
+.thumbnail-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Pulled back into the padding the carousel reserves for the card shadow, so
+       the bullets stay close to the cards instead of below the empty shadow area */
+    margin-top: -($shadow-reach-down - $pagination-gap);
+}
+
+.pagination-bullet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* The dot stays small while the button keeps the WCAG 2.2 minimum target size */
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+
+    &::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: $white-text;
+        opacity: 0.25;
+        transition:
+            background-color 200ms $md-easing-standard,
+            opacity 200ms $md-easing-standard;
+    }
+
+    &:hover::before {
+        opacity: 0.5;
+    }
+
+    &.is-active::before {
+        background-color: $brand-blue;
+        opacity: 1;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $brand-blue;
+        outline-offset: -3px;
     }
 }
 
@@ -246,7 +296,8 @@ swiper-slide.swiper-slide-active {
 
     .thumbnail-card,
     .thumbnail-card img,
-    .card-caption {
+    .card-caption,
+    .pagination-bullet::before {
         transition-duration: 1ms;
     }
 }

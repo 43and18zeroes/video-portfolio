@@ -26,11 +26,11 @@ thumbnail-gallery.html
       coverflow-effect-depth="360"
       coverflow-effect-modifier="1"
       coverflow-effect-slide-shadows="false"
-      navigation="true" pagination="true"
-      pagination-clickable="true" keyboard-enabled="true"
+      navigation="true" keyboard-enabled="true"
       autoplay-delay="4200"
       autoplay-disable-on-interaction="false"
-      autoplay-pause-on-mouse-enter="true">
+      autoplay-pause-on-mouse-enter="true"
+      (swiperrealindexchange)="onRealIndexChange()">
 
       @for (slide of slides; track slide.id) {
       <swiper-slide>
@@ -46,6 +46,20 @@ thumbnail-gallery.html
       }
 
     </swiper-container>
+
+    <!-- The slide list repeats its sources to keep Swiper's loop working, so the
+         pagination is built from the sources instead of from the slides -->
+    <div class="thumbnail-pagination" role="group"
+      aria-label="Thumbnail auswählen">
+      @for (thumbnail of thumbnails; track thumbnail.src; let
+      i = $index) {
+      <button type="button" class="pagination-bullet"
+        [class.is-active]="activeThumbnail() === i"
+        [attr.aria-current]="activeThumbnail() === i ? 'true' : null"
+        [attr.aria-label]="'Thumbnail ' + (i + 1) + ' von ' + thumbnails.length"
+        (click)="goToThumbnail(i)"></button>
+      }
+    </div>
 
   </div>
 </section>
