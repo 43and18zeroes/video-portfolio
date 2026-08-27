@@ -16,6 +16,12 @@ main {
     flex: 1;
 }
 
+/* Shared vertical rhythm for the page sections. app-hero is excluded because it
+   adds the fixed header's height on top of this and sets its padding itself. */
+main>*:not(app-hero) {
+    padding: var(--general-vertical-padding) 0;
+}
+
 /* Background Overlay */
 .drawer-backdrop {
     position: fixed;

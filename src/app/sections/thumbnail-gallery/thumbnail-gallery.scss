@@ -37,7 +37,6 @@ $img-blur-near-sm: 2px;
 :host {
     display: block;
     width: 100%;
-    padding: var(--general-vertical-padding) 0;
     border-bottom: $border-style;
     @include section-glow(50% 0%, 1000px, 1600px, 0.12);
 }

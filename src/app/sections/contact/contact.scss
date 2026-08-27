@@ -7,7 +7,6 @@ contact.scss
 :host {
   display: block;
   width: 100%;
-  padding: var(--general-vertical-padding) 0;
   @include section-glow(50% 30%, 1000px, 1500px, 0.13);
 }
 

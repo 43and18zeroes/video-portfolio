@@ -7,7 +7,6 @@ video-sample.scss
 :host {
   display: block;
   width: 100%;
-  padding: var(--general-vertical-padding) 0;
   border-bottom: $border-style;
   @include section-glow(100% 50%, 900px, 1400px, 0.12);
 
