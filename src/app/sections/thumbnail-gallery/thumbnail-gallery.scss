@@ -28,6 +28,12 @@ $img-blur-near: 3px;
 $img-scale-far: 1.3;
 $img-scale-near: 1.16;
 
+/* A phone card is only about 124px tall, so the same radius blurs proportionally
+   harder there and costs fill rate on every swipe frame. The scale factors above
+   still cover the reduced spread. */
+$img-blur-far-sm: 4px;
+$img-blur-near-sm: 2px;
+
 :host {
     display: block;
     width: 100%;
@@ -231,6 +237,14 @@ swiper-slide {
         0 20px 45px rgba(0, 0, 0, 0.45);
     transition: box-shadow 400ms $md-easing-standard;
 
+    --img-blur-far: #{$img-blur-far-sm};
+    --img-blur-near: #{$img-blur-near-sm};
+
+    @include md {
+        --img-blur-far: #{$img-blur-far};
+        --img-blur-near: #{$img-blur-near};
+    }
+
     img {
         display: block;
         width: 100%;
@@ -240,7 +254,7 @@ swiper-slide {
         border-radius: inherit;
         object-fit: cover;
         transform: scale($img-scale-far);
-        filter: blur($img-blur-far) saturate(70%) brightness(0.5);
+        filter: blur(var(--img-blur-far)) saturate(70%) brightness(0.5);
         transition:
             transform 400ms $md-easing-standard,
             filter 400ms $md-easing-standard;
@@ -281,7 +295,7 @@ swiper-slide.swiper-slide-next {
         /* Less blur needs less bleed, and these slides are legible enough that the
            stronger crop of the far slides would be noticeable */
         transform: scale($img-scale-near);
-        filter: blur($img-blur-near) saturate(85%) brightness(0.72);
+        filter: blur(var(--img-blur-near)) saturate(85%) brightness(0.72);
     }
 }
 
