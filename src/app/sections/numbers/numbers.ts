@@ -38,7 +38,6 @@ const STATS: readonly Stat[] = [
     spokenPrefix: 'plus',
     spokenSuffix: 'Prozent',
     label: 'höhere Retention',
-    note: 'Average Percentage Viewed',
   },
   {
     prefix: '<',
