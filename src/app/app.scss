@@ -101,6 +101,10 @@ main > *:not(app-hero) {
   padding: 48px 32px;
   overflow-y: auto;
   height: 100%;
+  /* Same reason as on html: the deferred content replaces a 200px placeholder,
+     and the imprint is short enough not to scroll while the privacy policy is.
+     Both transitions would otherwise shift the text sideways. */
+  scrollbar-gutter: stable;
 
   h1 {
     margin-bottom: 24px;

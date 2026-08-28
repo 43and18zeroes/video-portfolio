@@ -24,6 +24,13 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
     background-color: $general-background-color;
+
+    /* Locking the legal drawer sets overflow:hidden on body, which propagates to
+       the viewport and removes the scrollbar. Without a reserved gutter the
+       viewport widens by its width and the whole page, fixed header included,
+       shifts sideways. Reserving it permanently keeps both states identical.
+       No-op where the platform draws overlay scrollbars. */
+    scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: reduce) {
