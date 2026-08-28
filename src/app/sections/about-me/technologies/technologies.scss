@@ -40,7 +40,7 @@ technologies.scss
     justify-content: center;
     gap: 14px;
     padding: 28px 12px 22px;
-    border-radius: 20px;
+    border-radius: $radius-card;
 
     /* Glass body */
     background: linear-gradient(180deg,
