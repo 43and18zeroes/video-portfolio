@@ -1,0 +1,32 @@
+<!-- ========================
+numbers.html
+========================= -->
+
+<section id="results" class="numbers-section"
+  aria-labelledby="numbers-heading">
+  <div class="container">
+
+    <h2 id="numbers-heading">Zahlen, die für sich
+      sprechen</h2>
+
+    <ul class="stat-grid" role="list">
+      @for (stat of stats; track stat.label; let i = $index) {
+      <li class="stat">
+        <p class="stat-value">
+          <span class="stat-figure"
+            aria-hidden="true">{{ stat.prefix }}{{ counted()[i] }}{{ stat.suffix }}</span>
+          <span class="visually-hidden">{{ stat.spokenPrefix }}
+            {{ stat.value }} {{ stat.spokenSuffix }}</span>
+        </p>
+
+        <p class="stat-label grey-text">{{ stat.label }}</p>
+
+        @if (stat.note) {
+        <p class="stat-note">{{ stat.note }}</p>
+        }
+      </li>
+      }
+    </ul>
+
+  </div>
+</section>

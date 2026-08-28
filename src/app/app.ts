@@ -9,10 +9,11 @@ import { LegalDrawerService } from './legal-drawer';
 import { AboutMe } from "./sections/about-me/about-me";
 import { Contact } from "./sections/contact/contact";
 import { ThumbnailGallery } from './sections/thumbnail-gallery/thumbnail-gallery';
+import { Numbers } from './sections/numbers/numbers';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Hero, VideoSample, Imprint, PrivacyPolicy, Footer, AboutMe, Contact, ThumbnailGallery],
+  imports: [Header, Hero, VideoSample, Imprint, PrivacyPolicy, Footer, AboutMe, Contact, ThumbnailGallery, Numbers],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

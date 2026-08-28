@@ -1,0 +1,79 @@
+/* =========================
+numbers.scss
+========================= */
+
+@use 'abstracts' as *;
+
+:host {
+    display: block;
+    width: 100%;
+    border-bottom: $border-style;
+    /* Quieter than the sections around it, so the band reads as an interlude
+       between the work samples and the about section */
+    @include section-glow(50% 50%, 700px, 1100px, 0.1);
+}
+
+h2 {
+    margin: 0 0 40px;
+    text-align: center;
+
+    @include md {
+        margin-bottom: 56px;
+    }
+}
+
+.stat-grid {
+    display: grid;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include md {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+    }
+}
+
+.stat {
+    text-align: center;
+
+    @include md {
+        padding: 0 24px;
+
+        /* A hairline between the columns rather than three cards, which would
+           compete with the thumbnail cards in the section above */
+        &+.stat {
+            border-left: $border-style;
+        }
+    }
+}
+
+.stat-value {
+    margin: 0;
+}
+
+.stat-figure {
+    display: block;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: $white-text;
+    /* Digits keep an equal width while counting, so the figure does not jitter */
+    font-variant-numeric: tabular-nums;
+
+    @include md {
+        font-size: 48px;
+    }
+}
+
+.stat-label {
+    margin: 10px 0 0;
+}
+
+.stat-note {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #8b93a1;
+}
