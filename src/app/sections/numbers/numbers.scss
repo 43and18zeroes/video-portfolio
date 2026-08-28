@@ -4,8 +4,12 @@ numbers.scss
 
 @use 'abstracts' as *;
 
-$gauge-size: 160px;
-$gauge-size-md: 184px;
+/* Stacked in one column the ring gets the full container width. From sd up three
+   columns share it, so there it follows the viewport instead: a fixed size would
+   either overflow the narrow columns at 600px or leave them empty at 1000px. */
+$gauge-size: 184px;
+$gauge-size-min: 140px;
+$gauge-size-max: 208px;
 
 :host {
     display: block;
@@ -32,8 +36,15 @@ h2 {
     padding: 0;
     list-style: none;
 
-    @include md {
+    /* Three rings plus gaps fit from roughly 660px on, so the row starts here
+       rather than at md, where a 750px viewport still showed a single column */
+    @include sd {
         grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    @include ld {
+        gap: 40px;
     }
 }
 
@@ -54,9 +65,9 @@ h2 {
         grid-area: 1 / 1;
     }
 
-    @include md {
-        width: $gauge-size-md;
-        height: $gauge-size-md;
+    @include sd {
+        width: clamp($gauge-size-min, 21vw, $gauge-size-max);
+        height: clamp($gauge-size-min, 21vw, $gauge-size-max);
     }
 }
 
@@ -88,7 +99,7 @@ h2 {
 /* ---------- Figures ---------- */
 .stat-value {
     margin: 0;
-    font-size: 32px;
+    font-size: 38px;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -96,8 +107,10 @@ h2 {
     /* Digits keep an equal width while counting, so the figure does not jitter */
     font-variant-numeric: tabular-nums;
 
-    @include md {
-        font-size: 36px;
+    /* A fifth of the ring, mirroring the 21vw above, so the figure keeps the same
+       proportion inside the ring across the whole range */
+    @include sd {
+        font-size: clamp(28px, 4.2vw, 42px);
     }
 }
 
