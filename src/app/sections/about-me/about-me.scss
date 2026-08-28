@@ -76,18 +76,3 @@ about-me.scss
     max-width: 58ch;
   }
 }
-
-.lead {
-  margin: 0 0 16px;
-  font-size: 19px;
-  line-height: 1.6;
-
-  @include md {
-    font-size: 21px;
-  }
-}
-
-.col-text .grey-text {
-  margin: 0;
-  line-height: 1.7;
-}
