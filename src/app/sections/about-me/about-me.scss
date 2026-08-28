@@ -8,43 +8,86 @@ about-me.scss
   display: block;
   width: 100%;
   border-bottom: $border-style;
-  @include section-glow(50% 50%, 800px, 1200px, 0.15);
+
+  /* Sits over the portrait and the heading rather than in the middle of the
+     section, where it used to put the brightest point of the page behind the
+     smallest type. */
+  @include section-glow(40% 30%, 800px, 1200px, 0.15);
 }
 
 .about-me-section {
   width: 100%;
 }
 
+/* The chip row below runs the full container width, so it starts on the same
+   left edge as the portrait. That edge is the section's single vertical axis. */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc($general-spacing / 2);
-  align-items: center;
+  /* Wider than the heading's own bottom margin, so the heading binds downwards
+     to its text instead of upwards to the portrait */
+  gap: 32px;
 
   @include md {
     grid-template-columns: repeat(12, 1fr);
-    gap: $general-spacing;
+    column-gap: $general-spacing;
+    align-items: center;
 
     .col-image {
-      grid-column: span 5;
+      grid-column: 1 / span 5;
     }
 
     .col-text {
-      grid-column: span 7;
+      grid-column: 6 / -1;
     }
   }
 }
 
 .col-image {
-  display: flex;
-  justify-content: center;
+  /* Left-aligned in its track at every width. Centering it used to give the
+     section a second vertical axis that matched nothing else. */
+  max-width: 300px;
+
+  @include md {
+    max-width: 400px;
+  }
 
   img {
+    display: block;
     width: 100%;
     height: auto;
-    object-fit: cover;
     border-radius: $radius-card;
-    display: block;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: $border-style;
+    @include card-shadow;
   }
+}
+
+.col-text {
+  h2 {
+    margin-bottom: 16px;
+
+    @include md {
+      margin-bottom: 20px;
+    }
+  }
+
+  p {
+    /* Holds the measure once the column passes ~700px on wide screens */
+    max-width: 58ch;
+  }
+}
+
+.lead {
+  margin: 0 0 16px;
+  font-size: 19px;
+  line-height: 1.6;
+
+  @include md {
+    font-size: 21px;
+  }
+}
+
+.col-text .grey-text {
+  margin: 0;
+  line-height: 1.7;
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Technologies } from "./technologies/technologies";
+import { Technologies } from './technologies/technologies';
 
 @Component({
   selector: 'app-about-me',
@@ -7,6 +7,4 @@ import { Technologies } from "./technologies/technologies";
   templateUrl: './about-me.html',
   styleUrl: './about-me.scss',
 })
-export class AboutMe {
-
-}
+export class AboutMe {}

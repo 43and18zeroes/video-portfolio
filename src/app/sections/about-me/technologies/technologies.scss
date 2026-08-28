@@ -5,114 +5,89 @@ technologies.scss
 @use 'abstracts' as *;
 
 :host {
-    --logo-size: 30px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-user-drag: none;
+  display: block;
+  width: 100%;
+
+  /* Spacing is the only separator here, so it has to be clearly larger than the
+       gaps inside the bio and clearly smaller than the padding app.scss puts
+       between sections (40px/60px on each side). */
+  margin-top: 40px;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  @include md {
+    margin-top: 48px;
+  }
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-    padding-top: var(--general-vertical-padding);
-
-    @media (max-width: 720px) {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-    }
-
-    @media (max-width: 480px) {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-    }
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.logo-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    padding: 28px 12px 22px;
-    border-radius: $radius-card;
+.tech-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px 9px 12px;
+  border: $border-style;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.03);
 
-    /* Glass body */
-    background: linear-gradient(180deg,
-            rgba(255, 255, 255, 0.07) 0%,
-            rgba(255, 255, 255, 0.02) 100%);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Colour only. The lift, scale, blur and glow the tiles used to run meant ten
+       surfaces animating at once for a block that is not interactive. */
+  transition:
+    color 200ms $md-easing-standard,
+    border-color 200ms $md-easing-standard,
+    background-color 200ms $md-easing-standard;
 
-    /* Faint inner highlight, like light hitting glass from above */
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 8px 24px rgba(0, 0, 0, 0.25);
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
-
-    span {
-        font-size: 14px;
-        text-align: center;
-        letter-spacing: 0.01em;
-        opacity: 0.85;
-        transition: opacity 0.25s ease;
-    }
-
-    &:hover,
-    &:focus-within {
-        transform: translateY(-4px);
-        background: linear-gradient(180deg,
-                rgba(255, 255, 255, 0.11) 0%,
-                rgba(255, 255, 255, 0.04) 100%);
-        border-color: rgba(120, 170, 255, 0.35);
-        box-shadow:
-            inset 0 1px 0 rgba(255, 255, 255, 0.16),
-            0 12px 28px rgba(0, 0, 0, 0.35),
-            0 0 24px rgba(90, 140, 255, 0.18);
-
-        span {
-            opacity: 1;
-        }
-
-        .logo-box svg,
-        .logo-box .monogram {
-            transform: scale(1.06);
-        }
-    }
+  &:hover {
+    color: $white-text;
+    border-color: rgba($brand-blue, 0.45);
+    background-color: rgba($brand-blue, 0.08);
+  }
 }
 
-.logo-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--logo-size);
-    height: var(--logo-size);
+.tech-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Grows for the two-letter monograms, which are wider than the icon box */
+  flex: 0 0 auto;
+  min-width: 20px;
+  height: 20px;
 
-    svg {
-        width: 100%;
-        height: 100%;
-        fill: $white-text;
-        transition: transform 0.25s ease;
-    }
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}
 
-    .monogram {
-        font-size: 26px;
-        font-weight: 700;
-        line-height: 1;
-        letter-spacing: 0.01em;
-        color: $white-text;
-        transition: transform 0.25s ease;
-        display: inline-block;
-    }
+.monogram {
+  font-family:
+    'Sora',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tech-name {
+  font-size: 15px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-item {
+    transition-duration: 1ms;
+  }
 }

@@ -2,33 +2,35 @@
 about-me.html
 ========================= -->
 
-<section id="about-me" class="about-me-section">
-    <div class="container">
-        <div class="grid-container">
+<section id="about-me" class="about-me-section" aria-labelledby="about-me-heading">
+  <div class="container">
+    <div class="grid-container">
+      <div class="col-image">
+        <img
+          src="img/avatar-720.jpg"
+          alt="Illustration von Christoph, der eine schwebende Videoschnitt-Timeline bedient"
+          loading="lazy"
+          decoding="async"
+          width="720"
+          height="720"
+        />
+      </div>
 
-            <div class="col-image">
-                <img src="img/avatar-540.jpg"
-                    alt="Christoph" loading="lazy"
-                    width="720" height="720">
-            </div>
+      <div class="col-text">
+        <h2 id="about-me-heading">Hi, ich bin Christoph.</h2>
 
-            <div class="col-text">
-                <h2>Hi, ich bin Christoph.</h2>
-                <p class="grey-text">Lorem ipsum dolor sit
-                    amet, consetetur
-                    sadipscing elitr, sed diam nonumy eirmod
-                    tempor invidunt ut labore et dolore
-                    magna aliquyam erat, sed diam voluptua.
-                    At vero eos et accusam et justo duo
-                    dolores et ea rebum. Stet clita kasd
-                    gubergren, no sea takimata sanctus est
-                    Lorem ipsum dolor sit amet.</p>
-            </div>
+        <p class="lead">
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        </p>
 
-        </div>
-
-        <app-technologies />
-
+        <p class="grey-text">
+          At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </div>
     </div>
 
+    <app-technologies />
+  </div>
 </section>
