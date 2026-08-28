@@ -31,17 +31,19 @@ export const en: Dictionary = {
   },
 
   videoSample: {
-    heading: 'More than clips stitched together',
+    attention: 'Editing that keeps people watching',
+    intent: 'Every cut has a reason',
   },
 
+  /* PLACEHOLDER — see the note in de.ts. Nothing here is a real quote. */
   testimonials: {
     hero: {
-      text: 'A true professional. The edit was on point and communication was effortless.',
-      author: 'Jane Doe',
+      text: 'PLACEHOLDER — a real client quote goes here later.',
+      author: '[Client name], [Role], [Company]',
     },
     sample: {
-      text: 'A true professional. The edit was on point...',
-      author: 'Client / Creator',
+      text: 'PLACEHOLDER — a real client quote goes here later.',
+      author: '[Client name], [Role], [Company]',
     },
   },
 
@@ -101,12 +103,11 @@ export const en: Dictionary = {
 
   about: {
     heading: "Hi, I'm Christoph.",
-    lead:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ' +
-      'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+    lead: 'I edit video – and design the thumbnails that go with it.',
     body:
-      'At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea ' +
-      'takimata sanctus est Lorem ipsum dolor sit amet.',
+      'I work in Premiere Pro and After Effects, and build thumbnails and graphics in Photoshop. ' +
+      'But the tool matters less than whether people keep watching: where the cut lands, when the ' +
+      'next beat arrives, what can go.',
     portraitAlt: 'Illustration of Christoph working a floating video editing timeline',
     techLabel: 'Software and platforms used',
   },
@@ -137,10 +138,11 @@ export const en: Dictionary = {
       label: 'Project type',
       placeholder: 'Project type',
       required: 'Please select a project type.',
+      /* The three format names are proper nouns and stay as they are in German */
       options: {
-        youtube: 'YouTube',
-        shortform: 'Short-form',
-        other: 'Other',
+        youtube: 'YouTube video (long-form)',
+        shortform: 'Shorts, Reels & TikToks',
+        other: 'Something else',
       },
     },
     submit: 'Start your project',

@@ -9,6 +9,7 @@ app.html
 
   <app-video-sample
     sectionId="videos"
+    [title]="t().videoSample.attention"
     imageName="jane-doe.jpg"
     videoId="WYKIPCdAI1U"
     [text]="t().testimonials.sample.text"
@@ -16,6 +17,7 @@ app.html
   />
 
   <app-video-sample
+    [title]="t().videoSample.intent"
     videoId="WYKIPCdAI1U"
     imageName="jane-doe.jpg"
     [text]="t().testimonials.sample.text"

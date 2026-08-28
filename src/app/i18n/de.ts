@@ -33,18 +33,25 @@ export const de = {
     heading: 'Mehr als nur aneinandergereihte Clips',
   },
 
+  /* One per work-sample section. app.html binds them explicitly; `attention` also
+     serves as the fallback for any further instance that passes no title. */
   videoSample: {
-    heading: 'Mehr als nur aneinandergereihte Clips',
+    attention: 'Schnitt, der Zuschauer hält',
+    intent: 'Jeder Schnitt hat einen Grund',
   },
 
+  /* PLATZHALTER — every value below is a stand-in, not a real reference. Search for
+     "PLATZHALTER" (de.ts) / "PLACEHOLDER" (en.ts) to find all of them at once.
+     The star rating is not in here: it is hard-coded as `stars = 5` on the
+     Testimonial component and still needs neutralising separately. */
   testimonials: {
     hero: {
-      text: 'Absoluter Experte. Der Schnitt war on-point und die Kommunikation lief reibungslos.',
-      author: 'Jane Doe',
+      text: 'PLATZHALTER — hier kommt später ein echtes Kundenzitat hin.',
+      author: '[Kundenname], [Position], [Firma]',
     },
     sample: {
-      text: 'Absoluter Experte. Der Schnitt war on-point...',
-      author: 'Kunde / Creator',
+      text: 'PLATZHALTER — hier kommt später ein echtes Kundenzitat hin.',
+      author: '[Kundenname], [Position], [Firma]',
     },
   },
 
@@ -104,12 +111,11 @@ export const de = {
 
   about: {
     heading: 'Hi, ich bin Christoph.',
-    lead:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ' +
-      'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+    lead: 'Ich schneide Videos – und gestalte die Thumbnails gleich mit.',
     body:
-      'At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea ' +
-      'takimata sanctus est Lorem ipsum dolor sit amet.',
+      'Ich arbeite in Premiere Pro und After Effects, Thumbnails und Grafiken baue ich in ' +
+      'Photoshop. Wichtiger als das Werkzeug ist aber, ob jemand dranbleibt: wo der Schnitt ' +
+      'sitzt, wann die nächste Information kommt, was raus kann.',
     portraitAlt: 'Illustration von Christoph, der eine schwebende Videoschnitt-Timeline bedient',
     techLabel: 'Eingesetzte Software und Plattformen',
   },
@@ -142,10 +148,12 @@ export const de = {
       required: 'Bitte eine Projektart auswählen.',
       /* The submitted values stay German keys in contact-form.ts — only these
          labels are localised, so the mail endpoint keeps receiving what it expects. */
+      /* Split by format, not by platform: a YouTube Short is both, which made the
+         old "YouTube vs. Shortform" pair impossible to answer. */
       options: {
-        youtube: 'YouTube',
-        shortform: 'Shortform',
-        other: 'Sonstiges',
+        youtube: 'YouTube-Video (Langform)',
+        shortform: 'Shorts, Reels & TikToks',
+        other: 'Etwas anderes',
       },
     },
     submit: 'Projektanfrage starten',

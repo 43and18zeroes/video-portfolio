@@ -19,7 +19,7 @@ export class VideoSample {
   /* Undefined falls back to the shared heading; an explicit empty string still
      hides it, the way the literal default used to. */
   title = input<string>();
-  protected readonly heading = computed(() => this.title() ?? this.i18n.t().videoSample.heading);
+  protected readonly heading = computed(() => this.title() ?? this.i18n.t().videoSample.attention);
   videoId = input.required<string>();
   text = input.required<string>();
   author = input.required<string>();
