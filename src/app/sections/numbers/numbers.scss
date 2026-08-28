@@ -4,6 +4,9 @@ numbers.scss
 
 @use 'abstracts' as *;
 
+$gauge-size: 160px;
+$gauge-size-md: 184px;
+
 :host {
     display: block;
     width: 100%;
@@ -24,38 +27,68 @@ h2 {
 
 .stat-grid {
     display: grid;
-    gap: 32px;
+    gap: 40px;
     margin: 0;
     padding: 0;
     list-style: none;
 
     @include md {
         grid-template-columns: repeat(3, 1fr);
-        gap: 0;
     }
 }
 
 .stat {
     text-align: center;
+}
+
+/* ---------- Gauge ---------- */
+.stat-gauge {
+    display: grid;
+    place-items: center;
+    width: $gauge-size;
+    height: $gauge-size;
+    margin: 0 auto 20px;
+
+    /* Ring and figure share one cell instead of being stacked absolutely */
+    >* {
+        grid-area: 1 / 1;
+    }
 
     @include md {
-        padding: 0 24px;
-
-        /* A hairline between the columns rather than three cards, which would
-           compete with the thumbnail cards in the section above */
-        &+.stat {
-            border-left: $border-style;
-        }
+        width: $gauge-size-md;
+        height: $gauge-size-md;
     }
 }
 
-.stat-value {
-    margin: 0;
+.gauge {
+    width: 100%;
+    height: 100%;
+    /* Lets the arc start at twelve o'clock without moving the full track ring */
+    transform: rotate(-90deg);
+    /* The glow below reaches past the viewBox */
+    overflow: visible;
 }
 
-.stat-figure {
-    display: block;
-    font-size: 40px;
+.gauge-track,
+.gauge-arc {
+    fill: none;
+    stroke-width: 4;
+}
+
+.gauge-track {
+    stroke: $general-border-color;
+}
+
+.gauge-arc {
+    stroke: $brand-blue;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgba(69, 124, 253, 0.55));
+}
+
+/* ---------- Figures ---------- */
+.stat-value {
+    margin: 0;
+    font-size: 32px;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -64,16 +97,27 @@ h2 {
     font-variant-numeric: tabular-nums;
 
     @include md {
-        font-size: 48px;
+        font-size: 36px;
     }
 }
 
+.stat-unit {
+    font-size: 0.55em;
+    font-weight: 600;
+}
+
 .stat-label {
-    margin: 10px 0 0;
+    margin: 0;
 }
 
 .stat-note {
     margin: 4px 0 0;
     font-size: 14px;
     color: #8b93a1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gauge-arc {
+        filter: none;
+    }
 }

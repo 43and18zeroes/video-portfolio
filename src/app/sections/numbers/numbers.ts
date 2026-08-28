@@ -1,6 +1,14 @@
 // numbers.ts
 
-import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  computed,
+  DestroyRef,
+  ElementRef,
+  inject,
+  signal,
+} from '@angular/core';
 
 interface Stat {
   readonly prefix: string;
@@ -48,6 +56,10 @@ const COUNT_DURATION = 1100;
 // the time it is looked at
 const VISIBLE_RATIO_TO_START = 0.4;
 
+// Radius inside the gauge's 0 0 100 100 viewBox, leaving room for the stroke and
+// its glow to sit inside the element
+const GAUGE_RADIUS = 44;
+
 @Component({
   selector: 'app-numbers',
   imports: [],
@@ -62,6 +74,13 @@ export class Numbers {
 
   protected readonly stats = STATS;
   protected readonly counted = signal<readonly number[]>(STATS.map(() => 0));
+
+  protected readonly gaugeRadius = GAUGE_RADIUS;
+  protected readonly circumference = 2 * Math.PI * GAUGE_RADIUS;
+
+  // Drives both the figures and the rings, so the two can never drift apart
+  private readonly progress = signal(0);
+  protected readonly dashOffset = computed(() => this.circumference * (1 - this.progress()));
 
   constructor() {
     afterNextRender(() => this.watchForEntry());
@@ -100,6 +119,7 @@ export class Numbers {
       const eased = 1 - Math.pow(1 - progress, 3);
 
       this.counted.set(STATS.map((stat) => Math.round(stat.value * eased)));
+      this.progress.set(eased);
 
       if (progress < 1) {
         this.frame = requestAnimationFrame(step);
@@ -111,5 +131,6 @@ export class Numbers {
 
   private showFinalValues(): void {
     this.counted.set(STATS.map((stat) => stat.value));
+    this.progress.set(1);
   }
 }

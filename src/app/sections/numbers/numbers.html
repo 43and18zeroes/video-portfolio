@@ -12,12 +12,28 @@ numbers.html
     <ul class="stat-grid" role="list">
       @for (stat of stats; track stat.label; let i = $index) {
       <li class="stat">
-        <p class="stat-value">
-          <span class="stat-figure"
-            aria-hidden="true">{{ stat.prefix }}{{ counted()[i] }}{{ stat.suffix }}</span>
-          <span class="visually-hidden">{{ stat.spokenPrefix }}
-            {{ stat.value }} {{ stat.spokenSuffix }}</span>
-        </p>
+
+        <!-- The ring closes in step with the count. It is decoration, not an
+             encoding: all three fill identically, so no figure is presented as
+             larger or closer to some target than another. -->
+        <div class="stat-gauge">
+          <svg class="gauge" viewBox="0 0 100 100"
+            aria-hidden="true">
+            <circle class="gauge-track" cx="50" cy="50"
+              [attr.r]="gaugeRadius" />
+            <circle class="gauge-arc" cx="50" cy="50"
+              [attr.r]="gaugeRadius"
+              [style.stroke-dasharray]="circumference"
+              [style.stroke-dashoffset]="dashOffset()" />
+          </svg>
+
+          <p class="stat-value">
+            <span aria-hidden="true">{{ stat.prefix }}{{ counted()[i] }}<span
+                class="stat-unit">{{ stat.suffix }}</span></span>
+            <span class="visually-hidden">{{ stat.spokenPrefix }}
+              {{ stat.value }} {{ stat.spokenSuffix }}</span>
+          </p>
+        </div>
 
         <p class="stat-label grey-text">{{ stat.label }}</p>
 
