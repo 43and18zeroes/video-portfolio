@@ -3,32 +3,41 @@ youtube-embed.html
 ========================= -->
 
 <div class="video-container">
-    @if (isConsentGiven()) {
-    <iframe [src]="embedUrl()" title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
+  @if (isConsentGiven()) {
+    <iframe
+      [src]="embedUrl()"
+      [title]="t().video.playerTitle"
+      frameborder="0"
+      allow="
+        accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+        web-share;
+      "
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    >
     </iframe>
-    } @else {
+  } @else {
     <div class="video-placeholder">
-        <div class="placeholder-content">
+      <div class="placeholder-content">
+        <div class="consent-card">
+          <p class="privacy-note">
+            {{ t().video.consentNote }}
+            <a href="#" class="blue-text-link" (click)="openPrivacyPolicy($event)">{{
+              t().video.privacyLink
+            }}</a
+            >.
+          </p>
 
-            <div class="consent-card">
-                <p class="privacy-note">
-                    Beim Abspielen werden Daten an YouTube
-                    übermittelt. Siehe
-                    <a href="#" class="blue-text-link"
-                        (click)="openPrivacyPolicy($event)">Datenschutzerklärung</a>.
-                </p>
-
-                <button type="button"
-                    (click)="grantConsent()"
-                    class="primary-btn">
-                    Abspielen
-                </button>
-            </div>
+          <button type="button" (click)="grantConsent()" class="primary-btn">
+            {{ t().video.play }}
+          </button>
         </div>
+      </div>
     </div>
-    }
+  }
 </div>

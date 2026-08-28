@@ -3,149 +3,137 @@ contact-form.html
 ========================= -->
 
 <div class="contact-wrapper">
-
   <div class="contact-card">
-
     <div class="form-header">
-      <h2>Schnellanfrage</h2>
-      <p class="grey-text">
-        In 30 Sekunden ausgefüllt - Antwort innerhalb 24
-        Stunden.
-      </p>
+      <h2>{{ t().contactForm.heading }}</h2>
+      <p class="grey-text">{{ t().contactForm.subline }}</p>
     </div>
 
     <div class="form-wrapper">
-
       <div class="status-toast-container">
         @if (submittedSuccessfully) {
-        <div class="status-toast success-message"
-          role="status" aria-live="polite">
-          <div class="success-icon">✓</div>
-          <div>
-            <strong>Vielen Dank!</strong>
-            <p>Die Anfrage wurde erfolgreich übermittelt.
-            </p>
+          <div class="status-toast success-message" role="status" aria-live="polite">
+            <div class="success-icon">✓</div>
+            <div>
+              <strong>{{ t().contactForm.success.title }}</strong>
+              <p>{{ t().contactForm.success.text }}</p>
+            </div>
           </div>
-        </div>
         }
 
         @if (submitError) {
-        <div class="status-toast server-error-message"
-          role="alert" aria-live="assertive">
-          <div class="error-icon">✕</div>
-          <div>
-            <strong>Fehler beim Senden!</strong>
-            <p>Die Nachricht konnte nicht übermittelt
-              werden.
-              Bitte erneut versuchen.</p>
+          <div class="status-toast server-error-message" role="alert" aria-live="assertive">
+            <div class="error-icon">✕</div>
+            <div>
+              <strong>{{ t().contactForm.error.title }}</strong>
+              <p>{{ t().contactForm.error.text }}</p>
+            </div>
           </div>
-        </div>
         }
       </div>
 
-      <form [formGroup]="contactForm"
-        (ngSubmit)="onSubmit()" novalidate>
-
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
         <!-- NAME -->
         <div class="form-group">
-          <label for="name"
-            class="visually-hidden">Name</label>
-          <input id="name" type="text"
-            formControlName="name" placeholder="Name"
+          <label for="name" class="visually-hidden">{{ t().contactForm.name.label }}</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            [placeholder]="t().contactForm.name.placeholder"
             autocomplete="name"
-            [class.invalid]="contactForm.controls.name.invalid && contactForm.controls.name.touched">
+            [class.invalid]="contactForm.controls.name.invalid && contactForm.controls.name.touched"
+          />
 
-          @if (contactForm.controls.name.invalid &&
-          contactForm.controls.name.touched) {
-          <div class="error-message">
-            @if
-            (contactForm.controls.name.hasError('required'))
-            {
-            Bitte einen Namen eingeben.
-            }
-            @if
-            (contactForm.controls.name.hasError('minlength'))
-            {
-            Der Name muss mindestens 2 Zeichen lang sein.
-            }
-          </div>
+          @if (contactForm.controls.name.invalid && contactForm.controls.name.touched) {
+            <div class="error-message">
+              @if (contactForm.controls.name.hasError('required')) {
+                {{ t().contactForm.name.required }}
+              }
+              @if (contactForm.controls.name.hasError('minlength')) {
+                {{ t().contactForm.name.minLength }}
+              }
+            </div>
           }
         </div>
 
         <!-- EMAIL -->
         <div class="form-group">
-          <label for="email"
-            class="visually-hidden">E-Mail</label>
-          <input id="email" type="email"
-            formControlName="email" placeholder="E-Mail"
+          <label for="email" class="visually-hidden">{{ t().contactForm.email.label }}</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [placeholder]="t().contactForm.email.placeholder"
             autocomplete="email"
-            [class.invalid]="contactForm.controls.email.invalid && contactForm.controls.email.touched">
+            [class.invalid]="
+              contactForm.controls.email.invalid && contactForm.controls.email.touched
+            "
+          />
 
-          @if (contactForm.controls.email.invalid &&
-          contactForm.controls.email.touched) {
-          <div class="error-message">
-            @if
-            (contactForm.controls.email.hasError('required')
-            ||
-            contactForm.controls.email.hasError('pattern'))
-            {
-            Bitte eine gültige E-Mail-Adresse eingeben.
-            }
-          </div>
+          @if (contactForm.controls.email.invalid && contactForm.controls.email.touched) {
+            <div class="error-message">
+              @if (
+                contactForm.controls.email.hasError('required') ||
+                contactForm.controls.email.hasError('pattern')
+              ) {
+                {{ t().contactForm.email.invalid }}
+              }
+            </div>
           }
         </div>
 
         <!-- CUSTOM DROPDOWN -->
         <div class="form-group">
-          <label id="topic-label"
-            class="visually-hidden">Art
-            des Projekts</label>
+          <label id="topic-label" class="visually-hidden">{{ t().contactForm.topic.label }}</label>
 
-          <app-custom-select formControlName="topic"
-            [options]="topicOptions"
-            placeholder="Art des Projekts"
+          <app-custom-select
+            formControlName="topic"
+            [options]="topicOptions()"
+            [placeholder]="t().contactForm.topic.placeholder"
             ariaLabelledBy="topic-label"
-            [invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched">
+            [invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched"
+          >
           </app-custom-select>
 
-          @if (contactForm.controls.topic.invalid &&
-          contactForm.controls.topic.touched) {
-          <div class="error-message">
-            Bitte eine Projektart auswählen.
-          </div>
+          @if (contactForm.controls.topic.invalid && contactForm.controls.topic.touched) {
+            <div class="error-message">
+              {{ t().contactForm.topic.required }}
+            </div>
           }
         </div>
 
         <!-- SUBMIT -->
-        <button type="submit" class="primary-btn"
-          [disabled]="isSubmitting || submittedSuccessfully">
+        <button
+          type="submit"
+          class="primary-btn"
+          [disabled]="isSubmitting || submittedSuccessfully"
+        >
           <span class="btn-icon">🚀</span>
-          <span>{{ isSubmitting ? 'Wird gesendet...' :
-            'Projektanfrage starten' }}</span>
+          <span>{{ isSubmitting ? t().contactForm.submitting : t().contactForm.submit }}</span>
         </button>
-
       </form>
-
     </div>
 
     <div class="direct-mail-divider grey-text">
-      <span>oder</span>
+      <span>{{ t().contactForm.or }}</span>
     </div>
 
     <div class="mail-cta grey-text">
-      <svg viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path
-          d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
       </svg>
-      <span>Lieber direkt per Mail? </span>
+      <span>{{ t().contactForm.mailCta }} </span>
 
-      <a
-        href="mailto:info@cmw-media.de">info@cmw-media.de</a>
+      <a href="mailto:info@cmw-media.de">info@cmw-media.de</a>
     </div>
-
   </div>
-
 </div>

@@ -8,7 +8,7 @@ about-me.html
       <div class="col-image">
         <img
           src="img/avatar-720.jpg"
-          alt="Illustration von Christoph, der eine schwebende Videoschnitt-Timeline bedient"
+          [alt]="t().about.portraitAlt"
           loading="lazy"
           decoding="async"
           width="720"
@@ -17,17 +17,11 @@ about-me.html
       </div>
 
       <div class="col-text">
-        <h2>Hi, ich bin Christoph.</h2>
+        <h2 id="about-me-heading">{{ t().about.heading }}</h2>
 
-        <p class="grey-text">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        </p>
+        <p class="lead">{{ t().about.lead }}</p>
 
-        <p class="grey-text">
-          At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-          takimata sanctus est Lorem ipsum dolor sit amet.
-        </p>
+        <p class="grey-text">{{ t().about.body }}</p>
       </div>
     </div>
 

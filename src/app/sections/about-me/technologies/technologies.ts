@@ -1,6 +1,7 @@
 // technologies.ts
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { I18nService } from '../../../i18n/i18n';
 
 interface Tech {
   readonly name: string;
@@ -50,5 +51,6 @@ const TECH_ITEMS: readonly Tech[] = [
   styleUrl: './technologies.scss',
 })
 export class Technologies {
+  protected readonly t = inject(I18nService).t;
   protected readonly items = TECH_ITEMS;
 }

@@ -2,43 +2,44 @@
 numbers.html
 ========================= -->
 
-<section id="results" class="numbers-section"
-  aria-labelledby="numbers-heading">
+<section id="results" class="numbers-section" aria-labelledby="numbers-heading">
   <div class="container">
-
-    <h2>Zahlen, die für sich
-      sprechen</h2>
+    <h2 id="numbers-heading">{{ t().numbers.heading }}</h2>
 
     <ul class="stat-grid" role="list">
-      @for (stat of stats; track stat.label; let i = $index) {
-      <li class="stat">
-
-        <!-- The ring closes in step with the count. It is decoration, not an
+      @for (stat of stats; track stat.id; let i = $index) {
+        <li class="stat">
+          <!-- The ring closes in step with the count. It is decoration, not an
              encoding: all three fill identically, so no figure is presented as
              larger or closer to some target than another. -->
-        <div class="stat-gauge">
-          <svg class="gauge" viewBox="0 0 100 100"
-            aria-hidden="true">
-            <circle class="gauge-track" cx="50" cy="50"
-              [attr.r]="gaugeRadius" />
-            <circle class="gauge-arc" cx="50" cy="50"
-              [attr.r]="gaugeRadius"
-              [style.stroke-dasharray]="circumference"
-              [style.stroke-dashoffset]="dashOffset()" />
-          </svg>
+          <div class="stat-gauge">
+            <svg class="gauge" viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="gauge-track" cx="50" cy="50" [attr.r]="gaugeRadius" />
+              <circle
+                class="gauge-arc"
+                cx="50"
+                cy="50"
+                [attr.r]="gaugeRadius"
+                [style.stroke-dasharray]="circumference"
+                [style.stroke-dashoffset]="dashOffset()"
+              />
+            </svg>
 
-          <p class="stat-value">
-            <span aria-hidden="true">{{ stat.prefix }}{{ counted()[i] }}<span
-                class="stat-unit">{{ stat.suffix }}</span></span>
-            <span class="visually-hidden">{{ stat.spokenPrefix }}
-              {{ stat.value }} {{ stat.spokenSuffix }}</span>
-          </p>
-        </div>
+            <p class="stat-value">
+              <span aria-hidden="true"
+                >{{ stat.prefix }}{{ counted()[i]
+                }}<span class="stat-unit">{{ t().numbers.stats[stat.id].suffix }}</span></span
+              >
+              <span class="visually-hidden"
+                >{{ t().numbers.stats[stat.id].spokenPrefix }} {{ stat.value }}
+                {{ t().numbers.stats[stat.id].spokenSuffix }}</span
+              >
+            </p>
+          </div>
 
-        <p class="stat-label grey-text">{{ stat.label }}</p>
-      </li>
+          <p class="stat-label grey-text">{{ t().numbers.stats[stat.id].label }}</p>
+        </li>
       }
     </ul>
-
   </div>
 </section>

@@ -3,22 +3,22 @@ hero.html
 ========================= -->
 
 <section id="home" class="hero-section">
-    <div class="container">
-        <h1>Mehr als nur aneinandergereihte Clips</h1>
-        <div class="grid-container">
+  <div class="container">
+    <h1>{{ t().hero.heading }}</h1>
+    <div class="grid-container">
+      <div class="col-video">
+        <app-youtube-embed videoId="WYKIPCdAI1U" />
+        <app-testimonial
+          variant="compact"
+          imageName="jane-doe.jpg"
+          [text]="t().testimonials.hero.text"
+          [author]="t().testimonials.hero.author"
+        />
+      </div>
 
-            <div class="col-video">
-                <app-youtube-embed videoId="WYKIPCdAI1U" />
-                <app-testimonial variant="compact"
-                    imageName="jane-doe.jpg"
-                    text="Absoluter Experte. Der Schnitt war on-point und die Kommunikation lief reibungslos."
-                    author="Jane Doe" />
-            </div>
-
-            <div class="col-contact">
-                <app-contact-form />
-            </div>
-
-        </div>
+      <div class="col-contact">
+        <app-contact-form />
+      </div>
     </div>
+  </div>
 </section>

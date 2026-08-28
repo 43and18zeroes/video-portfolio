@@ -3,20 +3,23 @@ footer.html
 ========================= -->
 
 <footer class="site-footer">
-    <div class="container footer-content">
-        <span class="grey-text">© {{ currentYear }} CMW
-            Media</span>
-        <div class="legal-links">
-            <button type="button"
-                class="grey-text header-footer-link"
-                (click)="openLegal.emit('imprint')">
-                Impressum
-            </button>
-            <button type="button"
-                class="grey-text header-footer-link"
-                (click)="openLegal.emit('privacy-policy')">
-                Datenschutzerklärung
-            </button>
-        </div>
+  <div class="container footer-content">
+    <span class="grey-text">© {{ currentYear }} CMW Media</span>
+    <div class="legal-links">
+      <button
+        type="button"
+        class="grey-text header-footer-link"
+        (click)="openLegal.emit('imprint')"
+      >
+        {{ t().footer.imprint }}
+      </button>
+      <button
+        type="button"
+        class="grey-text header-footer-link"
+        (click)="openLegal.emit('privacy-policy')"
+      >
+        {{ t().footer.privacy }}
+      </button>
     </div>
+  </div>
 </footer>

@@ -5,55 +5,67 @@ header.scss
 @use 'abstracts' as *;
 
 :host {
-    display: block;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
+  display: block;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
 }
 
 .site-header {
-    width: 100%;
-    height: 64px;
+  width: 100%;
+  height: 64px;
 
-    background: rgba(13, 17, 26, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: $border-style;
-    display: flex;
-    align-items: center;
+  background: rgba(13, 17, 26, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: $border-style;
+  display: flex;
+  align-items: center;
 }
 
 .header-content {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    padding: 22px 12px;
-    margin-left: -12px;
-    color: $white-text;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
+  padding: 22px 12px;
+  margin-left: -12px;
+  color: $white-text;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
 
-    span {
-        color: $brand-blue;
-    }
+  span {
+    color: $brand-blue;
+  }
 }
 
 .mid-section {
-    display: none;
+  display: none;
 
-    @include sd {
-        display: flex;
-    }
+  @include sd {
+    display: flex;
+  }
+}
+
+/* Sits outside .mid-section so the language switch survives below sd, where the
+   nav is hidden and there is no burger menu to fall back to. */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @include sd {
+    gap: 12px;
+  }
 }
 
 .primary-btn {
-    padding: 8px 20px;
+  padding: 8px 20px;
 }

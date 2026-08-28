@@ -2,64 +2,75 @@
 thumbnail-gallery.html
 ========================= -->
 
-<section id="thumbnails" class="thumbnail-section"
-  aria-labelledby="thumbnails-heading">
+<section id="thumbnails" class="thumbnail-section" aria-labelledby="thumbnails-heading">
   <div class="container">
-
-    <h2 id="thumbnails-heading">Thumbnails, die Klicks
-      bringen</h2>
+    <h2 id="thumbnails-heading">{{ t().gallery.heading }}</h2>
 
     <!-- speed is the settle animation after a swipe. A phone card travels a much
          shorter distance, so the desktop duration reads as sluggish there; the
          breakpoint restores it at $bp-md. -->
-    <swiper-container #swiper class="thumbnail-swiper"
-      init="false" effect="coverflow" grab-cursor="true"
-      centered-slides="true" slides-per-view="auto"
-      loop="true" loop-prevents-sliding="false"
-      loop-additional-slides="2" threshold="1" speed="240"
+    <swiper-container
+      #swiper
+      class="thumbnail-swiper"
+      init="false"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      slides-per-view="auto"
+      loop="true"
+      loop-prevents-sliding="false"
+      loop-additional-slides="2"
+      threshold="1"
+      speed="240"
       breakpoints='{"768": {"speed": 320}}'
-      touch-ratio="1.2" short-swipes="true"
-      long-swipes-ms="600" long-swipes-ratio="0.18"
+      touch-ratio="1.2"
+      short-swipes="true"
+      long-swipes-ms="600"
+      long-swipes-ratio="0.18"
       coverflow-effect-rotate="16"
       coverflow-effect-stretch="0"
       coverflow-effect-depth="360"
       coverflow-effect-modifier="1"
       coverflow-effect-slide-shadows="false"
-      navigation="true" keyboard-enabled="true"
+      navigation="true"
+      keyboard-enabled="true"
       autoplay-delay="4200"
       autoplay-disable-on-interaction="false"
       autoplay-pause-on-mouse-enter="true"
-      (swiperrealindexchange)="onRealIndexChange()">
-
-      @for (slide of slides; track slide.id) {
-      <swiper-slide>
-        <div class="thumbnail-card">
-          <img [src]="slide.src" [alt]="slide.title"
-            width="960" height="540" loading="lazy"
-            decoding="async">
-          <div class="card-caption">
-            <span class="ctr-badge">{{ slide.ctr }}</span>
+      (swiperrealindexchange)="onRealIndexChange()"
+    >
+      @for (slide of slides; track slide.key) {
+        <swiper-slide>
+          <div class="thumbnail-card">
+            <img
+              [src]="slide.src"
+              [alt]="t().gallery.thumbnails[slide.id].alt"
+              width="960"
+              height="540"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="card-caption">
+              <span class="ctr-badge">{{ t().gallery.thumbnails[slide.id].ctr }}</span>
+            </div>
           </div>
-        </div>
-      </swiper-slide>
+        </swiper-slide>
       }
-
     </swiper-container>
 
     <!-- The slide list repeats its sources to keep Swiper's loop working, so the
          pagination is built from the sources instead of from the slides -->
-    <div class="thumbnail-pagination" role="group"
-      aria-label="Thumbnail auswählen">
-      @for (thumbnail of thumbnails; track thumbnail.src;
-      let
-      i = $index) {
-      <button type="button" class="pagination-bullet"
-        [class.is-active]="activeThumbnail() === i"
-        [attr.aria-current]="activeThumbnail() === i ? 'true' : null"
-        [attr.aria-label]="'Thumbnail ' + (i + 1) + ' von ' + thumbnails.length"
-        (click)="goToThumbnail(i)"></button>
+    <div class="thumbnail-pagination" role="group" [attr.aria-label]="t().gallery.pickerLabel">
+      @for (thumbnail of thumbnails; track thumbnail.id; let i = $index) {
+        <button
+          type="button"
+          class="pagination-bullet"
+          [class.is-active]="activeThumbnail() === i"
+          [attr.aria-current]="activeThumbnail() === i ? 'true' : null"
+          [attr.aria-label]="t().gallery.bulletLabel(i + 1, thumbnails.length)"
+          (click)="goToThumbnail(i)"
+        ></button>
       }
     </div>
-
   </div>
 </section>

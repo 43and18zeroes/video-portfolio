@@ -5,147 +5,156 @@ app.scss
 @use 'abstracts' as *;
 
 :host {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-height: 100dvh;
-    background-color: #0b0f17;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: #0b0f17;
 }
 
 main {
-    flex: 1;
+  flex: 1;
 }
 
 /* Shared vertical rhythm for the page sections. app-hero is excluded because it
    adds the fixed header's height on top of this and sets its padding itself. */
-main>*:not(app-hero) {
-    padding: var(--general-vertical-padding) 0;
+main > *:not(app-hero) {
+  padding: var(--general-vertical-padding) 0;
 }
 
 /* Holds the height of a deferred section so swapping in the real component does
    not shift the page. Counts the heading plus the 16:9 card inside the carousel's
    shadow padding; the section padding above already applies here too. */
 .section-placeholder {
-    min-height: 310px;
+  min-height: 310px;
 
-    @include md {
-        min-height: 425px;
-    }
+  @include md {
+    min-height: 425px;
+  }
 }
 
 /* Background Overlay */
 .drawer-backdrop {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 99998;
-    animation: fadeIn 200ms ease forwards;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99998;
+  animation: fadeIn 200ms ease forwards;
 }
 
 /* Slide-in Legal Panel */
 .drawer-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 600px;
-    height: 100vh;
-    height: 100dvh;
-    background-color: #0d111a;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-    z-index: 99999;
-    display: flex;
-    flex-direction: column;
-    animation: slideInRight 300ms cubic-bezier(0.2, 0, 0, 1) forwards;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 600px;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #0d111a;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 300ms cubic-bezier(0.2, 0, 0, 1) forwards;
 }
 
 /* Close Button */
 .close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
 
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: inherit;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: inherit;
 
-    color: #717985;
+  color: #717985;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .close-button svg {
-    display: block;
-    width: 50px;
-    height: 50px;
+  display: block;
+  width: 50px;
+  height: 50px;
 
-    transition: $text-link-transition;
+  transition: $text-link-transition;
 }
 
 .close-button:hover {
-    color: $white-text;
+  color: $white-text;
 }
 
 /* Scrollable Container & Typography Styles */
 .drawer-content {
-    padding: 48px 32px;
-    overflow-y: auto;
-    height: 100%;
+  padding: 48px 32px;
+  overflow-y: auto;
+  height: 100%;
 
-    h1 {
-        margin-bottom: 24px;
-        letter-spacing: -0.02em;
-    }
+  h1 {
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
 
-    h2 {
-        margin-top: 24px;
-        margin-bottom: 12px;
-    }
+  h2 {
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
 
-    h3 {
-        margin-top: 16px;
-        margin-bottom: 8px;
-    }
+  h3 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
 
-    section {
-        margin-bottom: 28px;
-    }
+  section {
+    margin-bottom: 28px;
+  }
 }
 
 .drawer-loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }
 
 /* Keyframe Animations */
 @keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-    }
+  from {
+    transform: translateX(100%);
+  }
 
-    to {
-        transform: translateX(0);
-    }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
+}
+/* Shown above the legal texts while English is active: those documents stay
+   German, so this says why and which version is the binding one. */
+.drawer-language-note {
+  margin: 0 0 32px;
+  padding-bottom: 24px;
+  border-bottom: $border-style;
+  font-size: 15px;
+  line-height: 1.6;
 }

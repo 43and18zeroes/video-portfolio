@@ -4,15 +4,13 @@ video-sample.html
 
 <section [attr.id]="sectionId()" class="video-section">
   <div class="container">
-    @if (title()) {
-    <h2>{{ title() }}</h2>
+    @if (heading()) {
+      <h2>{{ heading() }}</h2>
     }
 
-    <div class="grid-container"
-      [class.is-reversed]="reverseDesktop()">
+    <div class="grid-container" [class.is-reversed]="reverseDesktop()">
       <div class="col-1">
-        <app-testimonial [text]="text()" [author]="author()"
-          [imageName]="imageName()" />
+        <app-testimonial [text]="text()" [author]="author()" [imageName]="imageName()" />
       </div>
 
       <div class="col-2">

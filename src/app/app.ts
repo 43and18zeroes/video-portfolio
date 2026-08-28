@@ -1,26 +1,41 @@
 import { Component, effect, HostListener, inject, signal } from '@angular/core';
-import { Header } from "./components/layout/header/header";
+import { Header } from './components/layout/header/header';
 import { Hero } from './sections/hero/hero';
 import { VideoSample } from './sections/video-sample/video-sample';
 import { Imprint } from './components/legal/imprint/imprint';
 import { PrivacyPolicy } from './components/legal/privacy-policy/privacy-policy';
-import { Footer } from "./components/layout/footer/footer";
+import { Footer } from './components/layout/footer/footer';
 import { LegalDrawerService } from './legal-drawer';
-import { AboutMe } from "./sections/about-me/about-me";
-import { Contact } from "./sections/contact/contact";
+import { AboutMe } from './sections/about-me/about-me';
+import { Contact } from './sections/contact/contact';
 import { ThumbnailGallery } from './sections/thumbnail-gallery/thumbnail-gallery';
 import { Numbers } from './sections/numbers/numbers';
+import { I18nService } from './i18n/i18n';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Hero, VideoSample, Imprint, PrivacyPolicy, Footer, AboutMe, Contact, ThumbnailGallery, Numbers],
+  imports: [
+    Header,
+    Hero,
+    VideoSample,
+    Imprint,
+    PrivacyPolicy,
+    Footer,
+    AboutMe,
+    Contact,
+    ThumbnailGallery,
+    Numbers,
+  ],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('CMW Media');
   private legalDrawer = inject(LegalDrawerService);
+  private i18n = inject(I18nService);
 
+  protected readonly t = this.i18n.t;
+  protected readonly lang = this.i18n.lang;
   protected readonly activeLegalView = this.legalDrawer.activeView;
 
   constructor() {
@@ -33,8 +48,7 @@ export class App {
       const target = this.legalDrawer.scrollTarget();
       if (view && target) {
         setTimeout(() => {
-          document.getElementById(target)
-            ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 60);
       }
     });

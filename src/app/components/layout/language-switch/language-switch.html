@@ -1,0 +1,13 @@
+<!-- ========================
+language-switch.html
+========================= -->
+
+<button
+  type="button"
+  class="lang-switch grey-text"
+  [attr.lang]="target()"
+  [attr.aria-label]="t().header.switchLanguage"
+  (click)="toggle()"
+>
+  {{ label() }}
+</button>

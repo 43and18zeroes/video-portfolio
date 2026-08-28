@@ -1,0 +1,51 @@
+/* =========================
+language-switch.scss
+========================= */
+
+@use 'abstracts' as *;
+
+:host {
+  display: flex;
+}
+
+.lang-switch {
+  /* "EN" and "DE" are both two characters but not the same width. The fixed box
+       keeps the logo and the contact button from moving when the label swaps. */
+  min-width: 40px;
+  padding: 6px 8px;
+
+  border: $border-style;
+  border-radius: $radius-elem;
+  background-color: transparent;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-align: center;
+
+  cursor: pointer;
+  transition:
+    color 150ms $md-easing-standard,
+    border-color 150ms $md-easing-standard,
+    background-color 150ms $md-easing-standard;
+
+  /* Below sd the nav is hidden and only the logo, this button and the contact
+       button share a 320px header, so the padding is tighter there. */
+  @include sd {
+    min-width: 44px;
+    padding: 6px 12px;
+  }
+
+  &:hover {
+    color: $white-text;
+    border-color: rgba($brand-blue, 0.45);
+    background-color: rgba($brand-blue, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-blue;
+    outline-offset: 2px;
+  }
+}

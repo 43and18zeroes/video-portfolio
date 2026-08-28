@@ -1,47 +1,42 @@
 // thumbnail-gallery.ts
 
-import { afterNextRender, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
+import type { Dictionary } from '../../i18n/de';
+import { I18nService } from '../../i18n/i18n';
 import { register as registerSwiperElements } from 'swiper/element/bundle';
 import type { SwiperContainer } from 'swiper/element';
 
 registerSwiperElements();
 
+/* Derived from the dictionary, so a thumbnail added here does not compile until
+   both language files carry its alt text. */
+type ThumbnailId = keyof Dictionary['gallery']['thumbnails'];
+
 interface Thumbnail {
+  readonly id: ThumbnailId;
   readonly src: string;
-  readonly title: string;
-  readonly ctr: string;
 }
 
+/* `key` is the position in the repeated loop list, `id` stays the source it was
+   built from — several slides share one id. */
 interface ThumbnailSlide extends Thumbnail {
-  readonly id: number;
+  readonly key: number;
 }
 
 const THUMBNAILS: readonly Thumbnail[] = [
-  {
-    src: 'img/thumbnail-gallery/thumbnail-01.jpg',
-    title: 'Tech-Review-Thumbnail: Powerbank mit 100-Prozent-Ladeanzeige, Titel „Neu Test"',
-    ctr: '+14.8% CTR',
-  },
-  {
-    src: 'img/thumbnail-gallery/thumbnail-02.jpg',
-    title: 'Business-Thumbnail: Unternehmer vor nächtlicher Skyline, Titel „Skaliert"',
-    ctr: '+18.2% CTR',
-  },
-  {
-    src: 'img/thumbnail-gallery/thumbnail-03.jpg',
-    title: 'Challenge-Thumbnail: Person mit erhobenen Armen über der Stadt, Titel „Tag 1"',
-    ctr: '+12.5% CTR',
-  },
-  {
-    src: 'img/thumbnail-gallery/thumbnail-04.jpg',
-    title: 'Tutorial-Thumbnail: Code-Editor mit HTML-Datei, Titel „Tutorial"',
-    ctr: '+16.0% CTR',
-  },
-  {
-    src: 'img/thumbnail-gallery/thumbnail-05.jpg',
-    title: 'Fitness-Thumbnail: Hanteln und Kettlebell im abgedunkelten Gym, Titel „No Limits"',
-    ctr: '+15.3% CTR',
-  },
+  { id: 'powerbank', src: 'img/thumbnail-gallery/thumbnail-01.jpg' },
+  { id: 'scaling', src: 'img/thumbnail-gallery/thumbnail-02.jpg' },
+  { id: 'dayOne', src: 'img/thumbnail-gallery/thumbnail-03.jpg' },
+  { id: 'tutorial', src: 'img/thumbnail-gallery/thumbnail-04.jpg' },
+  { id: 'noLimits', src: 'img/thumbnail-gallery/thumbnail-05.jpg' },
 ];
 
 // Swiper reorders slides around the active one to fake the loop, and needs roughly
@@ -52,12 +47,15 @@ const THUMBNAILS: readonly Thumbnail[] = [
 // exist to satisfy the budget on their own.
 const MIN_SLIDES_FOR_LOOP = 12;
 
-function buildLoopSafeSlides(thumbnails: readonly Thumbnail[], minSlides: number): readonly ThumbnailSlide[] {
+function buildLoopSafeSlides(
+  thumbnails: readonly Thumbnail[],
+  minSlides: number,
+): readonly ThumbnailSlide[] {
   const repetitions = Math.max(1, Math.ceil(minSlides / thumbnails.length));
 
   return Array.from({ length: repetitions * thumbnails.length }, (_, index) => ({
     ...thumbnails[index % thumbnails.length],
-    id: index,
+    key: index,
   }));
 }
 
@@ -70,6 +68,7 @@ function buildLoopSafeSlides(thumbnails: readonly Thumbnail[], minSlides: number
 })
 export class ThumbnailGallery {
   private readonly swiperEl = viewChild.required<ElementRef<SwiperContainer>>('swiper');
+  protected readonly t = inject(I18nService).t;
 
   protected readonly thumbnails = THUMBNAILS;
   protected readonly slides = buildLoopSafeSlides(THUMBNAILS, MIN_SLIDES_FOR_LOOP);

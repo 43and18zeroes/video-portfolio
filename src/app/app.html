@@ -5,63 +5,79 @@ app.html
 <app-header />
 
 <main>
-    <app-hero />
+  <app-hero />
 
-    <app-video-sample sectionId="videos"
-        imageName="jane-doe.jpg" videoId="WYKIPCdAI1U"
-        text="Absoluter Experte. Der Schnitt war on-point..."
-        author="Kunde / Creator" />
+  <app-video-sample
+    sectionId="videos"
+    imageName="jane-doe.jpg"
+    videoId="WYKIPCdAI1U"
+    [text]="t().testimonials.sample.text"
+    [author]="t().testimonials.sample.author"
+  />
 
-    <app-video-sample videoId="WYKIPCdAI1U"
-        imageName="jane-doe.jpg"
-        text="Absoluter Experte. Der Schnitt war on-point..."
-        author="Kunde / Creator" [reverseDesktop]="true" />
+  <app-video-sample
+    videoId="WYKIPCdAI1U"
+    imageName="jane-doe.jpg"
+    [text]="t().testimonials.sample.text"
+    [author]="t().testimonials.sample.author"
+    [reverseDesktop]="true"
+  />
 
-    <!-- Pulls Swiper out of the initial bundle. Rendering on idle rather than on
+  <!-- Pulls Swiper out of the initial bundle. Rendering on idle rather than on
          viewport keeps the swap away from the moment the section scrolls into
          view, where a placeholder of the wrong height would be visible. -->
-    @defer (on idle) {
+  @defer (on idle) {
     <app-thumbnail-gallery />
-    } @placeholder {
+  } @placeholder {
     <div class="section-placeholder"></div>
-    }
+  }
 
-    <app-numbers />
-    <app-about-me />
-    <app-contact />
+  <app-numbers />
+  <app-about-me />
+  <app-contact />
 </main>
 
 <app-footer (openLegal)="openLegal($event)" />
 
 @if (activeLegalView(); as type) {
-<div class="drawer-backdrop" (click)="closeLegal()"></div>
+  <div class="drawer-backdrop" (click)="closeLegal()"></div>
 
-<aside class="drawer-panel" role="dialog" data-nosnippet
-    aria-modal="true">
-    <button class="close-button" type="button"
-        aria-label="Schließen" (click)="closeLegal()">
-        <svg viewBox="0 0 42 42"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true">
-            <circle cx="21" cy="21" r="20" fill="none"
-                stroke="currentColor" stroke-width="2" />
+  <aside class="drawer-panel" role="dialog" data-nosnippet aria-modal="true">
+    <button
+      class="close-button"
+      type="button"
+      [attr.aria-label]="t().drawer.close"
+      (click)="closeLegal()"
+    >
+      <svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="21" cy="21" r="20" fill="none" stroke="currentColor" stroke-width="2" />
 
-            <path d="M15 15L27 27M27 15L15 27" fill="none"
-                stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" />
-        </svg>
+        <path
+          d="M15 15L27 27M27 15L15 27"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
     </button>
 
     <div class="drawer-content">
-        @defer (on immediate) {
+      <!-- The legal texts themselves stay German; this tells an English
+             reader why, and which version is binding. -->
+      @if (lang() === 'en') {
+        <p class="drawer-language-note grey-text">{{ t().drawer.germanOnly }}</p>
+      }
+
+      @defer (on immediate) {
         @if (type === 'imprint') {
-        <app-imprint />
+          <app-imprint />
         } @else {
-        <app-privacy-policy />
+          <app-privacy-policy />
         }
-        } @placeholder {
-        <div class="drawer-loading">Lade Inhalt...</div>
-        }
+      } @placeholder {
+        <div class="drawer-loading">{{ t().drawer.loading }}</div>
+      }
     </div>
-</aside>
+  </aside>
 }

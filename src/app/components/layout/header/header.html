@@ -3,16 +3,17 @@ header.html
 ========================= -->
 
 <header class="site-header">
-    <div class="container header-content">
-        <a class="logo" href="#home">CMW
-            <span>MEDIA</span></a>
+  <div class="container header-content">
+    <a class="logo" href="#home">CMW <span>MEDIA</span></a>
 
-        <nav class="mid-section">
-            <a class="grey-text header-footer-link" href="#videos">Videos</a>
-            <a class="grey-text header-footer-link" href="#about-me">Über
-                mich</a>
-        </nav>
+    <nav class="mid-section">
+      <a class="grey-text header-footer-link" href="#videos">{{ t().header.videos }}</a>
+      <a class="grey-text header-footer-link" href="#about-me">{{ t().header.about }}</a>
+    </nav>
 
-        <button class="primary-btn" (click)="scrollTo('contact')">Kontakt</button>
+    <div class="header-actions">
+      <app-language-switch />
+      <button class="primary-btn" (click)="scrollTo('contact')">{{ t().header.contact }}</button>
     </div>
+  </div>
 </header>

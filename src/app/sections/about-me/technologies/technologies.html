@@ -2,7 +2,7 @@
 technologies.html
 ========================= -->
 
-<ul class="tech-list" role="list" aria-label="Eingesetzte Software und Plattformen">
+<ul class="tech-list" role="list" [attr.aria-label]="t().about.techLabel">
   @for (item of items; track item.name) {
     <li class="tech-item light-grey-text">
       <span class="tech-icon" aria-hidden="true">

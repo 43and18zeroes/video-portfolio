@@ -9,44 +9,25 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import type { Dictionary } from '../../i18n/de';
+import { I18nService } from '../../i18n/i18n';
+
+/* The ids come from the dictionary, so a figure added here does not compile until
+   both language files carry its wording. */
+type StatId = keyof Dictionary['numbers']['stats'];
 
 interface Stat {
+  readonly id: StatId;
+  /* Symbols, identical in every language. Unit, label and the spoken forms the
+     visually hidden replacement uses all live in the dictionary. */
   readonly prefix: string;
   readonly value: number;
-  readonly suffix: string;
-  /* The figure is animated and therefore hidden from assistive tech; these two
-     spell out the symbols so the static replacement reads as a sentence. */
-  readonly spokenPrefix: string;
-  readonly spokenSuffix: string;
-  readonly label: string;
-  readonly note?: string;
 }
 
 const STATS: readonly Stat[] = [
-  {
-    prefix: '>',
-    value: 10,
-    suffix: ' Mio.',
-    spokenPrefix: 'über',
-    spokenSuffix: 'Millionen',
-    label: 'generierte Views',
-  },
-  {
-    prefix: '+',
-    value: 35,
-    suffix: '%',
-    spokenPrefix: 'plus',
-    spokenSuffix: 'Prozent',
-    label: 'höhere Retention',
-  },
-  {
-    prefix: '<',
-    value: 48,
-    suffix: 'h',
-    spokenPrefix: 'unter',
-    spokenSuffix: 'Stunden',
-    label: 'durchschnittliche Bearbeitungszeit',
-  },
+  { id: 'views', prefix: '>', value: 10 },
+  { id: 'retention', prefix: '+', value: 35 },
+  { id: 'turnaround', prefix: '<', value: 48 },
 ];
 
 const COUNT_DURATION = 1100;
@@ -67,6 +48,7 @@ const GAUGE_RADIUS = 44;
 })
 export class Numbers {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected readonly t = inject(I18nService).t;
   private readonly destroyRef = inject(DestroyRef);
 
   private frame = 0;
@@ -102,7 +84,7 @@ export class Numbers {
         observer.disconnect();
         this.countUp();
       },
-      { threshold: VISIBLE_RATIO_TO_START }
+      { threshold: VISIBLE_RATIO_TO_START },
     );
 
     observer.observe(this.host.nativeElement);
