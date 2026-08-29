@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CustomSelect, SelectOption } from './custom-select/custom-select';
 import { I18nService } from '../../i18n/i18n';
+import { LEGAL_DATA } from '../../private-data.config';
 
 @Component({
   selector: 'app-contact-form',
@@ -13,6 +14,9 @@ import { I18nService } from '../../i18n/i18n';
 export class ContactForm {
   private fb = inject(FormBuilder);
   protected readonly t = inject(I18nService).t;
+
+  /* Same source as the imprint, so the address cannot drift between the two */
+  protected readonly legal = LEGAL_DATA;
 
   private readonly endpoint = 'https://portfolio.cwgermany.de/send_mail/send_mail.php';
 
