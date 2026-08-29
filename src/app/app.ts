@@ -36,6 +36,7 @@ export class App {
 
   protected readonly t = this.i18n.t;
   protected readonly lang = this.i18n.lang;
+  protected readonly swapPhase = this.i18n.swapPhase;
   protected readonly activeLegalView = this.legalDrawer.activeView;
 
   constructor() {

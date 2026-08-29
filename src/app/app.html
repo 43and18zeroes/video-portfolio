@@ -4,7 +4,7 @@ app.html
 
 <app-header />
 
-<main>
+<main [attr.data-lang-swap]="swapPhase()">
   <app-hero />
 
   <app-video-sample
@@ -39,7 +39,7 @@ app.html
   <app-contact />
 </main>
 
-<app-footer (openLegal)="openLegal($event)" />
+<app-footer [attr.data-lang-swap]="swapPhase()" (openLegal)="openLegal($event)" />
 
 @if (activeLegalView(); as type) {
   <div class="drawer-backdrop" animate.leave="is-leaving" (click)="closeLegal()"></div>

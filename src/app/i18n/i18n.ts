@@ -36,6 +36,16 @@ export class I18nService {
   /* The switcher always points at the language you are not reading */
   readonly otherLang = computed<Lang>(() => (this.language() === 'de' ? 'en' : 'de'));
 
+  private readonly switchCount = signal(0);
+
+  /* Alternates between two values so the swap animation restarts on every change:
+     a CSS animation does not re-run while its name stays the same. Null until the
+     first switch, which keeps the animation off the initial page load. */
+  readonly swapPhase = computed<'a' | 'b' | null>(() => {
+    const count = this.switchCount();
+    return count === 0 ? null : count % 2 === 1 ? 'a' : 'b';
+  });
+
   constructor() {
     effect(() => {
       const lang = this.language();
@@ -49,6 +59,11 @@ export class I18nService {
   }
 
   set(lang: Lang): void {
+    if (lang === this.language()) {
+      return;
+    }
+
+    this.switchCount.update((count) => count + 1);
     this.language.set(lang);
 
     try {

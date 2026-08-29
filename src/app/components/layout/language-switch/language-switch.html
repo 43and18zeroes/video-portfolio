@@ -9,5 +9,14 @@ language-switch.html
   [attr.aria-label]="t().header.switchLanguage"
   (click)="toggle()"
 >
-  {{ label() }}
+  <!-- Hidden from assistive tech: the button already carries a full aria-label,
+       and both codes are in the DOM at once, which would otherwise be read out
+       together as "ENDE". -->
+  <span class="label-viewport" aria-hidden="true">
+    <span class="label-stack" [class.shows-second]="showsSecond()">
+      @for (option of options; track option.lang) {
+        <span class="label">{{ option.label }}</span>
+      }
+    </span>
+  </span>
 </button>

@@ -156,7 +156,7 @@ export const de = {
         other: 'Etwas anderes',
       },
     },
-    submit: 'Projektanfrage starten',
+    submit: 'Projekt anfragen',
     submitting: 'Wird gesendet...',
     or: 'oder',
     mailCta: 'Lieber direkt per Mail?',

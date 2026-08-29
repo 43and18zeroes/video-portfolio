@@ -6,14 +6,16 @@ header.html
   <div class="container header-content">
     <a class="logo" href="#home">CMW <span>MEDIA</span></a>
 
-    <nav class="mid-section">
+    <nav class="mid-section" [attr.data-lang-swap]="swapPhase()">
       <a class="grey-text header-footer-link" href="#videos">{{ t().header.videos }}</a>
       <a class="grey-text header-footer-link" href="#about-me">{{ t().header.about }}</a>
     </nav>
 
     <div class="header-actions">
       <app-language-switch />
-      <button class="primary-btn" (click)="scrollTo('contact')">{{ t().header.contact }}</button>
+      <button class="primary-btn" [attr.data-lang-swap]="swapPhase()" (click)="scrollTo('contact')">
+        {{ t().header.contact }}
+      </button>
     </div>
   </div>
 </header>

@@ -18,10 +18,15 @@ language-switch.scss
   border-radius: $radius-elem;
   background-color: transparent;
 
+  /* Flex rather than the default inline-block: the content is a block-level
+     viewport now, and this stops a stray whitespace line box from adding height. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font: inherit;
   font-size: 14px;
   font-weight: 600;
-  line-height: 1.2;
   letter-spacing: 0.06em;
   text-align: center;
 
@@ -52,5 +57,39 @@ language-switch.scss
   &:focus-visible {
     outline: 2px solid $brand-blue;
     outline-offset: 2px;
+  }
+}
+
+/* One row of the stack. A whole number rather than an em keeps the clip edge off
+   a fractional pixel, where the neighbouring code would bleed through. */
+$label-line: 18px;
+
+.label-viewport {
+  display: block;
+  width: 100%;
+  height: $label-line;
+  overflow: hidden;
+}
+
+.label-stack {
+  display: block;
+  transition: transform 220ms $md-easing-standard;
+
+  /* The stack holds exactly the two codes, so half its height is one row. Adding
+     a third language means switching this to a calculated offset. */
+  &.shows-second {
+    transform: translateY(-50%);
+  }
+}
+
+.label {
+  display: block;
+  height: $label-line;
+  line-height: $label-line;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label-stack {
+    transition-duration: 1ms;
   }
 }

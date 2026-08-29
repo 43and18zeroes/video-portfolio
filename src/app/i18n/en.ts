@@ -145,7 +145,7 @@ export const en: Dictionary = {
         other: 'Something else',
       },
     },
-    submit: 'Start your project',
+    submit: 'Send an inquiry',
     submitting: 'Sending...',
     or: 'or',
     mailCta: 'Prefer email?',
@@ -159,15 +159,14 @@ export const en: Dictionary = {
   },
 
   footer: {
-    imprint: 'Legal notice',
-    privacy: 'Privacy policy',
+    imprint: 'Impressum',
+    privacy: 'Datenschutzerklärung',
   },
 
   drawer: {
     close: 'Close',
     loading: 'Loading...',
     germanOnly:
-      'Legal notice and privacy policy are available in German only. ' +
-      'The German version is the legally binding one.',
+      'Privacy policy is available in German only.',
   },
 };

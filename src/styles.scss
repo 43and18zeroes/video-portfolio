@@ -244,3 +244,42 @@ button:focus:not(:focus-visible) {
     outline: none;
     box-shadow: none;
 }
+
+/* Language swap. The new text fades up into place; there is no fade-out, so the
+   switch itself stays instant. Two keyframe names alternate because an animation
+   does not restart while its name is unchanged, and the attribute is absent until
+   the first switch, which keeps this off the initial page load.
+
+   Carried by <main>, <app-footer> and the two header items - not by the language
+   switch itself, which keeps its own rolling label. Safe to transform these: the
+   only position:fixed elements on the page (header, drawer, backdrop) all sit
+   outside them, so no containing block is captured. */
+[data-lang-swap='a'] {
+    animation: langSwapA 260ms $md-easing-standard;
+}
+
+[data-lang-swap='b'] {
+    animation: langSwapB 260ms $md-easing-standard;
+}
+
+@keyframes langSwapA {
+    from {
+        opacity: 0.7;
+        transform: translateY(4px);
+    }
+}
+
+@keyframes langSwapB {
+    from {
+        opacity: 0.7;
+        transform: translateY(4px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    [data-lang-swap='a'],
+    [data-lang-swap='b'] {
+        animation-duration: 1ms;
+    }
+}

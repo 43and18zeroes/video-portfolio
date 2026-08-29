@@ -9,7 +9,10 @@ import { LanguageSwitch } from '../language-switch/language-switch';
   styleUrl: './header.scss',
 })
 export class Header {
-  protected readonly t = inject(I18nService).t;
+  private readonly i18n = inject(I18nService);
+
+  protected readonly t = this.i18n.t;
+  protected readonly swapPhase = this.i18n.swapPhase;
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
