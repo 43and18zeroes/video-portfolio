@@ -8,9 +8,9 @@ numbers.html
 
     <ul class="stat-grid" role="list">
       @for (stat of stats; track stat.id; let i = $index) {
-        <li class="stat">
-          <!-- The ring closes in step with the count. It is decoration, not an
-             encoding: all three fill identically, so no figure is presented as
+        <li class="stat" #stat>
+          <!-- The ring closes in step with its own count. It is decoration, not
+             an encoding: every ring ends full, so no figure is presented as
              larger or closer to some target than another. -->
           <div class="stat-gauge">
             <svg class="gauge" viewBox="0 0 100 100" aria-hidden="true">
@@ -21,7 +21,7 @@ numbers.html
                 cy="50"
                 [attr.r]="gaugeRadius"
                 [style.stroke-dasharray]="circumference"
-                [style.stroke-dashoffset]="dashOffset()"
+                [style.stroke-dashoffset]="dashOffsets()[i]"
               />
             </svg>
 

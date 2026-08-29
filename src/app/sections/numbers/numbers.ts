@@ -8,6 +8,7 @@ import {
   ElementRef,
   inject,
   signal,
+  viewChildren,
 } from '@angular/core';
 import type { Dictionary } from '../../i18n/de';
 import { I18nService } from '../../i18n/i18n';
@@ -32,8 +33,8 @@ const STATS: readonly Stat[] = [
 
 const COUNT_DURATION = 1100;
 
-// Enough of the band has to be on screen that the count is not already over by
-// the time it is looked at
+// Enough of a single figure has to be on screen that its count is not already
+// over by the time it is looked at
 const VISIBLE_RATIO_TO_START = 0.4;
 
 // Radius inside the gauge's 0 0 100 100 viewBox, leaving room for the stroke and
@@ -47,25 +48,33 @@ const GAUGE_RADIUS = 44;
   styleUrl: './numbers.scss',
 })
 export class Numbers {
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   protected readonly t = inject(I18nService).t;
   private readonly destroyRef = inject(DestroyRef);
 
-  private frame = 0;
+  private readonly statItems = viewChildren<ElementRef<HTMLElement>>('stat');
+  private readonly frames = STATS.map(() => 0);
 
   protected readonly stats = STATS;
-  protected readonly counted = signal<readonly number[]>(STATS.map(() => 0));
-
   protected readonly gaugeRadius = GAUGE_RADIUS;
   protected readonly circumference = 2 * Math.PI * GAUGE_RADIUS;
 
-  // Drives both the figures and the rings, so the two can never drift apart
-  private readonly progress = signal(0);
-  protected readonly dashOffset = computed(() => this.circumference * (1 - this.progress()));
+  /* One value per figure rather than one for the section. Stacked on a phone the
+     three gauges sit far apart, so each starts when it reaches the viewport; in
+     the three-column row from sd up they share a top edge and therefore still
+     begin in the same frame. No breakpoint branch needed - the layout decides. */
+  private readonly progress = signal<readonly number[]>(STATS.map(() => 0));
+
+  // Figure and ring are both derived from progress, so they cannot drift apart
+  protected readonly counted = computed(() =>
+    STATS.map((stat, index) => Math.round(stat.value * this.progress()[index])),
+  );
+  protected readonly dashOffsets = computed(() =>
+    this.progress().map((value) => this.circumference * (1 - value)),
+  );
 
   constructor() {
     afterNextRender(() => this.watchForEntry());
-    this.destroyRef.onDestroy(() => cancelAnimationFrame(this.frame));
+    this.destroyRef.onDestroy(() => this.frames.forEach((frame) => cancelAnimationFrame(frame)));
   }
 
   private watchForEntry(): void {
@@ -74,44 +83,56 @@ export class Numbers {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
+    const items = this.statItems().map((item) => item.nativeElement);
 
-        // The figures only ever count once
-        observer.disconnect();
-        this.countUp();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          // A figure counts once, so it stops being watched the moment it starts
+          observer.unobserve(entry.target);
+          this.countUp(items.indexOf(entry.target as HTMLElement));
+        }
       },
       { threshold: VISIBLE_RATIO_TO_START },
     );
 
-    observer.observe(this.host.nativeElement);
+    items.forEach((item) => observer.observe(item));
     this.destroyRef.onDestroy(() => observer.disconnect());
   }
 
-  private countUp(): void {
+  private countUp(index: number): void {
+    if (index < 0) {
+      return;
+    }
+
     const startedAt = performance.now();
 
     const step = (now: number) => {
-      const progress = Math.min((now - startedAt) / COUNT_DURATION, 1);
-      // Ease out, so the figures rush up and settle rather than crawl linearly
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const elapsed = Math.min((now - startedAt) / COUNT_DURATION, 1);
+      // Ease out, so the figure rushes up and settles rather than crawling linearly
+      const eased = 1 - Math.pow(1 - elapsed, 3);
 
-      this.counted.set(STATS.map((stat) => Math.round(stat.value * eased)));
-      this.progress.set(eased);
+      this.setProgress(index, eased);
 
-      if (progress < 1) {
-        this.frame = requestAnimationFrame(step);
+      if (elapsed < 1) {
+        this.frames[index] = requestAnimationFrame(step);
       }
     };
 
-    this.frame = requestAnimationFrame(step);
+    this.frames[index] = requestAnimationFrame(step);
+  }
+
+  private setProgress(index: number, value: number): void {
+    this.progress.update((current) =>
+      current.map((previous, i) => (i === index ? value : previous)),
+    );
   }
 
   private showFinalValues(): void {
-    this.counted.set(STATS.map((stat) => stat.value));
-    this.progress.set(1);
+    this.progress.set(STATS.map(() => 1));
   }
 }
