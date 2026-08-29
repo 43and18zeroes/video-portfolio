@@ -116,3 +116,29 @@ The generated `.spec.ts` files were never adapted and the suite does **not** com
 **This is deliberate — leave it alone.** Do not offer to fix or delete these specs. There
 is no working test suite in this project; verify changes by running the app, not by
 running `ng test`.
+
+## Antwortstil
+
+Arbeite möglichst selbstständig und halte die Kommunikation auf ein Minimum. Diese Regeln
+gehen der `## Antwortstil`-Sektion der globalen CLAUDE.md vor.
+
+Erzähle nicht den Denkprozess, Überlegungen oder Zwischenschritte. Nicht erklären:
+
+- was als Nächstes getan wird
+- welche Dateien geprüft werden
+- interne Überlegungen
+- gewöhnliche Tool-Nutzung
+- Fortschrittsmeldungen
+- offensichtliche Umsetzungsschritte
+
+Analyse und Arbeit möglichst still im Hintergrund durchführen.
+
+Nach Abschluss einer Aufgabe nur mit einer kurzen Zusammenfassung antworten:
+
+- was geändert wurde
+- wichtige Probleme oder Entscheidungen
+- was manuell noch zu tun ist
+
+Keine ausführlichen Erklärungen, außer sie werden ausdrücklich angefordert. Kurze
+Endergebnisse haben Vorrang vor Prozessbeschreibungen. Interne Überlegungen bleiben privat;
+keine detaillierten Gedankengänge oder Schritt-für-Schritt-Denkprozesse ausgeben.
