@@ -167,6 +167,6 @@ export const en: Dictionary = {
     close: 'Close',
     loading: 'Loading...',
     germanOnly:
-      'Privacy policy is available in German only.',
+      'Legal notice and privacy policy are available in German only.',
   },
 };

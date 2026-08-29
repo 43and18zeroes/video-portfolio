@@ -28,6 +28,14 @@ technologies.scss
   margin: 0;
   padding: 0;
   list-style: none;
+
+  /* All ten chips need 1417px to sit on one line, so on a wide screen nine fit
+     and the tenth was orphaned on a row of its own. The first five measure 774px
+     and the sixth would need 905px, so capping between the two forces the break
+     after the fifth: editing tools on one row, platforms on the next, which is
+     the order they are already in. Below roughly 800px the container is narrower
+     than this cap anyway and it stops having any effect. */
+  max-width: 860px;
 }
 
 .tech-item {

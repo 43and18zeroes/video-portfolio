@@ -270,6 +270,27 @@ swiper-slide {
     font-weight: 700;
 }
 
+/* The neighbouring slides are blurred inside but their frame stayed razor sharp:
+   a rounded rectangle plus a 1px light ring, cutting hard against the background.
+   It shows most at the lower corners beside the arrows, where the card ends on a
+   straight line. Dropping the ring and fading the card's own edges lets them sit
+   back instead of stopping abruptly. The element mask is intentionally on the
+   card, not on the image - the image alone would leave the clipped card box. */
+swiper-slide:not(.swiper-slide-active) .thumbnail-card {
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+
+    --edge-soften:
+        linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%),
+        linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+
+    /* source-in is WebKit's older spelling of intersect; both are declared so the
+       two gradients combine rather than the last one simply winning. */
+    -webkit-mask-image: var(--edge-soften);
+    -webkit-mask-composite: source-in;
+    mask-image: var(--edge-soften);
+    mask-composite: intersect;
+}
+
 swiper-slide.swiper-slide-prev,
 swiper-slide.swiper-slide-next {
     .thumbnail-card img {

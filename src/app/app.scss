@@ -112,7 +112,13 @@ main > *:not(app-hero) {
 
 /* Scrollable Container & Typography Styles */
 .drawer-content {
-  padding: 48px 32px;
+  /* The close button is absolutely positioned over this area and ends at 70px
+     (top 20 + height 50). Content used to start at 48px and ran underneath it -
+     visible as soon as the first block was wide, which the English-only notice
+     and the "Datenschutzerklärung" heading both are. The top padding now clears
+     the button; the button itself stays out of the flow so it holds its place
+     while the text scrolls. */
+  padding: 86px 32px 48px;
   overflow-y: auto;
   height: 100%;
   /* Same reason as on html: the deferred content replaces a 200px placeholder,
