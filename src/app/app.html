@@ -42,9 +42,15 @@ app.html
 <app-footer (openLegal)="openLegal($event)" />
 
 @if (activeLegalView(); as type) {
-  <div class="drawer-backdrop" (click)="closeLegal()"></div>
+  <div class="drawer-backdrop" animate.leave="is-leaving" (click)="closeLegal()"></div>
 
-  <aside class="drawer-panel" role="dialog" data-nosnippet aria-modal="true">
+  <aside
+    class="drawer-panel"
+    animate.leave="is-leaving"
+    role="dialog"
+    data-nosnippet
+    aria-modal="true"
+  >
     <button
       class="close-button"
       type="button"
