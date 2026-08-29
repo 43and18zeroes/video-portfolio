@@ -108,6 +108,10 @@ custom-select.scss
         font-size: 18px;
         color: $white-text;
         cursor: pointer;
+        /* Tappable, but an li rather than a button, so the global rule for
+           interactive labels does not reach it */
+        user-select: none;
+        -webkit-user-select: none;
         transition: background-color 150ms ease, color 150ms ease;
 
         &:hover {

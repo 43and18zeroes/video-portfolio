@@ -31,6 +31,13 @@ html {
        shifts sideways. Reserving it permanently keeps both states identical.
        No-op where the platform draws overlay scrollbars. */
     scrollbar-gutter: stable;
+
+    /* Inherited, so this one declaration reaches every descendant. A `button, a`
+       selector missed three cases: the drawer backdrop and the select options are
+       tappable but are a div and an li, and Swiper draws its arrows in a shadow
+       root that no light-DOM selector can target - inheritance crosses that
+       boundary, a selector does not. */
+    -webkit-tap-highlight-color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -225,11 +232,6 @@ p {
         font-size: 20px;
         line-height: 1;
     }
-}
-
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
 }
 
 button,

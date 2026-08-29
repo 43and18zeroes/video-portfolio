@@ -38,10 +38,15 @@ language-switch.scss
     padding: 6px 12px;
   }
 
-  &:hover {
-    color: $white-text;
-    border-color: rgba($brand-blue, 0.45);
-    background-color: rgba($brand-blue, 0.08);
+  /* A touch device keeps :hover on the last element it tapped until something
+     else is tapped, so the switched-away-from button stayed outlined in blue.
+     hover: hover is false on touch-only input, which drops the rule entirely. */
+  @media (hover: hover) {
+    &:hover {
+      color: $white-text;
+      border-color: rgba($brand-blue, 0.45);
+      background-color: rgba($brand-blue, 0.08);
+    }
   }
 
   &:focus-visible {

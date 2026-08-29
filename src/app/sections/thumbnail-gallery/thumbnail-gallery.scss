@@ -227,6 +227,14 @@ swiper-slide {
     border-radius: $radius-card;
     overflow: hidden;
     background: #11151f;
+
+    /* The carousel is dragged, not just tapped: without this a swipe that starts
+       on the badge selects its text, and a long press on iOS opens the image
+       callout instead of moving the slide. */
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+
     /* Inset ring rather than a border: the border box sits outside the overflow
        clip, so on the rotated outer slides it rendered as a ragged line along the
        top and bottom edges */
