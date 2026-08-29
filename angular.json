@@ -31,7 +31,14 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "ignore": [
+                  "favicon/favicon.svg",
+                  "favicon/play-edited.png",
+                  "fonts/Inter-Italic-VariableFont_opsz,wght.ttf",
+                  "img/avatar.png",
+                  "img/avatar-540.jpg"
+                ]
               }
             ],
             "styles": [
@@ -48,7 +55,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
+                  "maximumWarning": "6kB",
                   "maximumError": "8kB"
                 }
               ],

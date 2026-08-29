@@ -1,11 +1,8 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-
+/* No provideRouter here: navigation is in-page anchor scrolling and nothing in the
+   app uses RouterOutlet, routerLink or the Router service. An empty route table
+   still pulled the whole @angular/router package into the initial bundle. */
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
-  ]
+  providers: [provideBrowserGlobalErrorListeners()],
 };
