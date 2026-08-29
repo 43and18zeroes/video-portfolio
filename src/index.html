@@ -15,6 +15,27 @@ index.html
     />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- A @font-face rule alone starts no download: the browser fetches a webfont
+         only once rendered content needs it, which in this SPA is after main.js has
+         run. These two move the request to HTML parse time so the faces are there
+         before the first text is painted. crossorigin is required even same-origin,
+         otherwise the preload is fetched in a different mode than the CSS request
+         and the file is downloaded twice. -->
+    <link
+      rel="preload"
+      href="/fonts/Inter-VariableFont_opsz,wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Sora-VariableFont_wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
