@@ -11,7 +11,7 @@ contact-form.html
 
     <div class="form-wrapper">
       <div class="status-toast-container">
-        @if (submittedSuccessfully) {
+        @if (submittedSuccessfully()) {
           <div class="status-toast success-message" role="status" aria-live="polite">
             <div class="success-icon">✓</div>
             <div>
@@ -21,8 +21,14 @@ contact-form.html
           </div>
         }
 
-        @if (submitError) {
-          <div class="status-toast server-error-message" role="alert" aria-live="assertive">
+        @if (submitError()) {
+          <div
+            class="status-toast server-error-message"
+            animate.leave="is-leaving"
+            [style.--toast-visible]="errorVisibleMs + 'ms'"
+            role="alert"
+            aria-live="assertive"
+          >
             <div class="error-icon">✕</div>
             <div>
               <strong>{{ t().contactForm.error.title }}</strong>
@@ -107,9 +113,15 @@ contact-form.html
         <button
           type="submit"
           class="primary-btn"
-          [disabled]="isSubmitting || submittedSuccessfully"
+          [class.is-busy]="isSubmitting()"
+          [disabled]="isSubmitting() || submittedSuccessfully()"
         >
-          <span>{{ isSubmitting ? t().contactForm.submitting : t().contactForm.submit }}</span>
+          @if (isSubmitting()) {
+            <svg class="spinner" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+          }
+          <span>{{ isSubmitting() ? t().contactForm.submitting : t().contactForm.submit }}</span>
         </button>
       </form>
     </div>

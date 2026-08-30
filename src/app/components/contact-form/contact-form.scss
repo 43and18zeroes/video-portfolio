@@ -205,6 +205,8 @@ input.invalid:focus {
 }
 
 .status-toast {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -215,6 +217,15 @@ input.invalid:focus {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   animation: toastIn 0.3s $md-easing-standard;
   pointer-events: auto;
+
+  /* Only the error toast carries animate.leave, so only it ever gets this class.
+     Its own keyframes rather than toastIn reversed: the entry animation has long
+     finished by the time this runs, and flipping the direction of a finished
+     animation does not restart it - the toast would blink out instead of lifting
+     away. Same reasoning as the legal drawer. */
+  &.is-leaving {
+    animation: toastOut 260ms $md-easing-standard forwards;
+  }
 }
 
 .success-message {
@@ -258,6 +269,72 @@ input.invalid:focus {
   }
 }
 
+@keyframes toastCountdown {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes spinnerTurn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mirrors the entry, but lifts away instead of settling down */
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* An arc rather than a full ring, in the same language as the gauges in the
+   numbers band: thin stroke, round cap. currentColor picks up the button's own
+   text colour, so it stays right if the button is ever restyled. */
+.spinner {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+
+  circle {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    /* 2 * pi * r, with r = 9 */
+    stroke-dasharray: 56.5;
+    /* leaves a quarter of the ring visible */
+    stroke-dashoffset: 42;
+    transform-origin: 50% 50%;
+    animation: spinnerTurn 800ms linear infinite;
+  }
+}
+
+/* Kept at 1ms rather than removed: animate.leave waits for an animation to end
+   before it detaches the element. The countdown bar and the spinner are left
+   running - both carry information that disappears with the motion, and a slow
+   linear turn is about as gentle as motion gets. The spinner is slowed instead. */
+@media (prefers-reduced-motion: reduce) {
+  .status-toast,
+  .status-toast.is-leaving {
+    animation-duration: 1ms;
+  }
+
+  .spinner circle {
+    animation-duration: 2s;
+  }
+}
+
 /* Responsive Scaling */
 
 @include md {
@@ -280,10 +357,34 @@ button.primary-btn:disabled {
   pointer-events: none;
 }
 
+/* A button that is working should look busy, not switched off. The dimming above
+   is right for the state after a successful send, but during the request it
+   greyed out the very spinner that is meant to signal progress. */
+button.primary-btn.is-busy:disabled {
+  opacity: 1;
+  filter: none;
+}
+
 /* Error Banner */
 .server-error-message {
   background: rgba(239, 68, 68, 0.92);
   border: 1px solid #ef4444;
+
+  /* Drains over exactly the time the toast is given, so the message does not
+     just vanish on the user. --toast-visible comes from the component, which
+     keeps the bar and the timer on one number. scaleX rather than width: it
+     runs on the compositor and does not lay out sixty times a second. */
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform-origin: left center;
+    animation: toastCountdown var(--toast-visible, 4500ms) linear forwards;
+  }
 }
 
 .error-icon {
