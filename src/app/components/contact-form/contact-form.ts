@@ -5,11 +5,22 @@ import { CustomSelect, SelectOption } from './custom-select/custom-select';
 import { I18nService } from '../../i18n/i18n';
 import { LEGAL_DATA } from '../../private-data.config';
 
-/* The message runs twelve German words, which is about four seconds at a slow
-   reading pace, plus the entry animation. Anything beyond that is dead time,
-   because the toast covers the first two fields - it hides the very inputs it is
-   asking to correct. */
-const ERROR_VISIBLE_MS = 4500;
+/* How long the error toast stays, derived from its own text rather than fixed:
+   the message has grown once already, and a constant silently stops matching it.
+   180 words per minute is a slow reading pace, the extra second covers the entry
+   animation and the moment it takes to notice the toast at all. The upper bound
+   matters because the toast covers the first two fields while it is up. */
+function errorVisibleMs(text: string): number {
+  const words = text.trim().split(/\s+/).length;
+  return Math.min(9000, Math.max(4000, Math.round((words / 180) * 60000) + 900));
+}
+
+/* The form appears twice on the page on purpose - once in the hero so an early
+   visitor can act straight away, once at the end for someone the content has
+   convinced. Both instances used to render id="name" and id="email", and a label
+   only ever binds to the first match in the document: the lower form's fields
+   were left unlabelled, and clicking their labels jumped to the hero. */
+let instanceCount = 0;
 
 @Component({
   selector: 'app-contact-form',
@@ -35,9 +46,16 @@ export class ContactForm {
 
   private errorTimeout?: ReturnType<typeof setTimeout>;
 
-  /* Handed to the toast as a CSS custom property so the draining bar and the
-     timer cannot drift apart. */
-  protected readonly errorVisibleMs = ERROR_VISIBLE_MS;
+  private readonly instance = `contact-${++instanceCount}`;
+
+  protected readonly nameId = `${this.instance}-name`;
+  protected readonly emailId = `${this.instance}-email`;
+  protected readonly topicLabelId = `${this.instance}-topic-label`;
+
+  /* Handed to the toast as a CSS custom property as well, so the draining bar and
+     the timer cannot drift apart - and it follows the active language, whose
+     wording is not the same length. */
+  protected readonly errorVisible = computed(() => errorVisibleMs(this.t().contactForm.error.text));
 
   /* Only the labels are localised. The submitted values stay as they are, so the
      mail endpoint keeps receiving what it already expects. */
@@ -106,7 +124,7 @@ export class ContactForm {
 
       /* The toast sits over the first two fields, so leaving it up would block
          the very correction it asks for. */
-      this.errorTimeout = setTimeout(() => this.submitError.set(false), ERROR_VISIBLE_MS);
+      this.errorTimeout = setTimeout(() => this.submitError.set(false), this.errorVisible());
     } finally {
       this.isSubmitting.set(false);
     }

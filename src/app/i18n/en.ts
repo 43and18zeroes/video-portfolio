@@ -116,12 +116,16 @@ export const en: Dictionary = {
     heading: 'Quick inquiry',
     subline: 'Takes 30 seconds - answer within 24 hours.',
     success: {
-      title: 'Thank you!',
-      text: 'Your request has been sent.',
+      /* 'Many thanks' rather than 'Thank you': mirrors the German 'Vielen Dank'
+         and keeps the status messages free of any second person. */
+      title: 'Many thanks!',
+      text: 'The request has been sent successfully.',
     },
     error: {
       title: 'Sending failed!',
-      text: 'The message could not be sent. Please try again.',
+      text:
+        'This may be a server outage. Please try again – if it keeps failing, the email ' +
+        'address below also works.',
     },
     name: {
       label: 'Name',
@@ -166,7 +170,6 @@ export const en: Dictionary = {
   drawer: {
     close: 'Close',
     loading: 'Loading...',
-    germanOnly:
-      'Legal notice and privacy policy are available in German only.',
+    germanOnly: 'Legal notice and privacy policy are available in German only.',
   },
 };

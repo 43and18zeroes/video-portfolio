@@ -134,7 +134,11 @@ export const de = {
     },
     error: {
       title: 'Fehler beim Senden!',
-      text: 'Die Nachricht konnte nicht übermittelt werden. Bitte erneut versuchen.',
+      /* Impersonal throughout: infinitive instructions rather than an imperative,
+         which keeps the system messages free of any form of address. */
+      text:
+        'Möglicherweise eine Serverstörung. Bitte erneut versuchen – wenn es weiterhin ' +
+        'nicht klappt, die E-Mail-Adresse unten nutzen.',
     },
     name: {
       label: 'Name',

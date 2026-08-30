@@ -25,7 +25,7 @@ contact-form.html
           <div
             class="status-toast server-error-message"
             animate.leave="is-leaving"
-            [style.--toast-visible]="errorVisibleMs + 'ms'"
+            [style.--toast-visible]="errorVisible() + 'ms'"
             role="alert"
             aria-live="assertive"
           >
@@ -41,9 +41,11 @@ contact-form.html
       <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
         <!-- NAME -->
         <div class="form-group">
-          <label for="name" class="visually-hidden">{{ t().contactForm.name.label }}</label>
+          <label [attr.for]="nameId" class="visually-hidden">{{
+            t().contactForm.name.label
+          }}</label>
           <input
-            id="name"
+            [id]="nameId"
             type="text"
             formControlName="name"
             [placeholder]="t().contactForm.name.placeholder"
@@ -65,9 +67,11 @@ contact-form.html
 
         <!-- EMAIL -->
         <div class="form-group">
-          <label for="email" class="visually-hidden">{{ t().contactForm.email.label }}</label>
+          <label [attr.for]="emailId" class="visually-hidden">{{
+            t().contactForm.email.label
+          }}</label>
           <input
-            id="email"
+            [id]="emailId"
             type="email"
             formControlName="email"
             [placeholder]="t().contactForm.email.placeholder"
@@ -91,13 +95,15 @@ contact-form.html
 
         <!-- CUSTOM DROPDOWN -->
         <div class="form-group">
-          <label id="topic-label" class="visually-hidden">{{ t().contactForm.topic.label }}</label>
+          <label [id]="topicLabelId" class="visually-hidden">{{
+            t().contactForm.topic.label
+          }}</label>
 
           <app-custom-select
             formControlName="topic"
             [options]="topicOptions()"
             [placeholder]="t().contactForm.topic.placeholder"
-            ariaLabelledBy="topic-label"
+            [ariaLabelledBy]="topicLabelId"
             [invalid]="contactForm.controls.topic.invalid && contactForm.controls.topic.touched"
           >
           </app-custom-select>
