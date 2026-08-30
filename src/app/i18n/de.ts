@@ -30,7 +30,12 @@ export const de = {
   },
 
   hero: {
-    heading: 'Mehr als nur aneinandergereihte Clips',
+    /* ­ is a soft hyphen: invisible until the line has to break, then it
+       splits the compound at its seam. Without it the headline is cut mid-word
+       below roughly 400px, because "aneinandergereihte" alone is wider than the
+       column. hyphens: auto is no help - Chrome has no German dictionary loaded
+       by default, so it silently does nothing. */
+    heading: 'Mehr als nur aneinander­gereihte Clips',
   },
 
   /* One per work-sample section. app.html binds them explicitly; `attention` also
