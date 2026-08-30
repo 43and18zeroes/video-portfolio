@@ -124,6 +124,18 @@ custom-select.scss
             }
         }
 
+        /* The option the arrow keys are sitting on. It also carries real focus,
+           so the outline below shows as well - the fill makes the whole row read
+           as active rather than just its outline. */
+        &.is-active {
+            background-color: #242d3d;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $brand-blue;
+            outline-offset: -2px;
+        }
+
         &.selected {
             background-color: rgba(37, 99, 235, 0.15);
             color: #60a5fa;

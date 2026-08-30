@@ -50,6 +50,7 @@ app.html
     role="dialog"
     data-nosnippet
     aria-modal="true"
+    [attr.aria-label]="type === 'imprint' ? t().footer.imprint : t().footer.privacy"
   >
     <button
       class="close-button"
