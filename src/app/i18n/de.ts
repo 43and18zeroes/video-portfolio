@@ -16,7 +16,7 @@
 export const de = {
   meta: {
     description:
-      'CMW Media – Videoschnitt und Thumbnail-Design für YouTube, Shortform und Social Media. ' +
+      'CMW Media - Videoschnitt und Thumbnail-Design für YouTube, Shortform und Social Media. ' +
       'Schnitt, Motion Design und Thumbnails aus einer Hand.',
   },
 
@@ -51,11 +51,11 @@ export const de = {
      Testimonial component and still needs neutralising separately. */
   testimonials: {
     hero: {
-      text: 'PLATZHALTER — hier kommt später ein echtes Kundenzitat hin.',
+      text: 'PLATZHALTER - hier kommt später ein echtes Kundenzitat hin.',
       author: '[Kundenname], [Position], [Firma]',
     },
     sample: {
-      text: 'PLATZHALTER — hier kommt später ein echtes Kundenzitat hin.',
+      text: 'PLATZHALTER - hier kommt später ein echtes Kundenzitat hin.',
       author: '[Kundenname], [Position], [Firma]',
     },
   },
@@ -116,7 +116,7 @@ export const de = {
 
   about: {
     heading: 'Hi, ich bin Christoph.',
-    lead: 'Ich schneide Videos – und gestalte die Thumbnails gleich mit.',
+    lead: 'Ich schneide Videos - und gestalte die Thumbnails gleich mit.',
     body:
       'Ich arbeite in Premiere Pro und After Effects, Thumbnails und Grafiken baue ich in ' +
       'Photoshop. Wichtiger als das Werkzeug ist aber, ob jemand dranbleibt: wo der Schnitt ' +
@@ -137,7 +137,7 @@ export const de = {
       /* Impersonal throughout: infinitive instructions rather than an imperative,
          which keeps the system messages free of any form of address. */
       text:
-        'Möglicherweise eine Serverstörung. Bitte erneut versuchen – wenn es weiterhin ' +
+        'Möglicherweise eine Serverstörung. Bitte erneut versuchen - wenn es weiterhin ' +
         'nicht klappt, die E-Mail-Adresse unten nutzen.',
     },
     name: {
