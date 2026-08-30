@@ -99,8 +99,11 @@ input::placeholder {
   color: #8a94a6;
 }
 
-input:hover {
-  border-color: #354257;
+/* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+@media (hover: hover) {
+  input:hover {
+    border-color: #354257;
+  }
 }
 
 input:focus {
@@ -161,8 +164,11 @@ input:disabled {
     display: inline-block;
     transition: $text-link-transition;
 
-    &:hover {
-      color: $brand-blue;
+    /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+    @media (hover: hover) {
+      &:hover {
+        color: $brand-blue;
+      }
     }
   }
 }
@@ -255,7 +261,6 @@ input.invalid:focus {
 /* Responsive Scaling */
 
 @include md {
-
   .form-header {
     margin-bottom: 28px;
   }
@@ -263,7 +268,7 @@ input.invalid:focus {
   form {
     display: flex;
     flex-direction: column;
-    gap: 8px
+    gap: 8px;
   }
 }
 

@@ -108,9 +108,12 @@ swiper-container.thumbnail-swiper {
         transition: background-color 200ms $md-easing-standard;
     }
 
-    &::part(button-prev):hover,
-    &::part(button-next):hover {
-        background-color: rgba(255, 255, 255, 0.08);
+    /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+    @media (hover: hover) {
+        &::part(button-prev):hover,
+        &::part(button-next):hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
     }
 
     &::part(button-prev):focus-visible,
@@ -179,8 +182,11 @@ swiper-slide {
             opacity 200ms $md-easing-standard;
     }
 
-    &:hover::before {
-        opacity: 0.5;
+    /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+    @media (hover: hover) {
+        &:hover::before {
+            opacity: 0.5;
+        }
     }
 
     &.is-active::before {

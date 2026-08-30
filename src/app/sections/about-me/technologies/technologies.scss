@@ -54,10 +54,13 @@ technologies.scss
     border-color 200ms $md-easing-standard,
     background-color 200ms $md-easing-standard;
 
-  &:hover {
-    color: $white-text;
-    border-color: rgba($brand-blue, 0.45);
-    background-color: rgba($brand-blue, 0.08);
+  /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+  @media (hover: hover) {
+    &:hover {
+      color: $white-text;
+      border-color: rgba($brand-blue, 0.45);
+      background-color: rgba($brand-blue, 0.08);
+    }
   }
 }
 

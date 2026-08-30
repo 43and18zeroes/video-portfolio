@@ -150,8 +150,11 @@ p {
     color: #60a5fa;
     text-decoration: underline;
 
-    &:hover {
-        color: #93c5fd;
+    /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+    @media (hover: hover) {
+        &:hover {
+            color: #93c5fd;
+        }
     }
 }
 
@@ -167,8 +170,11 @@ p {
     padding: 8px 12px;
     transition: $text-link-transition;
 
-    &:hover {
-        color: #f3f5f9;
+    /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+    @media (hover: hover) {
+        &:hover {
+            color: #f3f5f9;
+        }
     }
 }
 
@@ -178,8 +184,11 @@ p {
     text-underline-offset: 3px;
     transition: $text-link-transition;
 
-    &:hover {
-        color: #7099ff;
+    /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+    @media (hover: hover) {
+        &:hover {
+            color: #7099ff;
+        }
     }
 }
 
@@ -217,20 +226,21 @@ p {
         background-color 200ms $md-easing-standard,
         box-shadow 250ms $md-easing-standard;
 
-    &:hover {
-        background-color: #5d8bff;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(79, 128, 255, 0.35);
+    /* A touch device keeps :hover on the last element it tapped until something else
+     is tapped, so a tapped button stayed lifted and glowing. hover: hover is false
+     on touch-only input, which drops the rule there and changes nothing for mouse
+     or trackpad. Every other :hover in the project is guarded the same way. */
+    @media (hover: hover) {
+        &:hover {
+            background-color: #5d8bff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(79, 128, 255, 0.35);
+        }
     }
 
     &:active {
         transform: translateY(0) scale(0.98);
         box-shadow: none;
-    }
-
-    .btn-icon {
-        font-size: 20px;
-        line-height: 1;
     }
 }
 

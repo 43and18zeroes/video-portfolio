@@ -106,8 +106,11 @@ main > *:not(app-hero) {
   transition: $text-link-transition;
 }
 
-.close-button:hover {
-  color: $white-text;
+/* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+@media (hover: hover) {
+  .close-button:hover {
+    color: $white-text;
+  }
 }
 
 /* Scrollable Container & Typography Styles */

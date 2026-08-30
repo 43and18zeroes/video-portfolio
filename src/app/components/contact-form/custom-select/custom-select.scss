@@ -39,8 +39,11 @@ custom-select.scss
         transition-duration: 150ms;
         transition-timing-function: $md-easing-standard;
 
-        &:hover {
-            border-color: #354257;
+        /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+        @media (hover: hover) {
+            &:hover {
+                border-color: #354257;
+            }
         }
 
         &:focus-visible {
@@ -114,8 +117,11 @@ custom-select.scss
         -webkit-user-select: none;
         transition: background-color 150ms ease, color 150ms ease;
 
-        &:hover {
-            background-color: #242d3d;
+        /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
+        @media (hover: hover) {
+            &:hover {
+                background-color: #242d3d;
+            }
         }
 
         &.selected {
