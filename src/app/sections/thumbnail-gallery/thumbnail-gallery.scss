@@ -105,15 +105,31 @@ swiper-container.thumbnail-swiper {
         text-shadow:
             0 1px 2px rgba(0, 0, 0, 0.5),
             0 2px 8px rgba(0, 0, 0, 0.45);
-        transition: background-color 200ms $md-easing-standard;
+        /* Scaled rather than resized: Swiper centres the button with top and a
+           margin-top derived from --swiper-navigation-size, so a larger box on
+           hover would drag the arrow off centre. A transform leaves the layout,
+           and therefore the position, untouched. */
+        transform: scale(1);
+        transition:
+            background-color 200ms $md-easing-standard,
+            transform 200ms $md-easing-standard;
     }
 
     /* Guarded against sticky hover on touch - see .primary-btn in styles.scss */
     @media (hover: hover) {
         &::part(button-prev):hover,
         &::part(button-next):hover {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.12);
+            transform: scale(1.14);
         }
+    }
+
+    /* Settles back towards its resting size while held, so the press reads as a
+       press rather than as the hover simply continuing */
+    &::part(button-prev):active,
+    &::part(button-next):active {
+        transform: scale(1.04);
+        transition-duration: 80ms;
     }
 
     &::part(button-prev):focus-visible,
@@ -333,5 +349,21 @@ swiper-slide.swiper-slide-active {
     .card-caption,
     .pagination-bullet::before {
         transition-duration: 1ms;
+    }
+
+    /* The arrow keeps its hover surface, only the movement is dropped */
+    swiper-container.thumbnail-swiper {
+
+        &::part(button-prev),
+        &::part(button-next) {
+            transition-duration: 1ms;
+        }
+
+        &::part(button-prev):hover,
+        &::part(button-next):hover,
+        &::part(button-prev):active,
+        &::part(button-next):active {
+            transform: none;
+        }
     }
 }
